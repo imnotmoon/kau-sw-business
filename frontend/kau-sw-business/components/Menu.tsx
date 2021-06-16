@@ -4,6 +4,14 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 const menuItems = ['사업단 소개', 'SW전공교육', '산학협력교육', 'SW기초·융합교육', 'SW가치확산', '커뮤니티'];
+const menuLinks = [
+  '/introduce',
+  '/major_education',
+  '/industried_education',
+  '/basic_education',
+  '/sw_value',
+  '/community',
+];
 
 const Menu = () => {
   return (
@@ -14,7 +22,7 @@ const Menu = () => {
           {menuItems.map((item, idx) => {
             return (
               <MenuItem key={idx}>
-                <Link href="/">
+                <Link href={menuLinks[idx]}>
                   <a>{item}</a>
                 </Link>
               </MenuItem>
