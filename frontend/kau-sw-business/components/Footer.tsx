@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
+import MediaQuery, { useMediaQuery } from 'react-responsive';
 
 export default function Footer() {
   return (
@@ -38,12 +39,22 @@ const InfoZone = styled.div`
     color: white;
     font-weight: 400;
     font-size: 15px;
+    @media screen and (max-width: 768px) {
+      font-size: 13px;
+      padding-left: 30px;
+      margin-right: 15px;
+    }
   }
 
   & > div:nth-of-type(2) {
     border: 1px solid white;
     padding: 8px 20px 8px 20px;
     cursor: pointer;
+    @media screen and (max-width: 768px) {
+      min-width: 80px;
+      font-size: 13px;
+      margin-right: 30px;
+    }
   }
 `;
 

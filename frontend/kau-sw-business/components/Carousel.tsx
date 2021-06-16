@@ -20,22 +20,32 @@ const SimpleSlider: React.FC<SliderProp> = () => {
     autoplaySpeed: 3000,
     autoplay: true,
     draggable: true,
+    adaptiveHeight: true,
   };
   return (
     <Slider {...settings}>
       <div>
         <CarouselItem>
-          <img src="/img/main_visual_img01.png" alt="" width={1920} height={380} />
+          {/* <img src="/img/main_visual_img01.png" alt="" width={1920} height={380} /> */}
+          <div>
+            <img src="/img/main_visual_img01.png" alt="" />
+          </div>
         </CarouselItem>
       </div>
       <div>
         <CarouselItem>
-          <img src="/img/main_visual_img02.png" alt="" width={1920} height={380} />
+          {/* <img src="/img/main_visual_img02.png" alt="" width={1920} height={380} /> */}
+          <div>
+            <img src="/img/main_visual_img02.png" alt="" />
+          </div>
         </CarouselItem>
       </div>
       <div>
         <CarouselItem>
-          <img src="/img/main_visual_img03.png" alt="" width={1920} height={380} />
+          {/* <img src="/img/main_visual_img03.png" alt="" width={1920} height={380}/> */}
+          <div>
+            <img src="/img/main_visual_img03.png" alt="" />
+          </div>
         </CarouselItem>
       </div>
     </Slider>

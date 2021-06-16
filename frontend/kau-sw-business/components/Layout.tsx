@@ -2,10 +2,13 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import styled from 'styled-components';
+import MediaQuery from 'react-responsive';
 
 // components
 import Menu from './Menu';
 import Footer from './Footer';
+
+// import { isDesktopOrLaptop, isTabletOrMobile } from '../utils/MediaQuery';
 
 type Props = {
   children?: ReactNode;

@@ -1,0 +1,5 @@
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+
+export const isDesktopOrLaptop = useMediaQuery({ minWidth: 993 });
+export const isTabletOrMobile = useMediaQuery({ maxWidth: 992 });
