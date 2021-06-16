@@ -14,10 +14,14 @@ const menuLinks = [
 ];
 
 const Menu = () => {
+  const onLogoClick = (e: React.MouseEvent) => {
+    location.href = '/';
+  };
+
   return (
     <Container>
       <div>
-        <Image src="/img/logo_01.png" alt="logo" width="205" height="36" />
+        <Image src="/img/logo_01.png" alt="logo" width="205" height="36" onClick={onLogoClick} />
         <div>
           {menuItems.map((item, idx) => {
             return (
@@ -49,6 +53,7 @@ const Container = styled.div`
     & > div {
       display: flex;
       gap: 2vh;
+      cursor: pointer;
     }
   }
 `;
