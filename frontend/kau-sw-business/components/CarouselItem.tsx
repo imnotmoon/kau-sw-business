@@ -10,4 +10,13 @@ export default function CarouselItem({ children }) {
   return <Container>{children}</Container>;
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  & > div {
+    height: 380px;
+    & > img {
+      width: 100vw;
+      height: 380px;
+      object-fit: cover;
+    }
+  }
+`;
