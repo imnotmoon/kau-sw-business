@@ -3,6 +3,8 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import Link from 'next/link';
 import MediaQuery, { useMediaQuery } from 'react-responsive';
+import { FocusEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 const menuItems = ['사업단 소개', 'SW전공교육', '산학협력교육', 'SW기초·융합교육', 'SW가치확산', '커뮤니티'];
 const menuLinks = [
@@ -15,11 +17,15 @@ const menuLinks = [
 ];
 
 const Menu = () => {
-  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1000 });
-  const isPHoneOrTablet = useMediaQuery({ maxWidth: 1000 });
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1100 });
+  const isPHoneOrTablet = useMediaQuery({ maxWidth: 1100 });
 
   const onLogoClick = (e: React.MouseEvent) => {
     location.href = '/';
+  };
+
+  const onMenuFocused: MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    console.log('hover : ', event.currentTarget);
   };
 
   return (
@@ -30,14 +36,18 @@ const Menu = () => {
           {isDesktopOrLaptop &&
             menuItems.map((item, idx) => {
               return (
-                <MenuItem key={idx}>
+                <MenuItem key={idx} onMouseEnter={onMenuFocused}>
                   <Link href={menuLinks[idx]}>
                     <a>{item}</a>
                   </Link>
                 </MenuItem>
               );
             })}
-          {isPHoneOrTablet && <Button>더보기</Button>}
+          {isPHoneOrTablet && (
+            <Button>
+              <img src="/img/menu_more.png" alt="" width={40} height={40} />
+            </Button>
+          )}
         </div>
       </div>
     </Container>
@@ -68,14 +78,21 @@ const MenuItem = styled.div`
   & > a {
     color: white;
     text-decoration: none;
+
+    &:active {
+      color: #e2e2e2;
+    }
   }
 `;
 
 const Button = styled.div`
   color: white;
-  padding: 8px 12px 8px 12px;
-  border: 1px solid white;
-  border-radius: 5px;
+  padding: 12px 12px 5px 12px;
+  filter: invert(100%);
+
+  &:active {
+    filter: invert(70%);
+  }
 `;
 
 export default Menu;

@@ -20,6 +20,7 @@ const Layout = ({ children }: Props) => (
       <title>{'한국항공대학교 SW중심사업단'}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');</style>
     </Head>
     <Header>
       <nav>
