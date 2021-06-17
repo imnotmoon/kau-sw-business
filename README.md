@@ -11,3 +11,12 @@ nodejs express
 - prettier
 - husky
 - lint-staged
+
+#### front server 실행
+- npm run front
+
+#### backe server 실행
+- npm run server
+
+### front & server 실행
+- npm run dev
