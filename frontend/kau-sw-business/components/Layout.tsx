@@ -12,32 +12,40 @@ import Footer from './Footer';
 
 type Props = {
   children?: ReactNode;
+  modalHandler: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Layout = ({ children }: Props) => (
-  <Container>
-    <Head>
-      <title>{'한국항공대학교 SW중심사업단'}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');</style>
-    </Head>
-    <Header>
-      <nav>
-        <Link href="/">
-          <a>로그인</a>
-        </Link>
-        <span>{'|'}</span>
-        <Link href="/">
-          <a>사이트맵</a>
-        </Link>
-      </nav>
-    </Header>
-    <Menu></Menu>
-    {children}
-    <Footer />
-  </Container>
-);
+const Layout = ({ children, modalHandler }: Props) => {
+  const onSitemapButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    modalHandler(true);
+  };
+
+  return (
+    <Container>
+      <Head>
+        <title>{'한국항공대학교 SW중심사업단'}</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');</style>
+      </Head>
+      <Header>
+        <nav>
+          <Link href="/">
+            <a>로그인</a>
+          </Link>
+          <span>{'|'}</span>
+          <Link href="/">
+            <a onClick={onSitemapButtonClick}>사이트맵</a>
+          </Link>
+        </nav>
+      </Header>
+      <Menu></Menu>
+      {children}
+      <Footer />
+    </Container>
+  );
+};
 
 const Container = styled.div`
   margin: 0;

@@ -24,7 +24,6 @@ export default function Footer() {
 }
 
 const Container = styled.div`
-  margin-top: 30px;
   height: 157px;
   background: #1e1e1e;
 `;

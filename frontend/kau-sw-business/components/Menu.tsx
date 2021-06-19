@@ -1,10 +1,7 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import Image from 'next/image';
-import styled from 'styled-components';
 import Link from 'next/link';
-import MediaQuery, { useMediaQuery } from 'react-responsive';
-import { FocusEventHandler } from 'react';
-import { MouseEventHandler } from 'react';
+import styled from 'styled-components';
 
 const menuItems = ['사업단 소개', 'SW전공교육', '산학협력교육', 'SW기초·융합교육', 'SW가치확산', '커뮤니티'];
 const menuLinks = [
@@ -17,8 +14,7 @@ const menuLinks = [
 ];
 
 const Menu = () => {
-  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1100 });
-  const isPHoneOrTablet = useMediaQuery({ maxWidth: 1100 });
+  const isMobileDevice = false;
 
   const onLogoClick = (e: React.MouseEvent) => {
     location.href = '/';
@@ -33,22 +29,19 @@ const Menu = () => {
       <div>
         <Image src="/img/logo_01.png" alt="logo" width="205" height="36" onClick={onLogoClick} />
         <div>
-          {isDesktopOrLaptop &&
-            menuItems.map((item, idx) => {
-              return (
-                <MenuItem key={idx} onMouseEnter={onMenuFocused}>
-                  <Link href={menuLinks[idx]}>
-                    <a>{item}</a>
-                  </Link>
-                </MenuItem>
-              );
-            })}
-          {isPHoneOrTablet && (
-            <Button>
-              <img src="/img/menu_more.png" alt="" width={40} height={40} />
-            </Button>
-          )}
+          {menuItems.map((item, idx) => {
+            return (
+              <MenuItem key={idx} onMouseEnter={onMenuFocused}>
+                <Link href={menuLinks[idx]}>
+                  <a>{item}</a>
+                </Link>
+              </MenuItem>
+            );
+          })}
         </div>
+        <Button>
+          <img src="/img/menu_more.png" alt="" width={40} height={40} />
+        </Button>
       </div>
     </Container>
   );
@@ -66,10 +59,14 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    & > div {
+    & > div:nth-of-type(2) {
       display: flex;
       gap: 2vh;
       cursor: pointer;
+
+      @media screen and (max-width: 1100px) {
+        display: none;
+      }
     }
   }
 `;
@@ -89,6 +86,10 @@ const Button = styled.div`
   color: white;
   padding: 12px 12px 5px 12px;
   filter: invert(100%);
+
+  @media screen and (min-width: 1100px) {
+    display: none;
+  }
 
   &:active {
     filter: invert(70%);

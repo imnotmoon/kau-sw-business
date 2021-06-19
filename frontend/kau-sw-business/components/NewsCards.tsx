@@ -53,7 +53,7 @@ const Container = styled.div`
   padding: 10px 20px 30px 20px;
   border: 1px solid #dddddd;
   width: 25vw;
-  min-width: 350px;
+  min-width: 300px;
   color: #333;
   margin: 30px 10px 30px 10px;
 
