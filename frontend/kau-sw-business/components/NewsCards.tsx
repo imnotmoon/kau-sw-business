@@ -1,14 +1,9 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
+import { NewsCardProp } from '../interfaces/ComponentInterface';
 
 // compoenents
 import { NewsCardFallbacks } from './Fallbacks';
-
-// interface
-interface NewsCardProp {
-  title: string;
-  type: string;
-}
 
 //! pseudo data
 import { newsData, notiData } from '../utils/sample-data';
@@ -56,6 +51,10 @@ const Container = styled.div`
   min-width: 300px;
   color: #333;
   margin: 30px 10px 30px 10px;
+
+  @media screen and (max-width: 1100px) {
+    width: 60vw;
+  }
 
   & > div:nth-of-type(1) {
     display: flex;

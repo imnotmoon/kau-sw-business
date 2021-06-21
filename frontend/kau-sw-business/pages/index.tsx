@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // components
 import SimpleSlider from '../components/Carousel';
@@ -16,8 +16,21 @@ import 'slick-carousel/slick/slick-theme.css';
 const IndexPage = () => {
   const [sitemapModalView, setSitemapModalView] = useState(false);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log(modalRef);
+    if (sitemapModalView) {
+      modalRef.current.style.overflow = 'hidden';
+      modalRef.current.style.maxHeight = '100vh';
+    } else {
+      modalRef.current.style.overflow = 'scroll';
+      modalRef.current.style.maxHeight = '100%';
+    }
+  }, [sitemapModalView]);
+
   return (
-    <>
+    <div ref={modalRef}>
       <Layout modalHandler={setSitemapModalView}>
         <SimpleSlider style={{ height: '200px' }} />
         <News>
@@ -51,7 +64,7 @@ const IndexPage = () => {
         </div>
         {sitemapModalView && <SitemapModal modalHandler={setSitemapModalView} />}
       </Layout>
-    </>
+    </div>
   );
 };
 

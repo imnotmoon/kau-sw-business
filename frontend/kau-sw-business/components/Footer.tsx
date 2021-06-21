@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
-import MediaQuery, { useMediaQuery } from 'react-responsive';
 
 export default function Footer() {
   return (

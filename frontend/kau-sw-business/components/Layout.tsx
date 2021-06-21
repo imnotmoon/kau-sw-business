@@ -2,20 +2,13 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import styled from 'styled-components';
-import MediaQuery from 'react-responsive';
+import { LayoutProps } from '../interfaces/ComponentInterface';
 
 // components
 import Menu from './Menu';
 import Footer from './Footer';
 
-// import { isDesktopOrLaptop, isTabletOrMobile } from '../utils/MediaQuery';
-
-type Props = {
-  children?: ReactNode;
-  modalHandler: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const Layout = ({ children, modalHandler }: Props) => {
+const Layout = ({ children, modalHandler }: LayoutProps) => {
   const onSitemapButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     modalHandler(true);

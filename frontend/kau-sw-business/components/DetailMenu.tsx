@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { DetailMenuProp } from '../interfaces/ComponentInterface';
 
 // interface
-interface DetailMenuProp {
-  screen: any;
-}
 
 const DetailMenuItems = [];
 
-const DetailMenu: React.FC<DetailMenuProp> = ({ screen }) => {
-  return <Container></Container>;
+const DetailMenu: React.FC<DetailMenuProp> = ({ selectedMenu, isPhone }) => {
+  return (
+    <Container>{!isPhone ? <IsDesktopOrLaptop></IsDesktopOrLaptop> : <IsPhoneOrTablet></IsPhoneOrTablet>}</Container>
+  );
 };
 
 export default DetailMenu;
@@ -18,3 +18,7 @@ export default DetailMenu;
 const Container = styled.div`
   display: flex;
 `;
+
+const IsDesktopOrLaptop = styled.div``;
+
+const IsPhoneOrTablet = styled.div``;

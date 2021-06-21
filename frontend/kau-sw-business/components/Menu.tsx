@@ -14,8 +14,6 @@ const menuLinks = [
 ];
 
 const Menu = () => {
-  const isMobileDevice = false;
-
   const onLogoClick = (e: React.MouseEvent) => {
     location.href = '/';
   };
@@ -58,6 +56,13 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    & > div > div > img {
+      @media screen and (max-width: 768px) {
+        width: 150px;
+        height: 30px;
+      }
+    }
 
     & > div:nth-of-type(2) {
       display: flex;

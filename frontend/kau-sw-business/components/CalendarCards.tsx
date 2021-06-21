@@ -1,12 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// interface
-interface CalendarCardsProp {
-  imageUrl: string;
-  title: string;
-  link: string;
-}
+import { CalendarCardsProp } from '../interfaces/ComponentInterface';
 
 const CalendarCards: React.FC<CalendarCardsProp> = ({ imageUrl, title, link }) => {
   return (

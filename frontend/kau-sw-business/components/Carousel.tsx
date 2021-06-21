@@ -1,15 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
+import { SliderProp } from '../interfaces/ComponentInterface';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 // components
 import CarouselItem from './CarouselItem';
-
-interface SliderProp {
-  style?: object;
-}
 
 const SimpleSlider: React.FC<SliderProp> = () => {
   var settings = {

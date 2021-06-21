@@ -1,14 +1,12 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
+import { CarouselItemProp } from '../interfaces/ComponentInterface';
 
-// interface
-interface CarouselItemProp {
-  children?: ReactNode;
-}
-
-export default function CarouselItem({ children }) {
+const CarouselItem: React.FC<CarouselItemProp> = ({ children }) => {
   return <Container>{children}</Container>;
-}
+};
+
+export default CarouselItem;
 
 const Container = styled.div`
   & > div {

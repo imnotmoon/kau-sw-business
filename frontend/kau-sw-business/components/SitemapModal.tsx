@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-interface SimtemapModalProp {
-  modalHandler: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { SimtemapModalProp } from '../interfaces/ComponentInterface';
 
 const SitemapModal: React.FC<SimtemapModalProp> = ({ modalHandler }) => {
   const onModalClick = (e: React.MouseEvent) => {
@@ -29,7 +26,7 @@ const Container = styled.div`
   top: 0px;
   left: 0px;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   backdrop-filter: blur(4px);
 `;
 
@@ -38,8 +35,21 @@ const ModalWindow = styled.div`
   height: 30vh;
   background: white;
   border-radius: 10px;
-  -webkit-box-shadow: 0px 10px 13px -7px #000000, -27px -28px 7px 2px rgba(209, 209, 209, 0);
-  box-shadow: 0px 10px 13px -7px #000000, -27px -28px 7px 2px rgba(209, 209, 209, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > h2 {
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 80vw;
+  }
+  -webkit-box-shadow: 0px 5px 7px -7px #000000, -7px -8px 7px 2px rgba(209, 209, 209, 0);
+  box-shadow: 0px 5px 13px -7px #000000, -7px -8px 7px 2px rgba(209, 209, 209, 0);
 `;
 
 export default SitemapModal;
