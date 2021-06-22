@@ -51,6 +51,7 @@ const MenuItem = styled.div`
 	height: 60px;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 
 	&:hover {
 		backdrop-filter: blur(100px);
