@@ -1,47 +1,83 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
-
-const menuItems = ['사업단 소개', 'SW전공교육', '산학협력교육', 'SW기초·융합교육', 'SW가치확산', '커뮤니티'];
-const menuLinks = [
-  '/introduce',
-  '/major_education',
-  '/industried_education',
-  '/basic_education',
-  '/sw_value',
-  '/community',
-];
+import { MenuItems } from '../utils/MenuInterface';
 
 const Menu = () => {
+  const detailMenuRef = useRef<HTMLDivElement>();
+  const [isShown, setIsShown] = useState('사업단 소개');
+
+  useEffect(() => {
+    return () => {
+      document.getElementById('detail-menu').style.visibility = 'hidden';
+    };
+  }, []);
+
   const onLogoClick = (e: React.MouseEvent) => {
     location.href = '/';
   };
 
   const onMenuFocused: MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    console.log('hover : ', event.currentTarget);
+    setIsShown(event.currentTarget.innerText.trim());
+    if (detailMenuRef) {
+      detailMenuRef.current.style.visibility = 'visible';
+      detailMenuRef.current.style.height = '40px';
+    }
   };
 
-  return (
-    <Container>
-      <div>
-        <Image src="/img/logo_01.png" alt="logo" width="205" height="36" onClick={onLogoClick} />
+  const onMenuBlured: MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (detailMenuRef) {
+      detailMenuRef.current.style.visibility = 'hidden';
+      detailMenuRef.current.style.height = '0px';
+    }
+  };
+
+  const buildDetailMenu = (idx) => {
+    if (MenuItems[idx].title === isShown) {
+      console.log(MenuItems[idx].title, isShown);
+      return (
         <div>
-          {menuItems.map((item, idx) => {
+          {MenuItems[idx].subElements?.map((item, idx) => {
             return (
-              <MenuItem key={idx} onMouseEnter={onMenuFocused}>
-                <Link href={menuLinks[idx]}>
-                  <a>{item}</a>
-                </Link>
-              </MenuItem>
+              <Link href={item.url} key={idx}>
+                {item.title}
+              </Link>
             );
           })}
         </div>
-        <Button>
-          <img src="/img/menu_more.png" alt="" width={40} height={40} />
-        </Button>
-      </div>
-    </Container>
+      );
+    }
+  };
+  return (
+    <>
+      <Container>
+        <div>
+          <Image src="/img/logo_01.png" alt="logo" width="205" height="36" onClick={onLogoClick} />
+          <div>
+            {MenuItems.map((item, idx) => {
+              return (
+                <MenuItem key={idx} onMouseEnter={onMenuFocused}>
+                  <Link href={MenuItems[idx].url}>
+                    <a>{item.title}</a>
+                  </Link>
+                </MenuItem>
+              );
+            })}
+          </div>
+          <Button>
+            <img src="/img/menu_more.png" alt="" width={40} height={40} />
+          </Button>
+        </div>
+      </Container>
+      <DetailMenu ref={detailMenuRef} onMouseLeave={onMenuBlured} id="detail-menu">
+        {MenuItems.map((_, idx) => {
+          let tmp = buildDetailMenu(idx);
+          console.log(idx, tmp);
+          return tmp;
+        })}
+      </DetailMenu>
+    </>
   );
 };
 
@@ -98,6 +134,27 @@ const Button = styled.div`
 
   &:active {
     filter: invert(70%);
+  }
+`;
+
+const DetailMenu = styled.div`
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 110px;
+  z-index: 900;
+  // transition: all 0.1s ease;
+  display: flex;
+  width: 100vw;
+
+  & > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    & > a {
+      text-decoration: none;
+      color: white;
+    }
   }
 `;
 

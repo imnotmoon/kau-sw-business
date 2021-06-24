@@ -5,8 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 // components
 import SimpleSlider from '../components/Carousel';
-import NewsCards from '../components/NewsCards';
-import NewsBanner from '../components/NewsBanner';
+import Board from '../components/Board';
 import CalendarCards from '../components/CalendarCards';
 import SitemapModal from '../components/SitemapModal';
 
@@ -36,14 +35,12 @@ const IndexPage = () => {
         <News>
           <div>
             <h1>
-              SW중심사업단 <span style={{ fontWeight: 1000 }}>NEWS</span>
+              SW중심사업단 <span style={{ fontWeight: 700 }}>NEWS</span>
             </h1>
             <p>최근소식 및 공지사항을 안내해드립니다.</p>
           </div>
           <div>
-            <NewsCards title="공지사항" type="noti"></NewsCards>
-            <NewsCards title="사업단소식" type="news"></NewsCards>
-            <NewsBanner></NewsBanner>
+            <Board></Board>
           </div>
         </News>
         <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#f7f8fa' }}>
