@@ -5,19 +5,19 @@ export const MenuItems = [
     subElements: [
       {
         title: '인삿말',
-        url: '',
+        url: '/introduce/greeting',
       },
       {
         title: '사업목표',
-        url: '',
+        url: '/introduce/business_model',
       },
       {
         title: '조직구성',
-        url: '',
+        url: '/introduce/organization',
       },
       {
         title: 'contact',
-        url: '',
+        url: '/introduce/contact',
       },
     ],
   },
@@ -27,49 +27,49 @@ export const MenuItems = [
     subElements: [
       {
         title: '캘린더',
-        url: '',
+        url: '/major_education/calendar',
       },
       {
         title: '소개',
-        url: '',
+        url: '/major_education/introduce',
       },
       {
         title: '오픈소스',
-        url: '',
+        url: '/major_education/open_source',
       },
       {
         title: '마일리지',
-        url: '',
+        url: '/major_education/mileage',
       },
       {
         title: '비교과',
-        url: '',
+        url: '/major_education/non_discipline',
       },
     ],
   },
   {
     title: '산학협력',
-    url: '/industried_education',
+    url: '/collab_industry',
     subElements: [
       {
         title: '캘린더',
-        url: '',
+        url: '/collab_industry/calendar',
       },
       {
         title: '소개',
-        url: '',
+        url: '/collab_industry/introduce',
       },
       {
         title: '산학프로젝트',
-        url: '',
+        url: '/collab_industry/project',
       },
       {
         title: '인턴십',
-        url: '',
+        url: '/collab_industry/intership',
       },
       {
         title: '글로벌',
-        url: '',
+        url: '/collab_industry/global',
       },
     ],
   },
@@ -79,45 +79,45 @@ export const MenuItems = [
     subElements: [
       {
         title: '캘린더',
-        url: '',
+        url: '/basic_education/calendar',
       },
       {
         title: '소개',
-        url: '',
+        url: '/basic_education/introduce',
       },
       {
         title: '입학전 교육',
-        url: '',
+        url: '/basic_education/before_entrance',
       },
       {
         title: '기초교양교육',
-        url: '',
+        url: '/basic_education/electives',
       },
       {
         title: '융합전공',
-        url: '',
+        url: '/basic_education/additive_major',
       },
     ],
   },
   {
     title: 'SW가치확산',
-    url: '/sw_value',
+    url: '/influences',
     subElements: [
       {
         title: '캘린더',
-        url: '',
+        url: '/influences/calendar',
       },
       {
         title: '소개',
-        url: '',
+        url: '/influences/introduce',
       },
       {
         title: '초중고',
-        url: '',
+        url: '/influences/juniors',
       },
       {
         title: 'SW행사(교내)',
-        url: '',
+        url: '/influences/events',
       },
     ],
   },
