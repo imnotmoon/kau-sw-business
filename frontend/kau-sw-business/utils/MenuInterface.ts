@@ -1,7 +1,7 @@
 export const MenuItems = [
   {
     title: '사업단 소개',
-    url: '/introduce',
+    url: '/introduce/greeting',
     subElements: [
       {
         title: '인삿말',
@@ -23,7 +23,7 @@ export const MenuItems = [
   },
   {
     title: 'SW전공교육',
-    url: '/major_education',
+    url: '/major_education/introduce',
     subElements: [
       {
         title: '캘린더',
@@ -49,7 +49,7 @@ export const MenuItems = [
   },
   {
     title: '산학협력',
-    url: '/collab_industry',
+    url: '/collab_industry/introduce',
     subElements: [
       {
         title: '캘린더',
@@ -75,7 +75,7 @@ export const MenuItems = [
   },
   {
     title: 'SW기초·융합교육',
-    url: '/basic_education',
+    url: '/basic_education/introduce',
     subElements: [
       {
         title: '캘린더',
@@ -101,7 +101,7 @@ export const MenuItems = [
   },
   {
     title: 'SW가치확산',
-    url: '/influences',
+    url: '/influences/introduce',
     subElements: [
       {
         title: '캘린더',

@@ -1,29 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import Link from 'next/link';
 import { MenuItems } from '../utils/MenuInterface';
 
 interface subTitle {
   url: string;
   title: string;
+  fornt: string;
 }
 
-interface slideState {
-  title: string;
-  state: number;
-  subTitles: subTitle[];
-}
-
-const LeftBox = ({ title, state }) => {
+const LeftBox = ({ title, state, front }) => {
   const subTitles = MenuItems[state].subElements;
 
   return (
     <Container>
       <div>
-        <span>{title}</span>
+        <span>{front}</span>
       </div>
       {subTitles.map((elem, idx) =>
         title === elem.title ? (
-          <MenuItem key={idx} style={{ background: '#bd9e57', color: 'white' }}>
+          <MenuItem key={idx} style={{ background: '#262f41', color: 'white' }}>
             <a>{elem.title}</a>
           </MenuItem>
         ) : (

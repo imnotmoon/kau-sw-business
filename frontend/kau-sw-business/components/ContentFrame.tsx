@@ -1,9 +1,12 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 // components
 import Layout from './Layout';
 import LeftBox from './LeftBox';
+
+// data
+import { MenuItems } from '../utils/MenuInterface';
 
 // interface
 interface ContentFrameProp {
@@ -13,17 +16,19 @@ interface ContentFrameProp {
 }
 
 const ContentFrame: React.FC<ContentFrameProp> = ({ title, state, children }) => {
+  const front = MenuItems[state].title;
+
   return (
     <Layout>
       <FrontImage>
-        <span>사업단 소개</span>
+        <span>{front}</span>
       </FrontImage>
       <Container>
-        <LeftBox title={title} state={state} />
+        <LeftBox front={front} title={title} state={state} />
         <div>
           <div>{title}</div>
+          {children}
         </div>
-        {children}
       </Container>
     </Layout>
   );
@@ -39,11 +44,16 @@ const Container = styled.div`
     padding-right: 40px;
     width: 55vw;
     min-width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+
     & > div:nth-of-type(1) {
       border-bottom: 1px solid black;
       height: 70px;
       font-size: 24px;
       line-height: 80px;
+      margin-bottom: 30px;
     }
   }
 `;

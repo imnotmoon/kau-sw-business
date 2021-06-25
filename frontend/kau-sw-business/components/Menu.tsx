@@ -37,7 +37,7 @@ const Menu = () => {
   const buildDetailMenu = (idx) => {
     if (MenuItems[idx].title === isShown) {
       return (
-        <div>
+        <div key={idx}>
           {MenuItems[idx].subElements?.map((item, idx) => {
             return (
               <Link href={item.url} key={idx}>
