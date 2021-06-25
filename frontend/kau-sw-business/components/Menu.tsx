@@ -10,7 +10,7 @@ const Menu = () => {
 
   useEffect(() => {
     return () => {
-      document.getElementById('detail-menu').style.visibility = 'hidden';
+      document.getElementById('detail-menu').style.height = '0px';
     };
   }, []);
 
@@ -28,6 +28,7 @@ const Menu = () => {
 
   const onMenuBlured: MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (detailMenuRef) {
+      setIsShown('');
       detailMenuRef.current.style.visibility = 'hidden';
       detailMenuRef.current.style.height = '0px';
     }
@@ -35,7 +36,6 @@ const Menu = () => {
 
   const buildDetailMenu = (idx) => {
     if (MenuItems[idx].title === isShown) {
-      console.log(MenuItems[idx].title, isShown);
       return (
         <div>
           {MenuItems[idx].subElements?.map((item, idx) => {
@@ -72,9 +72,7 @@ const Menu = () => {
       </Container>
       <DetailMenu ref={detailMenuRef} onMouseLeave={onMenuBlured} id="detail-menu">
         {MenuItems.map((_, idx) => {
-          let tmp = buildDetailMenu(idx);
-          console.log(idx, tmp);
-          return tmp;
+          return buildDetailMenu(idx);
         })}
       </DetailMenu>
     </>
@@ -142,18 +140,29 @@ const DetailMenu = styled.div`
   position: absolute;
   top: 110px;
   z-index: 900;
-  // transition: all 0.1s ease;
+  transition: all 0.1s ease;
   display: flex;
+  visibility: hidden;
   width: 100vw;
 
+  &:hover {
+    transition: all 0.1s ease;
+  }
+
   & > div {
+    transition: all 0.1s ease;
     display: flex;
     width: 100%;
     justify-content: space-around;
     align-items: center;
+
     & > a {
       text-decoration: none;
-      color: white;
+      color: #aaa;
+
+      &: hover {
+        color: white;
+      }
     }
   }
 `;

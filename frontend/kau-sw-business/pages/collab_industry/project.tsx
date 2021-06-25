@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const Project = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="산학프로젝트" state={2}></ContentFrame>;
 };
 
 export default Project;

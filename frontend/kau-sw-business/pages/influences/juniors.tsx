@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const Juniors = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="초중고" state={4}></ContentFrame>;
 };
 
 export default Juniors;

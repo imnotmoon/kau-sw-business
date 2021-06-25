@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const AdditiveMajor = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="융합전공" state={3}></ContentFrame>;
 };
 
 export default AdditiveMajor;

@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const BusinessModel = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="사업목표" state={0}></ContentFrame>;
 };
 
 export default BusinessModel;

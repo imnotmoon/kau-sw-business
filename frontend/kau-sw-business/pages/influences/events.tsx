@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const Events = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="SW행사(교내)" state={4}></ContentFrame>;
 };
 
 export default Events;

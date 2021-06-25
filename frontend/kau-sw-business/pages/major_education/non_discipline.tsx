@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const NonDiscipline = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="비교과" state={1}></ContentFrame>;
 };
 
 export default NonDiscipline;

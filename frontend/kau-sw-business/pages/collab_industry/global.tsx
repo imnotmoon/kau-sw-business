@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const Global = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="글로벌" state={2}></ContentFrame>;
 };
 
 export default Global;

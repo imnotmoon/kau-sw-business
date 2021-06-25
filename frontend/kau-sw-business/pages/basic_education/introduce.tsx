@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const Introduce = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="소개" state={3}></ContentFrame>;
 };
 
 export default Introduce;

@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import ContentFrame from '../../components/ContentFrame';
 
 const Organization = () => {
-  return <Layout>인삿말 페이지입니다.</Layout>;
+  return <ContentFrame title="조직구성" state={0}></ContentFrame>;
 };
 
 export default Organization;

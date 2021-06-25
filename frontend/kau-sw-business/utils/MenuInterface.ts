@@ -65,7 +65,7 @@ export const MenuItems = [
       },
       {
         title: '인턴십',
-        url: '/collab_industry/intership',
+        url: '/collab_industry/internship',
       },
       {
         title: '글로벌',
