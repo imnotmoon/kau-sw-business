@@ -19,6 +19,10 @@ const Introduce = () => {
         <br />
         <Subtitle text="학생 개인별 맞춤형 교육을 위한 튜터링, 계절학기제 등 제도적 지원"></Subtitle>
         <img src="/img/basic_education/5-1.png" alt="" />
+        <br />
+        <br />
+        <Subtitle text="Air Mobility 산업의 핵심 기술 - ‘AI‧SW’"></Subtitle>
+        <img src="/img/basic_education/1-5.png" alt="" />
       </Content>
     </ContentFrame>
   );

@@ -11,8 +11,10 @@ const AdditiveMajor = () => {
     <ContentFrame title="융합전공" state={3}>
       <Content>
         <Title text="AI 융합연계 전공 제도 운용"></Title>
-        {/* <img src="/img/basic_education/5-6.png" alt="" /> */}
-        {/* <br /> */}
+        <Subtitle text="SW융합과정 운영 계획"></Subtitle>
+        <img src="/img/basic_education/5-7.png" alt="SW융합과정 운영 계획" />
+        <br />
+        <br />
         <Subtitle text="스마트드론공학과"></Subtitle>
         <li>신설 배경 및 교육목표</li>
         <Li>최근 급성장하고 있는 Air Mobility 산업을 선도할 창의적‧도전적 인재 양성</Li>

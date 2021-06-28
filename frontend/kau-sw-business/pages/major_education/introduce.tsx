@@ -13,6 +13,10 @@ const Introduce = () => {
         <Title text="SW전공교육 소개"></Title>
         <Subtitle text="인재상과 교육목표"></Subtitle>
         <img src="/img/major_education/2-1.png" alt="한국항공대학교 SW중심대학 인재상과 교육목표" />
+        <br />
+        <br />
+        <Subtitle text="AI·SW 중심의 전공 역량 강화"></Subtitle>
+        <img src="/img/major_education/2-6.png" alt="" />
       </Content>
     </ContentFrame>
   );
