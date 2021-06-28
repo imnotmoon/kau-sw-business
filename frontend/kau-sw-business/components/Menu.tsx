@@ -22,7 +22,7 @@ const Menu = () => {
     setIsShown(event.currentTarget.innerText.trim());
     if (detailMenuRef) {
       detailMenuRef.current.style.visibility = 'visible';
-      detailMenuRef.current.style.height = '40px';
+      detailMenuRef.current.style.height = '200px';
     }
   };
 
@@ -34,21 +34,26 @@ const Menu = () => {
     }
   };
 
-  const buildDetailMenu = (idx) => {
-    if (MenuItems[idx].title === isShown) {
-      return (
-        <div key={idx}>
-          {MenuItems[idx].subElements?.map((item, idx) => {
-            return (
-              <Link href={item.url} key={idx}>
-                {item.title}
-              </Link>
-            );
-          })}
-        </div>
-      );
-    }
+  const buildDetailMenu = () => {
+    return (
+      <div>
+        {MenuItems.map((item, idx) => {
+          return (
+            <div key={idx} style={MenuItems[idx].title === isShown ? { background: 'rgba(0,0,0,0.4)' } : {}}>
+              {item.subElements.map((e, i) => {
+                return (
+                  <div key={i}>
+                    <Link href={e.url}>{e.title}</Link>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+    );
   };
+
   return (
     <>
       <Container>
@@ -65,15 +70,13 @@ const Menu = () => {
               );
             })}
           </div>
-          <Button>
+          {/* <Button>
             <img src="/img/menu_more.png" alt="" width={40} height={40} />
-          </Button>
+          </Button> */}
         </div>
       </Container>
       <DetailMenu ref={detailMenuRef} onMouseLeave={onMenuBlured} id="detail-menu">
-        {MenuItems.map((_, idx) => {
-          return buildDetailMenu(idx);
-        })}
+        {buildDetailMenu()}
       </DetailMenu>
     </>
   );
@@ -100,12 +103,13 @@ const Container = styled.div`
 
     & > div:nth-of-type(2) {
       display: flex;
-      gap: 2vh;
+      gap: 70px;
       cursor: pointer;
+      min-width: 700px;
 
-      @media screen and (max-width: 1100px) {
-        display: none;
-      }
+      // @media screen and (max-width: 1100px) {
+      //   display: none;
+      // }
     }
   }
 `;
@@ -138,10 +142,9 @@ const Button = styled.div`
 const DetailMenu = styled.div`
   background: rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 110px;
+  top: 80px;
   z-index: 900;
   transition: all 0.1s ease;
-  display: flex;
   visibility: hidden;
   width: 100vw;
 
@@ -153,15 +156,59 @@ const DetailMenu = styled.div`
     transition: all 0.1s ease;
     display: flex;
     width: 100%;
-    justify-content: space-around;
+    height: 100%;
+    justify-content: flex-end;
     align-items: center;
 
-    & > a {
-      text-decoration: none;
-      color: #aaa;
+    & > div {
+      display: flex;
+      height: 100%;
+      width: 160px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    & > div:nth-of-type(1) {
+      width: 155px;
+    }
+
+    & > div:nth-of-type(2) {
+      width: 140px;
+    }
+
+    & > div:nth-of-type(3) {
+      width: 150px;
+    }
+
+    & > div:nth-of-type(4) {
+      width: 175px;
+    }
+
+    & > div:nth-of-type(5) {
+      margin-right: 8.5vw;
+      @media screen and (max-width: 1600px) {
+        margin-right: 8vw;
+      }
+      width: 145px;
+    }
+
+    & > div > div {
+      padding-top: 7px;
+      margin-bottom: 7px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
 
       &: hover {
-        color: white;
+        & > a {
+          color: white;
+        }
+      }
+
+      & > a {
+        text-decoration: none;
+        color: #aaa;
       }
     }
   }

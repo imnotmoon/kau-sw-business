@@ -9,11 +9,6 @@ import Menu from './Menu';
 import Footer from './Footer';
 
 const Layout = ({ children, modalHandler }: LayoutProps) => {
-  const onSitemapButtonClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    modalHandler(true);
-  };
-
   return (
     <Container>
       <Head>
@@ -24,7 +19,7 @@ const Layout = ({ children, modalHandler }: LayoutProps) => {
           @import url(https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap);
         </style>
       </Head>
-      <Header>
+      {/* <Header>
         <nav>
           <Link href="/">
             <a>로그인</a>
@@ -34,7 +29,7 @@ const Layout = ({ children, modalHandler }: LayoutProps) => {
             <a onClick={onSitemapButtonClick}>사이트맵</a>
           </Link>
         </nav>
-      </Header>
+      </Header> */}
       <Menu></Menu>
       {children}
       <Footer />
@@ -46,30 +41,30 @@ const Container = styled.div`
   margin: 0;
 `;
 
-const Header = styled.div`
-  background: #252525;
-  display: flex;
-  justify-content: center;
-  height: 30px;
+// const Header = styled.div`
+//   background: #252525;
+//   display: flex;
+//   justify-content: center;
+//   height: 30px;
 
-  & > nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 80vw;
+//   & > nav {
+//     display: flex;
+//     justify-content: flex-end;
+//     align-items: center;
+//     width: 80vw;
 
-    & > a {
-      display: block;
-      color: #cdcdcd;
-      text-decoration: none;
-      font-size: 13px;
-    }
+//     & > a {
+//       display: block;
+//       color: #cdcdcd;
+//       text-decoration: none;
+//       font-size: 13px;
+//     }
 
-    & > span {
-      color: #cdcdcd;
-      padding: 0 10px 0 10px;
-    }
-  }
-`;
+//     & > span {
+//       color: #cdcdcd;
+//       padding: 0 10px 0 10px;
+//     }
+//   }
+// `;
 
 export default Layout;

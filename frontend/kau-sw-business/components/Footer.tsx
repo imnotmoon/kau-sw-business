@@ -15,7 +15,6 @@ export default function Footer() {
           <br />
           {'COPYRIGHT 2012 Korea Aerospace University. All right reserved.'}
         </div>
-        <div>교내주요사이트</div>
       </InfoZone>
       <NewLink></NewLink>
     </Container>
@@ -30,10 +29,11 @@ const Container = styled.div`
 const InfoZone = styled.div`
   padding-top: 40px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
 
   & > div {
+    margin-left: 10vw;
     color: white;
     font-weight: 400;
     font-size: 15px;
