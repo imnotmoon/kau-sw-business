@@ -53,7 +53,7 @@ const Container = styled.div`
   margin: 30px 10px 30px 10px;
 
   @media screen and (max-width: 1100px) {
-    width: 60vw;
+    width: 30vw;
   }
 
   & > div:nth-of-type(1) {

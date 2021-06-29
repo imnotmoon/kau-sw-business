@@ -20,11 +20,10 @@ const Internship = () => {
         <br />
 
         <Subtitle text="장기 현장실습 (정규학기에 8주 이상의 기간 동안 실시하는 현장실습)" />
-        <li>NHN Entertainment 체험형 인턴</li>
+        <li>여름/겨울 계절 인턴</li>
         <li>ICT 학점연계 프로젝트 인턴십</li>
-        <li>K-SW 포럼 개발자 하계 인턴십</li>
-        <li>기업 요청 장기현장실습(딥바이오, 알체라, 코다임, 만도 등)</li>
         <br />
+<<<<<<< HEAD
         <br />
 
         <Subtitle text="ICT 학점연계 프로젝트 인턴십" />
@@ -44,6 +43,8 @@ const Internship = () => {
         : 학기 등록 필수, 최대 12학점까지 인정가능</li>
         <br />
         <img src="/img/collab_industry/4-5.png" alt="ICT 인턴쉽 일정" />
+=======
+>>>>>>> 27500a31e2b6fdad45ccf43b701d1772451a5d52
       </Content>
     </ContentFrame>
   );

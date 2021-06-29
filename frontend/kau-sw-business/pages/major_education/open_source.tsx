@@ -12,15 +12,15 @@ const OpenSource = () => {
       <Content>
         <Title text="Open Source 교육과정" />
         <Subtitle text="한국항공대학교 오픈소스 SW교육 목표 및 방향" />
-        <img src="/img/major_education/3-1.png" alt="" />
+        <img src="/img/major_education/3-1.png" alt="" width="800px" />
         <br />
         <br />
         <Subtitle text="오픈소스SW 교육과정 및 프로젝트 추진계획" />
-        <img src="/img/major_education/3-2.png" alt="" />
+        <img src="/img/major_education/3-2.png" alt="" width="800px" />
         <br />
         <br />
         <Subtitle text="오픈소스SW 교육을 주관하는 오픈소스SW센터 신설, 운영" />
-        <img src="/img/major_education/3-3.png" alt="" />
+        <img src="/img/major_education/3-3.png" alt="" width="800px" />
       </Content>
     </ContentFrame>
   );
