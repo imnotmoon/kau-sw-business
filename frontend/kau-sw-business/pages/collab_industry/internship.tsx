@@ -24,8 +24,9 @@ const Internship = () => {
         <li>ICT 학점연계 프로젝트 인턴십</li>
         <br />
 
+        {/* 교수님이 일단 여기까지만 쓰라셔서 밑에 내용은 주석처리 */}
 
-        <Subtitle text="ICT 학점연계 프로젝트 인턴십" />
+        {/* <Subtitle text="ICT 학점연계 프로젝트 인턴십" />
         <li><strong>사업개요</strong> 
         : '과학기술정보통신부'에서는 ICT분야 대학생들이 정규학기 중에 우수 중소/중견기업에서 실무 프로젝트를 수행하고 이를 학점으로 인정받을 수 있도록 지원하는 프로그램</li>
         <li><strong>수행기관</strong>
@@ -41,8 +42,7 @@ const Internship = () => {
         <li><strong>학점인정 </strong>
         : 학기 등록 필수, 최대 12학점까지 인정가능</li>
         <br />
-        <img src="/img/collab_industry/4-5.png" alt="ICT 인턴쉽 일정" />
-        
+        <img src="/img/collab_industry/4-5.png" alt="ICT 인턴쉽 일정" /> */}
       </Content>
     </ContentFrame>
   );
