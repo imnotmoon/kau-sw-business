@@ -1,5 +1,4 @@
-import React, { ReactNode } from 'react';
-import Link from 'next/link';
+import React from 'react';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { LayoutProps } from '../interfaces/ComponentInterface';
@@ -8,7 +7,7 @@ import { LayoutProps } from '../interfaces/ComponentInterface';
 import Menu from './Menu';
 import Footer from './Footer';
 
-const Layout = ({ children, modalHandler }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
     <Container>
       <Head>

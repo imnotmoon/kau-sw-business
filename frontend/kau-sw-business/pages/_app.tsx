@@ -1,4 +1,4 @@
-import App, { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import GlobalStyle from '../components/GlobalStyle';
 
 function WrappedApp({ Component, pageProps }: AppProps) {

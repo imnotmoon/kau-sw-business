@@ -24,25 +24,19 @@ const SimpleSlider: React.FC<SliderProp> = () => {
       <div>
         <CarouselItem>
           {/* <img src="/img/main_visual_img01.png" alt="" width={1920} height={380} /> */}
-          <div>
-            <img src="/img/main_visual_img01.png" alt="" />
-          </div>
+          <div>{/* <img src="/img/main_visual_img01.png" alt="" /> */}</div>
         </CarouselItem>
       </div>
       <div>
         <CarouselItem>
           {/* <img src="/img/main_visual_img02.png" alt="" width={1920} height={380} /> */}
-          <div>
-            <img src="/img/main_visual_img02.png" alt="" />
-          </div>
+          <div>{/* <img src="/img/main_visual_img02.png" alt="" /> */}</div>
         </CarouselItem>
       </div>
       <div>
         <CarouselItem>
           {/* <img src="/img/main_visual_img03.png" alt="" width={1920} height={380}/> */}
-          <div>
-            <img src="/img/main_visual_img03.png" alt="" />
-          </div>
+          <div>{/* <img src="/img/main_visual_img03.png" alt="" /> */}</div>
         </CarouselItem>
       </div>
     </Slider>

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import React, { useState, useEffect, useRef } from 'react';

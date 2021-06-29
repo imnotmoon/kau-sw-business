@@ -10,6 +10,10 @@ const GlobalStyle = (props) => {
             border: 0;
             font-family: 'Noto Sans KR', sans-serif;
           }
+
+          .image {
+            padding-left: 40px;
+          }
         `}
       </style>
     </div>

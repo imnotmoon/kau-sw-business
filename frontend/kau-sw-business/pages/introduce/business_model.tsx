@@ -5,6 +5,10 @@ import styled from 'styled-components';
 // component
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
+import ImageContent from '../../components/ImageContent';
+
+// images
+import img1 from '../../public/img/introduce/1-6.png';
 
 const BusinessModel = () => {
   return (
@@ -15,7 +19,7 @@ const BusinessModel = () => {
           text={
             '미래 Air Mobility 산업 사회를 선도할 ‘소프트웨어 퍼스트(Software First)’형 미래 모빌리티 산업* 전문인재를 양성'
           }></Subtitle>
-        <img src="/img/introduce/1-6.png" alt="한국항공대학교 소프트웨어 중심대학 비전 및 목표" />
+        <ImageContent alt="" src={img1} paddingLeft={20}></ImageContent>
         <br />
         <b>미래 Air Mobility 사회</b>
         <p>
@@ -30,11 +34,6 @@ const BusinessModel = () => {
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-
-  & > img {
-    margin-bottom: 10px;
-    padding-left: 20px;
-  }
 
   & > b {
     font-weight: 600;

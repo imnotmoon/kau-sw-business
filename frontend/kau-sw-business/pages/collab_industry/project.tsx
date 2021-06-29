@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import ContentFrame from '../../components/ContentFrame';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
+import ImageContent from '../../components/ImageContent';
+
+// images
+import img1 from '../../public/img/collab_industry/4-1.png';
+import img2 from '../../public/img/collab_industry/4-2.png';
 
 const Project = () => {
   return (
@@ -25,12 +30,12 @@ const Project = () => {
           펀드로 과제 지원
         </li>
         <br />
-        <img src="/img/collab_industry/4-1.png" alt="" />
+        <ImageContent alt="" src={img1} paddingLeft={20}></ImageContent>
 
         <br />
         <br />
         <Subtitle text="SW중심대학 추진 산학 R&D 프로젝트 운영 계획"></Subtitle>
-        <img src="/img/collab_industry/4-2.png" alt="" />
+        <ImageContent alt="" src={img2} paddingLeft={20}></ImageContent>
       </Content>
     </ContentFrame>
   );

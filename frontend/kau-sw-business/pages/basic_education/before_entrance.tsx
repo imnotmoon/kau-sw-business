@@ -5,6 +5,13 @@ import styled from 'styled-components';
 import ContentFrame from '../../components/ContentFrame';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
+import ImageContent from '../../components/ImageContent';
+
+// images
+import img1 from '../../public/img/basic_education/5-2.png';
+import img2 from '../../public/img/basic_education/5-3.png';
+import img3 from '../../public/img/basic_education/5-4.png';
+import img4 from '../../public/img/basic_education/5-5.png';
 
 const BeforeEntrance = () => {
   return (
@@ -48,13 +55,13 @@ const BeforeEntrance = () => {
           (Easy) 초심자도 쉽게 따라 할 수 있는 블록형 교육용 프로그래밍 언어인 스크래치(Scratch)를 활용한 프로그래밍
           교육
         </Li>
-        <img src="/img/basic_education/5-2.png" alt="" />
+        <ImageContent alt="" src={img1} paddingLeft={40}></ImageContent>
         <li>SW융합대학과 공과/항경대학 계열로 구분하고 교과과정을 차별화하여 운영</li>
         <Li>(SW융합대학 계열) 꿈꾸는 인공지능(공통), 컴퓨터와 프로그래밍 강의 제공</Li>
         <Li>(공과/항경대학 계열) 꿈꾸는 인공지능(공통), 컴퓨터와 소프트웨어 강의 제공</Li>
-        <img src="/img/basic_education/5-3.png" alt="" />
-        <img src="/img/basic_education/5-4.png" alt="" />
-        <img src="/img/basic_education/5-5.png" alt="" />
+        <ImageContent alt="" src={img2} paddingLeft={40}></ImageContent>
+        <ImageContent alt="" src={img3} paddingLeft={40}></ImageContent>
+        <ImageContent alt="" src={img4} paddingLeft={40}></ImageContent>
         <br />
         <br />
       </Content>
@@ -66,7 +73,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > img {
+  & > div > div > div > img {
     padding-left: 40px;
   }
 

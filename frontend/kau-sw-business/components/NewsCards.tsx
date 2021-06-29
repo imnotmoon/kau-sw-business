@@ -1,9 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { NewsCardProp } from '../interfaces/ComponentInterface';
 
 // compoenents
-import { NewsCardFallbacks } from './Fallbacks';
 
 //! pseudo data
 import { newsData, notiData } from '../utils/sample-data';
