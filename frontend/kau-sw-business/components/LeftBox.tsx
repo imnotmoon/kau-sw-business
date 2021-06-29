@@ -1,13 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
 import { MenuItems } from '../utils/MenuInterface';
-
-interface subTitle {
-  url: string;
-  title: string;
-  fornt: string;
-}
 
 const LeftBox = ({ title, state, front }) => {
   const subTitles = MenuItems[state].subElements;

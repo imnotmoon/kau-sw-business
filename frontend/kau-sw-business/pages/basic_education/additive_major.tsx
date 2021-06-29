@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import ContentFrame from '../../components/ContentFrame';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
+import ImageContent from '../../components/ImageContent';
+
+// images
+import img1 from '../../public/img/basic_education/5-7.png';
 
 const AdditiveMajor = () => {
   return (
@@ -12,7 +16,7 @@ const AdditiveMajor = () => {
       <Content>
         <Title text="AI 융합연계 전공 제도 운용"></Title>
         <Subtitle text="SW융합과정 운영 계획"></Subtitle>
-        <img src="/img/basic_education/5-7.png" alt="SW융합과정 운영 계획" />
+        <ImageContent alt="" src={img1} paddingLeft={40}></ImageContent>
         <br />
         <br />
         <Subtitle text="스마트드론공학과"></Subtitle>

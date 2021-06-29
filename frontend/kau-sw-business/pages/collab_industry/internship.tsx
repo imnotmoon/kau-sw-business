@@ -68,12 +68,12 @@ const Content = styled.div`
   }
 `;
 
-const Li = styled.li`
-  list-style-type: square;
-  margin-left: 20px;
-  color: #525252;
-  font-size: 17px;
-  padding-bottom: 10px;
-`;
+// const Li = styled.li`
+//   list-style-type: square;
+//   margin-left: 20px;
+//   color: #525252;
+//   font-size: 17px;
+//   padding-bottom: 10px;
+// `;
 
 export default Internship;

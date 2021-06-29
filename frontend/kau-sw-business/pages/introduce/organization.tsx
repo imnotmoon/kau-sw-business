@@ -5,6 +5,10 @@ import ContentFrame from '../../components/ContentFrame';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 import styled from 'styled-components';
+import ImageContent from '../../components/ImageContent';
+
+// images
+import img1 from '../../public/img/introduce/1-9.png';
 
 const Organization = () => {
   return (
@@ -12,7 +16,7 @@ const Organization = () => {
       <Content>
         <Title text={'조직구성'} />
         <Subtitle text={'사업단 조직'} />
-        <img src="/img/introduce/1-9.png" alt="SW중심대학사업 지원조직 체계" />
+        <ImageContent src={img1} paddingLeft={20}></ImageContent>
       </Content>
     </ContentFrame>
   );
@@ -21,10 +25,6 @@ const Organization = () => {
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-
-  & > img {
-    padding-left: 20px;
-  }
 `;
 
 export default Organization;

@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import ContentFrame from '../../components/ContentFrame';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
+import ImageContent from '../../components/ImageContent';
+
+// images
+import img1 from '../../public/img/basic_education/5-1.png';
+import img2 from '../../public/img/basic_education/1-5.png';
 
 const Introduce = () => {
   return (
@@ -18,20 +23,28 @@ const Introduce = () => {
         <Subtitle text="입학전 교과목 2개를 포함하여 총 4개 교과목* 7학점 필수 수강"></Subtitle>
         <br />
         <Subtitle text="학생 개인별 맞춤형 교육을 위한 튜터링, 계절학기제 등 제도적 지원"></Subtitle>
-        <img src="/img/basic_education/5-1.png" alt="" />
-        <br />
-        <Subtitle text="Air Mobility 산업 생태계와 한국항공대학교 역량"></Subtitle>
-        <p>Air Mobility 산업생태계(Ecosystem)는 비행체 설계‧제작을 위한 HW 인프라 요소기술, 
-          비행체 자율주행시스템을 위한 AI‧SW 핵심 기술, 모빌리티 서비스 산업 분야를 위한 AI+X 융합 기술, 
-          이에 기반한 다양한 응용 산업 등으로 구성</p>
-        <br />
-        <Li><strong>(HW 인프라)</strong> 비행체 제작을 위한 기체 설계 및 제작, 전기전자장치, 초고속 통신, 고효율 배터리, 충전인프라 등 요소기술</Li>
-        <Li><strong>(AI‧SW 기술)</strong> AI, 자율주행, IoT, 보안, 빅데이터 처리 기술, 지도제작 및 측위 기술인 SLAM(Simultaneous Localization And Mapping) 등</Li>
-        <Li><strong>(AI+X 융합기술)</strong> 모빌리티 플랫폼, 교통‧관제, 스마트 물류, 승차 공유 서비스, 운송관리 등에 필요한 AI 융합 기술</Li>
-        <img src="/img/basic_education/1-5.png" alt="air mobility 산업 생태계와 항공대 역량" />
+        <ImageContent alt="" src={img1} paddingLeft={20}></ImageContent>
         <br />
         <Subtitle text="Air Mobility 산업의 핵심 기술 - ‘AI‧SW’"></Subtitle>
-        <img src="/img/basic_education/1-5.png" alt="" />
+        <p>
+          Air Mobility 산업생태계(Ecosystem)는 비행체 설계‧제작을 위한 HW 인프라 요소기술, 비행체 자율주행시스템을 위한
+          AI‧SW 핵심 기술, 모빌리티 서비스 산업 분야를 위한 AI+X 융합 기술, 이에 기반한 다양한 응용 산업 등으로 구성
+        </p>
+        <br />
+        <Li>
+          <strong>(HW 인프라)</strong> 비행체 제작을 위한 기체 설계 및 제작, 전기전자장치, 초고속 통신, 고효율 배터리,
+          충전인프라 등 요소기술
+        </Li>
+        <Li>
+          <strong>(AI‧SW 기술)</strong> AI, 자율주행, IoT, 보안, 빅데이터 처리 기술, 지도제작 및 측위 기술인
+          SLAM(Simultaneous Localization And Mapping) 등
+        </Li>
+        <Li>
+          <strong>(AI+X 융합기술)</strong> 모빌리티 플랫폼, 교통‧관제, 스마트 물류, 승차 공유 서비스, 운송관리 등에
+          필요한 AI 융합 기술
+        </Li>
+        <ImageContent alt="air mobility 산업 생태계와 항공대 역량" src={img2} paddingLeft={20}></ImageContent>
+        <br />
       </Content>
     </ContentFrame>
   );

@@ -14,7 +14,7 @@ const Menu = () => {
     };
   }, []);
 
-  const onLogoClick = (e: React.MouseEvent) => {
+  const onLogoClick = () => {
     location.href = '/';
   };
 
@@ -26,7 +26,7 @@ const Menu = () => {
     }
   };
 
-  const onMenuBlured: MouseEventHandler<HTMLDivElement> = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const onMenuBlured: MouseEventHandler<HTMLDivElement> = () => {
     if (detailMenuRef) {
       setIsShown('');
       detailMenuRef.current.style.visibility = 'hidden';
@@ -125,19 +125,19 @@ const MenuItem = styled.div`
   }
 `;
 
-const Button = styled.div`
-  color: white;
-  padding: 12px 12px 5px 12px;
-  filter: invert(100%);
+// const Button = styled.div`
+//   color: white;
+//   padding: 12px 12px 5px 12px;
+//   filter: invert(100%);
 
-  @media screen and (min-width: 1100px) {
-    display: none;
-  }
+//   @media screen and (min-width: 1100px) {
+//     display: none;
+//   }
 
-  &:active {
-    filter: invert(70%);
-  }
-`;
+//   &:active {
+//     filter: invert(70%);
+//   }
+// `;
 
 const DetailMenu = styled.div`
   background: rgba(0, 0, 0, 0.3);
