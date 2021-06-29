@@ -20,7 +20,6 @@ const Introduce = () => {
         <Subtitle text="학생 개인별 맞춤형 교육을 위한 튜터링, 계절학기제 등 제도적 지원"></Subtitle>
         <img src="/img/basic_education/5-1.png" alt="" />
         <br />
-<<<<<<< HEAD
         <Subtitle text="Air Mobility 산업 생태계와 한국항공대학교 역량"></Subtitle>
         <p>Air Mobility 산업생태계(Ecosystem)는 비행체 설계‧제작을 위한 HW 인프라 요소기술, 
           비행체 자율주행시스템을 위한 AI‧SW 핵심 기술, 모빌리티 서비스 산업 분야를 위한 AI+X 융합 기술, 
@@ -30,11 +29,9 @@ const Introduce = () => {
         <Li><strong>(AI‧SW 기술)</strong> AI, 자율주행, IoT, 보안, 빅데이터 처리 기술, 지도제작 및 측위 기술인 SLAM(Simultaneous Localization And Mapping) 등</Li>
         <Li><strong>(AI+X 융합기술)</strong> 모빌리티 플랫폼, 교통‧관제, 스마트 물류, 승차 공유 서비스, 운송관리 등에 필요한 AI 융합 기술</Li>
         <img src="/img/basic_education/1-5.png" alt="air mobility 산업 생태계와 항공대 역량" />
-=======
         <br />
         <Subtitle text="Air Mobility 산업의 핵심 기술 - ‘AI‧SW’"></Subtitle>
         <img src="/img/basic_education/1-5.png" alt="" />
->>>>>>> 27500a31e2b6fdad45ccf43b701d1772451a5d52
       </Content>
     </ContentFrame>
   );

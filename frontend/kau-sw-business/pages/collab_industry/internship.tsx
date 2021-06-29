@@ -23,8 +23,7 @@ const Internship = () => {
         <li>여름/겨울 계절 인턴</li>
         <li>ICT 학점연계 프로젝트 인턴십</li>
         <br />
-<<<<<<< HEAD
-        <br />
+
 
         <Subtitle text="ICT 학점연계 프로젝트 인턴십" />
         <li><strong>사업개요</strong> 
@@ -43,8 +42,7 @@ const Internship = () => {
         : 학기 등록 필수, 최대 12학점까지 인정가능</li>
         <br />
         <img src="/img/collab_industry/4-5.png" alt="ICT 인턴쉽 일정" />
-=======
->>>>>>> 27500a31e2b6fdad45ccf43b701d1772451a5d52
+        
       </Content>
     </ContentFrame>
   );
