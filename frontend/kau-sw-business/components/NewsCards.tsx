@@ -49,9 +49,9 @@ const Container = styled.div`
   width: 25vw;
   min-width: 300px;
   color: #333;
-  margin: 30px 10px 30px 10px;
+  margin: 30px 10px 10px 10px;
 
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1000px) {
     width: 30vw;
   }
 

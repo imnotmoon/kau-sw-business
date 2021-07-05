@@ -21,12 +21,21 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 1000px) {
+    background-size: cover;
+    height: 20vh;
+  }
+
   & > div {
     font-weight: 500;
     font-size: 40px;
     color: white;
     letter-spacing: -1px;
     text-align: center;
+
+    @media screen and (max-width: 1000px) {
+      font-size: 20px;
+    }
   }
 `;
 

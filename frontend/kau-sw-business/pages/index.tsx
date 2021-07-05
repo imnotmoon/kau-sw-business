@@ -105,6 +105,10 @@ const News = styled.span`
     & > div {
       display: flex;
       justify-contnet: center;
+
+      @media screen and (max-width: 1000px) {
+        flex-direction: column;
+      }
     }
   }
 
@@ -112,6 +116,7 @@ const News = styled.span`
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     & > h1 {
       margin-top: 30px;
       font-weight: 400;
@@ -129,7 +134,7 @@ const News = styled.span`
   & > div:nth-of-type(3) {
     display: flex;
     justify-content: space-around;
-    width: 1000px;
+    width: 1200px;
 
     @media screen and (max-width: 1000px) {
       flex-direction: column;

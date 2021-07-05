@@ -64,11 +64,8 @@ const Menu = () => {
   };
 
   const onMenuBlured = () => {
-    if (detailMenuRef) {
-      setIsShown('');
-      detailMenuRef.current.style.visibility = 'hidden';
-      detailMenuRef.current.style.height = '0px';
-    }
+    detailMenuRef.current.style.visibility = 'hidden';
+    detailMenuRef.current.style.height = '0px';
   };
 
   const buildDetailMenu = () => {
@@ -100,7 +97,7 @@ const Menu = () => {
           width: "205",
           height: "36",
           onClick: onLogoClick
-        }), /*#__PURE__*/jsx_runtime_.jsx("div", {
+        }), /*#__PURE__*/jsx_runtime_.jsx(MenuEntry, {
           children: MenuInterface/* MenuItems.map */.s.map((item, idx) => {
             return /*#__PURE__*/jsx_runtime_.jsx(MenuItem, {
               onMouseEnter: onMenuFocused,
@@ -111,6 +108,15 @@ const Menu = () => {
                 })
               })
             }, idx);
+          })
+        }), /*#__PURE__*/jsx_runtime_.jsx(Button, {
+          children: /*#__PURE__*/jsx_runtime_.jsx(next_image.default, {
+            src: "/img/menu_more.png",
+            alt: "",
+            width: "40",
+            height: "40",
+            id: "detail-menu",
+            onMouseLeave: onMenuBlured
           })
         })]
       })
@@ -126,26 +132,23 @@ const Menu = () => {
 const Container = external_styled_components_default().div.withConfig({
   displayName: "Menu__Container",
   componentId: "sc-9r1vgo-0"
-})(["background:#262f41;display:flex;justify-content:center;& > div{width:80vw;height:80px;display:flex;justify-content:space-between;align-items:center;& > div > div > img{@media screen and (max-width:768px){width:150px;height:30px;}}& > div:nth-of-type(2){display:flex;gap:70px;cursor:pointer;min-width:700px;}}"]);
+})(["background:#262f41;display:flex;justify-content:center;& > div{width:80vw;height:80px;display:flex;justify-content:space-between;align-items:center;@media screen and (max-width:1000px){width:90vw;}& > div > div > img{@media screen and (max-width:1000px){width:170px;height:30px;}}}"]);
+const MenuEntry = external_styled_components_default().div.withConfig({
+  displayName: "Menu__MenuEntry",
+  componentId: "sc-9r1vgo-1"
+})(["display:grid;grid-template-columns:repeat(", ",150px);width:70%;height:100%;justify-items:center;justify-content:end;& > div{width:100%;&:hover{padding-top:24px;border-top:3px solid white;}}@media screen and (max-width:1000px){display:none;}"], MenuInterface/* MenuItems.length */.s.length);
 const MenuItem = external_styled_components_default().div.withConfig({
   displayName: "Menu__MenuItem",
-  componentId: "sc-9r1vgo-1"
-})(["& > a{color:white;text-decoration:none;&:active{color:#e2e2e2;}}"]); // const Button = styled.div`
-//   color: white;
-//   padding: 12px 12px 5px 12px;
-//   filter: invert(100%);
-//   @media screen and (min-width: 1100px) {
-//     display: none;
-//   }
-//   &:active {
-//     filter: invert(70%);
-//   }
-// `;
-
+  componentId: "sc-9r1vgo-2"
+})(["text-align:center;padding-top:27px;& > a{color:white;text-decoration:none;&:active{color:#e2e2e2;}}"]);
 const DetailMenu = external_styled_components_default().div.withConfig({
   displayName: "Menu__DetailMenu",
-  componentId: "sc-9r1vgo-2"
-})(["background:rgba(0,0,0,0.3);position:absolute;top:80px;z-index:900;transition:all 0.1s ease;visibility:hidden;width:100vw;&:hover{transition:all 0.1s ease;}& > div{transition:all 0.1s ease;display:flex;width:100%;height:100%;justify-content:flex-end;align-items:center;& > div{display:flex;height:100%;width:160px;flex-direction:column;justify-content:flex-start;align-items:center;}& > div:nth-of-type(1){width:155px;}& > div:nth-of-type(2){width:140px;}& > div:nth-of-type(3){width:150px;}& > div:nth-of-type(4){width:175px;}& > div:nth-of-type(5){margin-right:8.5vw;@media screen and (max-width:1600px){margin-right:8vw;}width:145px;}& > div > div{padding-top:7px;margin-bottom:7px;display:flex;justify-content:center;text-align:center;&:hover{& > a{color:white;}}& > a{text-decoration:none;color:#aaa;}}}"]);
+  componentId: "sc-9r1vgo-3"
+})(["background:rgba(0,0,0,0.3);position:absolute;top:80px;transition:all 0.1s ease;visibility:hidden;width:100vw;&:hover{transition:all 0.1s ease;}& > div{display:grid;grid-template-columns:repeat(", ",150px);height:200px;justify-content:end;margin-right:10vw;& > div{display:grid;height:100%;width:", "vw;width:150px;align-items:center;}& > div > div{padding-top:7px;margin-bottom:7px;display:flex;justify-content:center;text-align:center;&:hover{& > a{color:white;}}& > a{text-decoration:none;color:#aaa;}}}"], MenuInterface/* MenuItems.length */.s.length, 80 * 0.7);
+const Button = external_styled_components_default().div.withConfig({
+  displayName: "Menu__Button",
+  componentId: "sc-9r1vgo-4"
+})(["color:white;padding:12px 5px 5px 5px;filter:invert(100%);@media screen and (min-width:1000px){display:none;}&:active{filter:invert(70%);}"]);
 /* harmony default export */ var components_Menu = (Menu);
 ;// CONCATENATED MODULE: ./components/Footer.tsx
 

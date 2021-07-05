@@ -10,7 +10,7 @@ const Board = () => {
       <Container>
         {boardElements.map((boardElement, index) => (
           <div key={index}>
-            <dl style={{ margin: '20px 15px' }}>
+            <dl style={{ margin: '15px 20px' }}>
               <dt>
                 <span>{boardElement.state}</span>
                 <span>{boardElement.endDate}</span>
@@ -34,36 +34,26 @@ const Board = () => {
 const Container = styled.div`
   padding-top: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
 
-  @media screen and (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr 1fr;
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
-    & > div {
-      width: 90%;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-    width: 70%;
-    justify-items: center;
-    align-items: center;
-    & > div {
-      width: 90%;
-    }
   }
 
   & > div {
     margin: 5px;
-    height: 240px;
-    border: 1px solid #fefefe;
     margin-bottom: 20px;
     vertical-align: top;
     background-color: #fff;
     margin-left: 5px;
     margin-right: 5px;
+
+    @media screen and (max-width: 1000px) {
+      width: 90vw;
+      min-width: 300px;
+    }
 
     & > dl > dt > span:nth-of-type(1) {
       display: inline-block;
@@ -80,7 +70,7 @@ const Container = styled.div`
     }
 
     & > dl > dt > span:nth-of-type(2) {
-      display: inline-block;
+      display: inline;
       color: #777;
       font-size: 14px;
       font-weight: 400;
@@ -89,13 +79,13 @@ const Container = styled.div`
     }
 
     & > dl > dd:nth-of-type(1) {
-      display: inline-block;
+      display: block;
       color: #000000;
       font-weight: 600;
       font-size: 16px;
       word-break: keep-all;
       letter-spacing: -1px;
-      padding: 5px 0 0 0;
+      padding: 15px 0 0 0;
       margin: 0 0 20px 5px;
     }
 
@@ -114,7 +104,8 @@ const BoardButtonBox = styled.dd`
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin: 0 0 20px 5px;
+  justify-content: center;
+  align-items: center;
 
   & > button:nth-of-type(1) {
     background-color: #4e83c6;

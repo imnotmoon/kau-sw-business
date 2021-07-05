@@ -27,11 +27,8 @@ const Menu = () => {
   };
 
   const onMenuBlured: MouseEventHandler<HTMLDivElement> = () => {
-    if (detailMenuRef) {
-      setIsShown('');
-      detailMenuRef.current.style.visibility = 'hidden';
-      detailMenuRef.current.style.height = '0px';
-    }
+    detailMenuRef.current.style.visibility = 'hidden';
+    detailMenuRef.current.style.height = '0px';
   };
 
   const buildDetailMenu = () => {
@@ -59,7 +56,7 @@ const Menu = () => {
       <Container>
         <div>
           <Image src="/img/logo_01.png" alt="logo" width="205" height="36" onClick={onLogoClick} />
-          <div>
+          <MenuEntry>
             {MenuItems.map((item, idx) => {
               return (
                 <MenuItem key={idx} onMouseEnter={onMenuFocused}>
@@ -69,10 +66,17 @@ const Menu = () => {
                 </MenuItem>
               );
             })}
-          </div>
-          {/* <Button>
-            <img src="/img/menu_more.png" alt="" width={40} height={40} />
-          </Button> */}
+          </MenuEntry>
+          <Button>
+            <Image
+              src="/img/menu_more.png"
+              alt=""
+              width="40"
+              height="40"
+              id="detail-menu"
+              onMouseLeave={onMenuBlured}
+            />
+          </Button>
         </div>
       </Container>
       <DetailMenu ref={detailMenuRef} onMouseLeave={onMenuBlured} id="detail-menu">
@@ -94,27 +98,44 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    & > div > div > img {
-      @media screen and (max-width: 768px) {
-        width: 150px;
-        height: 30px;
-      }
+    @media screen and (max-width: 1000px) {
+      width: 90vw;
     }
 
-    & > div:nth-of-type(2) {
-      display: flex;
-      gap: 70px;
-      cursor: pointer;
-      min-width: 700px;
-
-      // @media screen and (max-width: 1100px) {
-      //   display: none;
-      // }
+    & > div > div > img {
+      @media screen and (max-width: 1000px) {
+        width: 170px;
+        height: 30px;
+      }
     }
   }
 `;
 
+const MenuEntry = styled.div`
+  display: grid;
+  grid-template-columns: repeat(${MenuItems.length}, 150px);
+  width: 70%;
+  height: 100%;
+  justify-items: center;
+  justify-content: end;
+
+  & > div {
+    width: 100%;
+
+    &:hover {
+      padding-top: 24px;
+      border-top: 3px solid white;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    display: none;
+  }
+`;
+
 const MenuItem = styled.div`
+  text-align: center;
+  padding-top: 27px;
   & > a {
     color: white;
     text-decoration: none;
@@ -125,25 +146,10 @@ const MenuItem = styled.div`
   }
 `;
 
-// const Button = styled.div`
-//   color: white;
-//   padding: 12px 12px 5px 12px;
-//   filter: invert(100%);
-
-//   @media screen and (min-width: 1100px) {
-//     display: none;
-//   }
-
-//   &:active {
-//     filter: invert(70%);
-//   }
-// `;
-
 const DetailMenu = styled.div`
   background: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 80px;
-  z-index: 900;
   transition: all 0.1s ease;
   visibility: hidden;
   width: 100vw;
@@ -153,44 +159,18 @@ const DetailMenu = styled.div`
   }
 
   & > div {
-    transition: all 0.1s ease;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: flex-end;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(${MenuItems.length}, 150px);
+    height: 200px;
+    justify-content: end;
+    margin-right: 10vw;
 
     & > div {
-      display: flex;
+      display: grid;
       height: 100%;
-      width: 160px;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-    }
-
-    & > div:nth-of-type(1) {
-      width: 155px;
-    }
-
-    & > div:nth-of-type(2) {
-      width: 140px;
-    }
-
-    & > div:nth-of-type(3) {
+      width: ${80 * 0.7}vw;
       width: 150px;
-    }
-
-    & > div:nth-of-type(4) {
-      width: 175px;
-    }
-
-    & > div:nth-of-type(5) {
-      margin-right: 8.5vw;
-      @media screen and (max-width: 1600px) {
-        margin-right: 8vw;
-      }
-      width: 145px;
+      align-items: center;
     }
 
     & > div > div {
@@ -211,6 +191,20 @@ const DetailMenu = styled.div`
         color: #aaa;
       }
     }
+  }
+`;
+
+const Button = styled.div`
+  color: white;
+  padding: 12px 5px 5px 5px;
+  filter: invert(100%);
+
+  @media screen and (min-width: 1000px) {
+    display: none;
+  }
+
+  &:active {
+    filter: invert(70%);
   }
 `;
 
