@@ -1,5 +1,6 @@
 # kau-sw-business
-kau 소프트웨어중심대학사업부 사이트 
+kau 소프트웨어중심대학사업부 사이트
+http://aisw.kau.ac.kr/
 
 ### frontend
 nextjs
