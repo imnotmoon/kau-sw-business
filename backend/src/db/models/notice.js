@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Notice.init(
     {
       title: DataTypes.STRING,
-      contents: DataTypes.TEXT,
+      content: DataTypes.TEXT,
       writer: DataTypes.STRING,
       viewCnt: DataTypes.INTEGER,
       viewOrder: DataTypes.INTEGER,
