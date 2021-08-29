@@ -12,5 +12,6 @@ module.exports = {
     port: process.env.MYSQL_PORT,
     timezone: '+09:00',
     dialect: 'mysql',
+    loggin: false,
   },
 };
