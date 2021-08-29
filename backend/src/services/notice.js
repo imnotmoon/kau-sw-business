@@ -18,11 +18,7 @@ const NoticeService = {
    * @returns
    */
   uploadFiles: async (id, files) =>
-    files.forEach((file) =>
-      fse.outputFile(`${process.env.PWD}/files/${id}/${file.originalname}`, file.buffer, (err) => {
-        if (err) console.error(err);
-      })
-    ),
+    files.forEach((file) => fse.outputFile(`${process.env.PWD}/files/${file.originalname}`, file.buffer)),
 
   /**
    * 공지사항 전체 조회
@@ -45,7 +41,7 @@ const NoticeService = {
         },
       },
       order: [
-        ['viewOrder', 'DESC'],
+        ['isPinned', 'DESC'],
         ['createdAt', 'DESC'],
       ],
       offset,
@@ -79,7 +75,7 @@ const NoticeService = {
    * @param {String} id
    * @returns
    */
-  updateViewCnt: async (id) => Notice.increment('viewCnt', { where: { id } }),
+  updateViewCnt: async (id) => Notice.increment('viewcnt', { where: { id } }),
 
   /**
    * 공지사항 조회

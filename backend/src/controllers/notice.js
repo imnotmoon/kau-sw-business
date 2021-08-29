@@ -1,15 +1,25 @@
 const createError = require('http-errors');
+const { fileNameGenerator } = require('../utils/filename');
 const NoticeService = require('../services/notice');
 
 const NoticeController = {
   add: async (req, res, next) => {
     const data = req.body;
+    const files = req.files;
     // TODO: 필수 항목 확인
 
-    const result = await NoticeService.add(data);
+    const result = await NoticeService.add({
+      ...data,
+      files: files
+        .map((file) => {
+          file.originalname = fileNameGenerator(file.originalname);
+          return file.originalname;
+        })
+        .join(', '),
+    });
     if (!result || !result.id) return next(createError(500));
 
-    NoticeService.uploadFiles(result.id, req.files);
+    NoticeService.uploadFiles(result.id, files);
 
     return res.status(201).json({ success: true, noticeId: result.id });
   },
@@ -35,7 +45,9 @@ const NoticeController = {
 
     const notice = await NoticeService.findOne(id);
     if (!notice) return next(createError(404, '존재하지 않는 ID'));
-
+    notice.files = notice.files?.split(', ').map((file) => {
+      return { name: file.substring(26), url: `http://localhost:3000/file/${file}` };
+    });
     return res.status(200).json(notice);
   },
 

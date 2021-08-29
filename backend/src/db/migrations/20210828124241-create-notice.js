@@ -20,15 +20,19 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      view_cnt: {
+      files: {
+        allowNull: true,
+        type: Sequelize.STRING,
+      },
+      viewcnt: {
         allowNull: false,
         defaultValue: 0,
         type: Sequelize.INTEGER,
       },
-      view_order: {
+      is_pinned: {
         allowNull: false,
-        defaultValue: 0,
-        type: Sequelize.INTEGER,
+        defaultValue: false,
+        type: Sequelize.BOOLEAN,
       },
       created_at: {
         allowNull: false,

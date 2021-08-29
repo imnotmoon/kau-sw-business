@@ -16,8 +16,9 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       content: DataTypes.TEXT,
       writer: DataTypes.STRING,
-      viewCnt: DataTypes.INTEGER,
-      viewOrder: DataTypes.INTEGER,
+      files: DataTypes.STRING,
+      viewcnt: DataTypes.INTEGER,
+      isPinned: DataTypes.INTEGER,
     },
     {
       sequelize,
