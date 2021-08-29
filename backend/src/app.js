@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api', indexRouter);
-app.use('/file', require('./routes/file'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

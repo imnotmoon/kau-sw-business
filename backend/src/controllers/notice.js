@@ -46,7 +46,8 @@ const NoticeController = {
     const notice = await NoticeService.findOne(id);
     if (!notice) return next(createError(404, '존재하지 않는 ID'));
     notice.files = notice.files?.split(', ').map((file) => {
-      return { name: file.substring(26), url: `http://localhost:3000/file/${file}` };
+      // TODO: url env 에서 가져오도록 설정
+      return { name: file.substring(26), url: `http://localhost:3000/api/file/${file}` };
     });
     return res.status(200).json(notice);
   },
