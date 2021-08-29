@@ -20,7 +20,7 @@
   },
   "scripts": {
     "front": "cd frontend/kau-sw-business && npm run dev",
-    "server": "cd backend && npm start",
+    "server": "cd backend/src && npm run dev",
     "dev": "concurrently --kill-others-on-fail \"npm run front\" \"npm run server\""
   },
   "dependencies": {
