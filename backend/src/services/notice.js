@@ -1,3 +1,4 @@
+const fse = require('fs-extra');
 const db = require('../db/models');
 const { Notice, Sequelize } = db;
 const { Op } = Sequelize;
@@ -9,6 +10,19 @@ const NoticeService = {
    * @returns
    */
   add: async (data) => Notice.create(data),
+
+  /**
+   * 첨부파일 저장
+   * @param {String} id
+   * @param {Array} files
+   * @returns
+   */
+  uploadFiles: async (id, files) =>
+    files.forEach((file) =>
+      fse.outputFile(`${process.env.PWD}/files/${id}/${file.originalname}`, file.buffer, (err) => {
+        if (err) console.error(err);
+      })
+    ),
 
   /**
    * 공지사항 전체 조회

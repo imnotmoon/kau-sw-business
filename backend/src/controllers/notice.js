@@ -2,12 +2,14 @@ const createError = require('http-errors');
 const NoticeService = require('../services/notice');
 
 const NoticeController = {
-  add: async (req, res) => {
+  add: async (req, res, next) => {
     const data = req.body;
     // TODO: 필수 항목 확인
-    // TODO: file 업로드
 
     const result = await NoticeService.add(data);
+    if (!result || !result.id) return next(createError(500));
+
+    NoticeService.uploadFiles(result.id, req.files);
 
     return res.status(201).json({ success: true, noticeId: result.id });
   },
