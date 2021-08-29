@@ -41,7 +41,7 @@ const NoticeController = {
   getOne: async (req, res, next) => {
     const { id } = req.params;
 
-    await NoticeService.updateViewCnt(1);
+    await NoticeService.updateViewCnt(id);
 
     const notice = await NoticeService.findOne(id);
     if (!notice) return next(createError(404, '존재하지 않는 ID'));
