@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon ./src/bin/www",
-    "start": "node ./src/bin/www"
+    "start": "NODE_ENV=production node ./src/bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
