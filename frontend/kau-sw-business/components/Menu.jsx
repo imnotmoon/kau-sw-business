@@ -70,7 +70,6 @@ const MenuEntry = styled.div`
 	display: grid;
 	grid-template-columns: repeat(${(props) => props.length}, 120px);
 	height: 100%;
-	gap: 2vw;
 	z-index: 300;
 
 	& > div {
@@ -97,6 +96,7 @@ const DetailMenu = styled.div`
 	width: 100%;
 	height: 200px;
 	background-color: ${COLORS.MENU_DROPDOWN};
+	backdrop-filter: blur(3px);
 	transition: top 0.3s ease;
 
 	display: flex;
@@ -106,11 +106,10 @@ const DetailMenu = styled.div`
 
 	& > div {
 		position: relative;
-		right: 10vw;
-		width: calc(600px + 8vw);
+		width: 600px;
+		margin-right: 10%;
 		display: grid;
 		grid-template-columns: repeat(${(props) => props.length}, 120px);
-		gap: 2vw;
 	}
 `;
 

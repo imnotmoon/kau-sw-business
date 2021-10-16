@@ -22,7 +22,7 @@ const useToggleDetailMenu = () => {
 					return (
 						<DetailMenuItem
 							key={idx}
-							style={{ background: item.title === selectedMenu ? "rgba(0, 0, 0, 0.2)" : "" }}
+							style={ item.title === selectedMenu ? { background: "rgba(0, 0, 0, 0.2)" } : {}}
 						>
 							{item.subElements.map((e, i) => {
 								return (
