@@ -1,35 +1,27 @@
-const fse = require('fs-extra');
 const db = require('../db/models');
-const { Notice, Sequelize } = db;
+const { Notice, File, Sequelize } = db;
 const { Op } = Sequelize;
 
 const NoticeService = {
   /**
    * 공지사항 추가
-   * @param {Object} data title, content, writer, viewOrder
+   * @param {Object} data title, content, writer, category, pinFlag
    * @returns
    */
   add: async (data) => Notice.create(data),
 
   /**
-   * 첨부파일 저장
-   * @param {String} id
-   * @param {Array} files
-   * @returns
-   */
-  uploadFiles: async (id, files) =>
-    files.forEach((file) => fse.outputFile(`${process.env.PWD}/files/${file.originalname}`, file.buffer)),
-
-  /**
    * 공지사항 전체 조회
    * @param {Object}
-   * @returns {Promise<Object[]>}
+   * @returns
    */
-  findNotices: async ({ pageNo, rowsPerPage, title, content, writer }) => {
+  findNotices: async ({ category, pageNo, rowsPerPage, title, content, writer }) => {
+    const categoryOption = category ? { category } : {};
     const limit = parseInt(rowsPerPage);
     const offset = (parseInt(pageNo) - 1) * limit;
     return Notice.findAll({
       where: {
+        ...categoryOption,
         title: {
           [Op.like]: `%${title}%`,
         },
@@ -41,7 +33,7 @@ const NoticeService = {
         },
       },
       order: [
-        ['isPinned', 'DESC'],
+        ['pinFlag', 'DESC'],
         ['createdAt', 'DESC'],
       ],
       offset,
@@ -52,11 +44,13 @@ const NoticeService = {
   /**
    * 공지사항 전체 개수 조회
    * @param {Object}
-   * @returns {Promise<Number>}
+   * @returns
    */
-  getTotal: async ({ title, content, writer }) => {
+  getTotal: async ({ category, title, content, writer }) => {
+    const categoryOption = category ? { category } : {};
     return Notice.count({
       where: {
+        ...categoryOption,
         title: {
           [Op.like]: `%${title}%`,
         },
@@ -75,14 +69,23 @@ const NoticeService = {
    * @param {String} id
    * @returns
    */
-  updateViewCnt: async (id) => Notice.increment('viewcnt', { where: { id } }),
+  updateViewCnt: async (id) => Notice.increment('viewCount', { where: { id } }),
 
   /**
    * 공지사항 조회
    * @param {String} id
-   * @returns {Promise<Object>}
+   * @returns
    */
-  findOne: async (id) => Notice.findByPk(id),
+  findOne: async (id) =>
+    Notice.findByPk(id, {
+      include: [
+        {
+          model: File,
+          as: 'files',
+          attributes: ['id', 'name'],
+        },
+      ],
+    }),
 
   /**
    * 공지사항 수정

@@ -12,14 +12,15 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      'Notices',
+      'notice',
       [
         {
           title: '첫번째로 등록한 공지',
           content: '<p> 첫번째 공지 </p>',
           writer: '작성자 1',
-          viewcnt: 10,
-          is_pinned: false,
+          category: 'notice',
+          view_count: 10,
+          pin_flag: false,
           created_at: new Date(Date.now() - 3600 * 1000 * 24 * 6),
           updated_at: new Date(Date.now() - 3600 * 1000 * 24 * 6),
         },
@@ -27,8 +28,9 @@ module.exports = {
           title: '두번째로 등록한 공지',
           content: '<p> <b> 두번째 공지 </b> </p>',
           writer: '작성자 3',
-          viewcnt: 30,
-          is_pinned: false,
+          category: 'notice',
+          view_count: 30,
+          pin_flag: false,
           created_at: new Date(Date.now() - 3600 * 1000 * 24 * 5),
           updated_at: new Date(Date.now() - 3600 * 1000 * 24 * 5),
         },
@@ -36,8 +38,9 @@ module.exports = {
           title: '세번째로 등록한 공지',
           content: '<p> 세번째 공지 <p>',
           writer: '작성자 2',
-          viewcnt: 3,
-          is_pinned: true,
+          category: 'notice',
+          view_count: 3,
+          pin_flag: true,
           created_at: new Date(Date.now() - 3600 * 1000 * 24 * 3),
           updated_at: new Date(Date.now() - 3600 * 1000 * 24 * 3),
         },
@@ -45,8 +48,9 @@ module.exports = {
           title: '네번째로 등록한 공지',
           content: '<p> 네번째 공지 <p>',
           writer: '작성자 1',
-          viewcnt: 3,
-          is_pinned: false,
+          category: 'notice',
+          view_count: 3,
+          pin_flag: true,
           created_at: new Date(Date.now() - 3600 * 1000 * 24 * 2),
           updated_at: new Date(Date.now() - 3600 * 1000 * 24 * 2),
         },
@@ -54,8 +58,9 @@ module.exports = {
           title: '다섯번째로 등록한 공지',
           content: '<p> 다섯번째 공지 <p>',
           writer: '작성자 3',
-          viewcnt: 0,
-          is_pinned: true,
+          category: 'notice',
+          view_count: 3,
+          pin_flag: true,
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -71,6 +76,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Notices', null, {});
+    await queryInterface.bulkDelete('notice', null, {});
   },
 };

@@ -1,8 +1,8 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Notices', {
-      id: {
+    await queryInterface.createTable('notice', {
+      notice_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -20,19 +20,23 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      category: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       files: {
         allowNull: true,
         type: Sequelize.STRING,
       },
-      viewcnt: {
-        allowNull: false,
-        defaultValue: 0,
-        type: Sequelize.INTEGER,
-      },
-      is_pinned: {
+      pin_flag: {
         allowNull: false,
         defaultValue: false,
         type: Sequelize.BOOLEAN,
+      },
+      view_count: {
+        allowNull: false,
+        defaultValue: 0,
+        type: Sequelize.INTEGER,
       },
       created_at: {
         allowNull: false,
@@ -45,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Notices');
+    await queryInterface.dropTable('notice');
   },
 };
