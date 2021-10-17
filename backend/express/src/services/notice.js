@@ -20,6 +20,7 @@ const NoticeService = {
     const limit = parseInt(rowsPerPage);
     const offset = (parseInt(pageNo) - 1) * limit;
     return Notice.findAll({
+      attributes: ['id', 'title', 'writer', 'pinFlag', 'viewCount', 'createdAt'],
       where: {
         ...categoryOption,
         title: {

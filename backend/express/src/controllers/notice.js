@@ -33,7 +33,7 @@ const NoticeController = {
 
     return res.status(200).json({
       pageMap: { total, pageNo, rowsPerPage, totalNumberOfPages: Math.ceil(total / rowsPerPage) },
-      rows: notices,
+      data: notices,
     });
   },
 
@@ -45,7 +45,7 @@ const NoticeController = {
     const notice = await NoticeService.findOne(id);
     if (!notice) return next(createError(404, '존재하지 않는 ID'));
 
-    return res.status(200).json(notice);
+    return res.status(200).json({ data: notice });
   },
 
   update: async (req, res, next) => {
