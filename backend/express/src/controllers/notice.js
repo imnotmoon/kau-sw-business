@@ -1,5 +1,4 @@
 const createError = require('http-errors');
-const { fileNameGenerator } = require('../utils/filename');
 const NoticeService = require('../services/notice');
 const FileService = require('../services/file');
 
@@ -11,20 +10,16 @@ const NoticeController = {
     const result = await NoticeService.add(data);
     if (!result || !result.id) return next(createError(500));
 
-    const uploadedFiles = files.map((file) => {
-      file.filename = fileNameGenerator(file.originalname);
-      FileService.uploadFile(file);
-      return { filename: file.filename, name: file.originalname, noticeId: result.id };
-    });
-
-    FileService.addAll(uploadedFiles);
+    FileService.addAll(result.id, files);
 
     return res.status(201).json({ success: true, noticeId: result.id });
   },
 
   getAll: async (req, res) => {
-    const { category } = req.query;
-    const { pageNo = '1', rowsPerPage = '15', title = '', content = '', writer = '' } = req.query;
+    let { pageNo, rowsPerPage } = req.query;
+    if (!pageNo || pageNo === '') pageNo = '1';
+    if (!rowsPerPage || rowsPerPage === '') rowsPerPage = '15';
+    const { category, title = '', content = '', writer = '' } = req.query;
 
     const [total, notices] = await Promise.all([
       NoticeService.getTotal({ category, title, content, writer }),
@@ -49,19 +44,16 @@ const NoticeController = {
   },
 
   update: async (req, res, next) => {
-    const { id, ...rest } = req.body;
+    const { id, deleteFiles, ...rest } = req.body;
     const files = req.files;
 
     if (!id) return next(createError(400, 'id is required'));
     await NoticeService.update(id, rest);
 
-    const uploadedFiles = files.map((file) => {
-      file.filename = fileNameGenerator(file.originalname);
-      NoticeService.uploadFiles(file);
-      return { filename: file.filename, name: file.originalname, noticeId: id };
-    });
-
-    FileService.addAll(uploadedFiles);
+    FileService.addAll(id, files);
+    if (deleteFiles && deleteFiles.length > 0) {
+      FileService.deleteAll(deleteFiles);
+    }
 
     return res.status(200).json({ success: true });
   },

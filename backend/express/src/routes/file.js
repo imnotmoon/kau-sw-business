@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const multer = require('multer');
-const MAX_SIZE = 10 * 1024 * 1024;
+const { FILE_MAX_SIZE } = require('../utils/constant');
 const controller = require('../controllers/file');
 
 router.get('/:id', controller.getOne);
@@ -9,7 +9,7 @@ router.get('/:id', controller.getOne);
 router.post(
   '/',
   multer({
-    limits: { fileSize: MAX_SIZE },
+    limits: { fileSize: FILE_MAX_SIZE },
   }).single('file'),
   controller.add
 );
