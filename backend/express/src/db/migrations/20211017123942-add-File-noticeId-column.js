@@ -15,7 +15,7 @@ module.exports = {
         key: 'notice_id',
       },
       onUpdate: 'CASCADE',
-      onDelete: 'SET NULL',
+      onDelete: 'CASCADE',
     });
   },
 
