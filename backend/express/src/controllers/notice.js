@@ -43,6 +43,14 @@ const NoticeController = {
     return res.status(200).json({ data: notice });
   },
 
+  getSummary: async (req, res) => {
+    const { category, count = 4 } = req.query;
+
+    const summary = await NoticeService.find({ category, limit: count });
+
+    return res.status(200).json({ data: summary });
+  },
+
   update: async (req, res, next) => {
     const { id, deleteFiles, ...rest } = req.body;
     const files = req.files;

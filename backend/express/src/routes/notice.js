@@ -3,6 +3,7 @@ const multer = require('multer');
 const controller = require('../controllers/notice');
 const { FILE_MAX_SIZE } = require('../utils/constant');
 
+router.get('/summary', controller.getSummary);
 router.get('/:id', controller.getOne);
 router.get('/', controller.getAll);
 

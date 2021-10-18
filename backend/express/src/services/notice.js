@@ -88,6 +88,21 @@ const NoticeService = {
       ],
     }),
 
+  find: async ({ category, limit }) => {
+    const categoryOption = category ? { category } : {};
+    return Notice.findAll({
+      attributes: ['id', 'title', 'createdAt'],
+      where: {
+        ...categoryOption,
+      },
+      order: [
+        ['pinFlag', 'DESC'],
+        ['createdAt', 'DESC'],
+      ],
+      limit,
+    });
+  },
+
   /**
    * 공지사항 수정
    * @param {String} id
