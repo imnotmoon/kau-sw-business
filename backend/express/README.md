@@ -6,8 +6,9 @@ npx sequelize db:migrate
 npx sequelize db:seed:all
 
 # production
+docker-compose up -d # 상위 디렉토리에서 
+
 npm install --only=prod
-docker-compose up -d
 npx sequelize db:migrate --env=production
 npx sequelize db:seed:all --env=production
 ```
