@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { COLORS } from '../styles/theme'
 
-const NewsCardItem = ({link, title, postdate}) => {
+const HeadlineCardItem = ({link, title, postdate}) => {
   return (
     <Container>
       <a href={link}>{title}</a>
@@ -23,4 +23,4 @@ const Container = styled.div`
   }
 `
 
-export default NewsCardItem
+export default HeadlineCardItem
