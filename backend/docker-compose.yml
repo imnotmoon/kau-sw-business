@@ -1,20 +1,19 @@
-version: "3" # 파일 규격 버전
-services: # 이 항목 밑에 실행하려는 컨테이너 들을 정의
-  kau-sw-business: # 서비스 명
-    image: mysql:latest # 사용할 이미지
-    container_name: "kau-mysql" # 컨테이너 이름 설정
+version: "3"
+services: 
+  kau-sw-business: 
+    image: mysql:5.7.35 
+    container_name: "kau-mysql" 
     ports:
-      - "3316:3306" # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
+      - "3316:3306" 
     restart: always
-    environment: # -e 옵션
-      # MYSQL_ROOT_PASSWORD: "password"  # MYSQL 패스워드 설정 옵션
+    environment: 
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
       MYSQL_DATABASE: "kau_sw_business"
       MYSQL_USER: "kau"
       MYSQL_PASSWORD: "123456"
     volumes:
-      - ${PWD}/mysql:/var/lib/mysql # -v 옵션 (다렉토리 마운트 설정)
-    command: # 명령어 실행
+      - ${PWD}/mysql:/var/lib/mysql 
+    command: 
       - --character-set-server=utf8mb4
       - --collation-server=utf8mb4_unicode_ci
 
