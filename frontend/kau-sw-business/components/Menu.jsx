@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
+
 
 import { MenuItems } from "../utils/MenuInterface";
 import { COLORS } from "../styles/theme";
 import useToggleDetailMenu from "../hooks/useToggleDetailMenu";
+import MenuLink from "./MenuLink";
 
 import logo from "../public/img/logo_01.png";
 
@@ -13,7 +14,7 @@ const Menu = () => {
 	const { dropdownRef, onMouseEnterMenu, onMouseLeaveMenu, buildDetailMenu } = useToggleDetailMenu();
 	const [selectedMenu, setSelectedMenu] = useState("사업단 소개");
 
-	const onFocusSignleMenu = useCallback((e) => {
+	const onFocusSingleMenu = useCallback((e) => {
 		const menuName = e.target.innerText.trim();
 		setSelectedMenu(menuName);
 	}, []);
@@ -24,15 +25,14 @@ const Menu = () => {
 				<div>
 					<Image src={logo} width={205} height={36} alt="logo" />
 					<MenuEntry onMouseEnter={onMouseEnterMenu} length={MenuItems.length}>
-						{MenuItems.map((item, idx) => (
-							<MenuLink key={idx} onMouseEnter={onFocusSignleMenu}>
-								<Link href={MenuItems[idx].url}>
-									<a style={{ color: selectedMenu === item.title ? "white" : "#e2e2e2" }}>
-										{item.title}
-									</a>
-								</Link>
-							</MenuLink>
-						))}
+						{MenuItems.map((item, idx) => 
+							<MenuLink 
+								key={idx} 
+								idx={idx} 
+								item={item} 
+								selectedMenu={selectedMenu} 
+								onFocusSignleMenu={onFocusSingleMenu}/>)
+						}
 					</MenuEntry>
 				</div>
 			</Container>
@@ -83,11 +83,6 @@ const MenuEntry = styled.div`
 			border-top: 3px solid white;
 		}
 	}
-`;
-
-const MenuLink = styled.div`
-	white-space: nowrap;
-	align-self: center;
 `;
 
 const DetailMenu = styled.div`

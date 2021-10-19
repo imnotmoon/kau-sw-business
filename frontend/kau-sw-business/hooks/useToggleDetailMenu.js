@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { MenuItems } from "../utils/MenuInterface";
 import Link from "next/link";
 import styled from "styled-components";

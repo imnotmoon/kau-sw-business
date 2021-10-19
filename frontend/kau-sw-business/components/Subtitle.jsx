@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { COLORS } from "../styles/theme";
 
 const Subtitle = ({ text }) => {
 	return (
@@ -17,7 +18,7 @@ const Container = styled.div`
 
 	& > div:nth-of-type(2) {
 		font-weight: 500;
-		color: #262f41;
+		color: ${COLORS.PRIMARY1};
 		font-size: 20px;
 	}
 `;
@@ -25,7 +26,7 @@ const Container = styled.div`
 const Bullet = styled.div`
 	width: 10px;
 	height: 20px;
-	background: #262f41;
+	background: ${COLORS.PRIMARY1};
 	margin-left: 5px;
 	margin-right: 10px;
 	margin-top: 6px;

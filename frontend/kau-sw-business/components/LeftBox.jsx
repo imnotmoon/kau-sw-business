@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+
 import { MenuItems } from "../utils/MenuInterface";
+import MenuItem from "./MenuItem";
 
 const LeftBox = ({ title, state, front }) => {
 	const subTitles = MenuItems[state].subElements;
+	console.log(subTitles)
 
 	return (
 		<Container>
@@ -11,17 +14,7 @@ const LeftBox = ({ title, state, front }) => {
 				<span>{front}</span>
 			</div>
 			{subTitles.map((elem, idx) =>
-				title === elem.title ? (
-					<MenuItem key={idx} style={{ background: "#262f41", color: "white" }}>
-						<a>{elem.title}</a>
-					</MenuItem>
-				) : (
-					<MenuItem key={idx}>
-						<a href={elem.url} style={{ color: "black" }}>
-							{elem.title}
-						</a>
-					</MenuItem>
-				)
+			 <MenuItem key={idx} elem={elem} idx={idx} title={title}/>
 			)}
 		</Container>
 	);
@@ -47,21 +40,6 @@ const Container = styled.div`
 			font-size: 24px;
 			font-weight: 300;
 		}
-	}
-`;
-const MenuItem = styled.div`
-	border-bottom: 1px solid #dfdfdf;
-	height: 50px;
-
-	display: flex;
-	justify-content: flex-start;
-	padding-left: 20px;
-	align-items: center;
-
-	& > a {
-		text-decoration: none;
-		font-size: 18px;
-		font-weight: 300;
 	}
 `;
 

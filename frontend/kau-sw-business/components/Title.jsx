@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import { COLORS } from "../styles/theme";
 
 const Title = ({ text }) => {
 	return (
@@ -23,7 +24,7 @@ const Container = styled.div`
 	& > span {
 		font-size: 22px;
 		font-weight: 600;
-		color: #333;
+		color: ${COLORS.TITLE};
 	}
 `;
 
