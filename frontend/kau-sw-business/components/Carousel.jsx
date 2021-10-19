@@ -7,10 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Carousel = () => {
-	const [banners, setBannsers] = useState([
+	const [banners, setBanners] = useState([
 		{ src: "/img/main_visual_img01.png", alt: "" },
-		// { src: "/img/main_visual_img02.png", alt: "" },
-		// { src: "/img/main_visual_img03.png", alt: "" },
+		{ src: "/img/main_visual_img02.png", alt: "" },
+		{ src: "/img/main_visual_img03.png", alt: "" },
 	]);
 
 	useEffect(() => {
@@ -18,21 +18,23 @@ const Carousel = () => {
 	}, []);
 
 	return (
-		<Slider {...settings}>
+		<CarouselSlider {...settings}>
 			{banners.map((item, idx) => {
 				return (
-					<div key={idx}>
-						<CarouselItem>
-							<h1>제목입니다.</h1>
-							<h3>소제목입니다.</h3>
-							<div>
-								<Image src={item.src} alt={item.alt} width={1920} height={380} layout="fixed" />
-							</div>
-						</CarouselItem>
-					</div>
+					<section key={idx}>
+						<h1>제목입니다.</h1>
+						<h3>소제목입니다.</h3>
+						<div>
+							<CarouselItem>
+								<div>
+									<Image src={item.src} alt={item.alt} width={1920} height={380} layout="fixed" />
+								</div>
+							</CarouselItem>
+						</div>
+					</section>
 				);
 			})}
-		</Slider>
+		</CarouselSlider>
 	);
 };
 
@@ -47,6 +49,20 @@ const settings = {
 	adaptiveHeight: true,
 };
 
+const CarouselSlider = styled(Slider)`
+	position: relative;
+	top: -120px;
+	& h1,
+	h3 {
+		position: relative;
+		z-index: 400;
+		color: white;
+		top: 200px;
+		left: 20%;
+	}
+`
+
+
 const CarouselItem = styled.div`
 	& > div {
 		height: 380px;
@@ -56,22 +72,6 @@ const CarouselItem = styled.div`
 			height: 380px;
 			object-fit: cover;
 		}
-	}
-	& > h1,
-	h3 {
-		position: absolute;
-		z-index: 400;
-		color: white;
-	}
-
-	& > h1 {
-		top: 15%;
-		left: 20%;
-	}
-
-	& > h3 {
-		top: 30%;
-		left: 20%;
 	}
 `;
 
