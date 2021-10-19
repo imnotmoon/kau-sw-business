@@ -51,7 +51,7 @@ const settings = {
 
 const CarouselSlider = styled(Slider)`
 	position: relative;
-	top: -120px;
+	top: -125px;
 	& h1,
 	h3 {
 		position: relative;
