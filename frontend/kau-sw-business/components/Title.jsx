@@ -18,10 +18,8 @@ const Container = styled.div`
 	justify-content: flex-start;
 	margin-bottom: 10px;
 
-	& > img {
-		padding-right: 10px;
-	}
 	& > span {
+		margin-left: 10px;
 		font-size: 22px;
 		font-weight: 600;
 		color: ${COLORS.TITLE};

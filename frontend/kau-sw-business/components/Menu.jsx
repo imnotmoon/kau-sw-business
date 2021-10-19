@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 
-
 import { MenuItems } from "../utils/MenuInterface";
 import { COLORS } from "../styles/theme";
 import useToggleDetailMenu from "../hooks/useToggleDetailMenu";
@@ -19,11 +18,15 @@ const Menu = () => {
 		setSelectedMenu(menuName);
 	}, []);
 
+	const onClickLogo = () => {
+		location.href = '/';
+	}
+
 	return (
 		<>
 			<Container>
 				<div>
-					<Image src={logo} width={205} height={36} alt="logo" />
+					<Image src={logo} width={205} height={36} alt="logo" onClick={onClickLogo}/>
 					<MenuEntry onMouseEnter={onMouseEnterMenu} length={MenuItems.length}>
 						{MenuItems.map((item, idx) => 
 							<MenuLink 
@@ -63,6 +66,10 @@ const Container = styled.div`
 		height: 100%;
 		align-items: center;
 		justify-content: space-between;
+	}
+
+	& img {
+		cursor: pointer;
 	}
 `;
 
