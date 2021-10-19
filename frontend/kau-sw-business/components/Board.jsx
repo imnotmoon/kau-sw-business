@@ -40,6 +40,7 @@ const Title = styled.h1`
 const Section = styled.section`
   display: flex;
   justify-content: space-around;
+  gap: 30px;
 `
 
 export default Board

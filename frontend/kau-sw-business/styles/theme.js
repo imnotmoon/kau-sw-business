@@ -5,5 +5,6 @@ export const COLORS = {
 	BORDER: "#dfdfdf",
 	TITLE : "#333333",
 	BACKGROUND: "#e7e7e7",
-	CARD_BORDER: "#dddddd"
+	CARD_BORDER: "#dddddd",
+	TEXT2 : "#6a6a6a"
 };

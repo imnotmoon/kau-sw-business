@@ -20,10 +20,22 @@ const NewsCard = ({ title, src }) => {
 const Container = styled.div`
   width: 25vw;
   min-width: 300px;
+  box-sizing: content-box;
   padding: 10px 20px 30px 20px;
   color: ${COLORS.TITLE};
 
   border: 1px solid ${COLORS.CARD_BORDER};
+
+  & > div:nth-of-type(1) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    & > h3 {
+      font-weight: 400;
+      font-size: 22px;
+    }
+  }
 `
 
 export default NewsCard
