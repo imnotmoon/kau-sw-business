@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import withHead from "../components/hoc/withHead";
 import Board from "../components/Board";
+import { COLORS } from "../styles/theme";
 
 const Home = () => {
 	return (
@@ -19,6 +20,7 @@ const Home = () => {
 const Container = styled.div`
 	position: relative;
 	top: 80px;
+	background: ${COLORS.BACKGROUND};
 `;
 
 

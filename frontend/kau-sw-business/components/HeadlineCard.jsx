@@ -37,6 +37,10 @@ const Container = styled.div`
       font-size: 22px;
     }
   }
+
+  @media screen and (max-width: 720px) {
+    width: 70vw;
+  }
 `
 
 export default HeadlineCard

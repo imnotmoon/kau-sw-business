@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 import Menu from "../Menu";
+import Footer from "../Footer";
 
 const withHead = (Component, description) => {
 	const C = (props) => {
@@ -17,6 +18,7 @@ const withHead = (Component, description) => {
 				</Head>
 				<Menu />
 				<Component {...props} />
+				<Footer></Footer>
 			</>
 		);
 	};

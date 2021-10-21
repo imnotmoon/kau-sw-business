@@ -63,7 +63,6 @@ const Section = styled.section`
 const SectionNews = styled(Section)`
   display: grid;
   grid-template-columns : 1fr 1fr 1fr 1fr;
-  margin-bottom: 80px;
 
   @media screen and (max-width: 720px) {
     grid-template-columns: 1fr 1fr;
