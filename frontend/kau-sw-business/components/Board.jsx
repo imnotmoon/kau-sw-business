@@ -19,9 +19,9 @@ function Board() {
       <Title>
         SW중심사업단 <span>NEWS</span>
       </Title>
-      <Section>
+      <SectionNews>
         {boardElements.map((data, idx) => <NewsCard key={idx} data={data}/>)}
-      </Section>
+      </SectionNews>
     </Container>
   )
 }
@@ -31,7 +31,7 @@ const Container = styled.section`
 	position: relative;
 	top: -130px;
 	width: 100vw;
-	height: 800px;
+	height: auto;
 
   display: flex;
   flex-direction: column;
@@ -54,6 +54,21 @@ const Section = styled.section`
   display: flex;
   justify-content: space-around;
   gap: 30px;
+
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+  }
+`
+
+const SectionNews = styled(Section)`
+  display: grid;
+  grid-template-columns : 1fr 1fr 1fr 1fr;
+  margin-bottom: 80px;
+
+  @media screen and (max-width: 720px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
 `
 
 export default Board
