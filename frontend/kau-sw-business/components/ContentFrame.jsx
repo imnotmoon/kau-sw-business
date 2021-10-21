@@ -33,7 +33,7 @@ const Container = styled.div`
 		padding-left: 40px;
 		padding-right: 40px;
 		width: 55vw;
-		min-width: 800px;
+		min-width: 600px;
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 50px;

@@ -29,7 +29,7 @@ function Board() {
 const Container = styled.section`
 	background-color: ${COLORS.BACKGROUND};
 	position: relative;
-	top: -125px;
+	top: -130px;
 	width: 100vw;
 	height: 800px;
 
@@ -40,7 +40,7 @@ const Container = styled.section`
 `
 
 const Title = styled.h1`
-  margin-top: 30px;
+  margin-top: 50px;
   font-weight: 400;
   font-size: 30px;
 

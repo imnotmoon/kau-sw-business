@@ -26,7 +26,7 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	@media screen and (max-width: 1000px) {
+	@media screen and (max-width: 720px) {
 		display: none;
 	}
 	& > div:nth-of-type(1) {

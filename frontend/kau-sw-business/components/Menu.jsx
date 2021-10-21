@@ -37,6 +37,7 @@ const Menu = () => {
 								onFocusSignleMenu={onFocusSingleMenu}/>)
 						}
 					</MenuEntry>
+					<HambergerButton>Menu</HambergerButton>
 				</div>
 			</Container>
 			<DetailMenu ref={dropdownRef} onMouseLeave={onMouseLeaveMenu} length={MenuItems.length}>
@@ -70,6 +71,10 @@ const Container = styled.div`
 
 	& img {
 		cursor: pointer;
+		min-width: 50px;
+		min-height: 15px;
+		width: auto;
+		height: auto;
 	}
 `;
 
@@ -89,6 +94,10 @@ const MenuEntry = styled.div`
 			padding-top: 27px;
 			border-top: 3px solid white;
 		}
+	}
+
+	@media screen and (max-width: 1000px) {
+		display: none;
 	}
 `;
 
@@ -114,5 +123,11 @@ const DetailMenu = styled.div`
 		grid-template-columns: repeat(${(props) => props.length}, 120px);
 	}
 `;
+
+const HambergerButton = styled.button`
+	@media screen and (min-width : 1000px) {
+		display: none;
+	}
+`
 
 export default Menu;
