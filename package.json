@@ -21,6 +21,7 @@
   "scripts": {
     "front": "cd frontend/kau-sw-business && npm run dev",
     "server": "cd backend/express/src && npm run dev",
+    "admin": "cd admin && npm run start",
     "dev": "concurrently --kill-others-on-fail \"npm run front\" \"npm run server\""
   },
   "dependencies": {

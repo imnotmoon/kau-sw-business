@@ -5,7 +5,8 @@
     "node": true
   },
   "rules" : {
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-unused-vars": "off"
   },
   "parser": "babel-eslint",
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
