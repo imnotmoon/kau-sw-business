@@ -20,6 +20,9 @@ const AdminController = {
   createAdmin: async (req, res, next) => {
     const { userId, password, name } = req.body;
 
+    const admin = await AdminService.findByUserId(userId);
+    if (admin) return next(createError(409, '이미 존재하는 User Id'));
+
     const result = await AdminService.add({
       userId,
       password /*password: bcrypt.hashSync(password, 8)*/,
@@ -35,6 +38,11 @@ const AdminController = {
     const { id, ...rest } = req.body;
 
     if (!id) return next(createError(400, 'id is required'));
+
+    if (rest.userId) {
+      const admin = await AdminService.findByUserId(rest.userId);
+      if (admin && admin.id !== id) return next(createError(409, '이미 존재하는 User Id'));
+    }
     await AdminService.update(id, rest);
 
     return res.status(200).json({ success: true });
