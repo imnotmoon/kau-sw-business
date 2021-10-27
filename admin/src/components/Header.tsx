@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 import Menus from './Menus';
+import { COLORS } from '../utils/styled';
 
 const Header = () => {
   return (
@@ -19,6 +20,7 @@ const Container = styled.div`
   height: 80px;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(20px);
+  border-bottom: 1px solid ${COLORS.BORDER};
 
   display: flex;
   justify-content: center;
