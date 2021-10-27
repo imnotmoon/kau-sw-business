@@ -17,6 +17,7 @@ const Menus = () => {
   };
 
   const onClickProfile = () => {
+    sessionStorage.clear();
     history.push('/login');
   };
 
