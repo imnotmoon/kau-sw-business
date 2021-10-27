@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 
 export const COLORS = {
   BORDER: 'rgba(255, 255, 255, 0.28)',
-  BACKGROUND: 'rgba(255, 255, 255, 0.18)'
-}
+  BACKGROUND: 'rgba(255, 255, 255, 0.18)',
+};
 
 export const WDiv = styled.div`
-  backdrop-filter: blur(12px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(12px) saturate(180%);
   background-color: rgba(225, 225, 225, 0.1);
   border-radius: 12px;
