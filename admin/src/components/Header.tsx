@@ -3,12 +3,13 @@ import styled from '@emotion/styled';
 
 import Menus from './Menus';
 import { COLORS } from '../utils/styled';
+import logo from '../logo_01.png';
 
 const Header = () => {
   return (
     <Container>
       <div>
-        <img src="/images/sunglass.png" alt="logo" />
+        <img src={logo} alt="logo" />
         <Menus />
       </div>
     </Container>
@@ -35,7 +36,7 @@ const Container = styled.div`
   }
 
   & img {
-    height: 60%;
+    height: 40%;
   }
 `;
 
