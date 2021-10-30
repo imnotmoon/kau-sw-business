@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// components
 import ContentFrame from '../../components/ContentFrame';
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 import ImageContent from '../../components/ImageContent';
 
-// images
 import img1 from '../../public/img/major_education/3-1.png';
 import img2 from '../../public/img/major_education/3-2.png';
 import img3 from '../../public/img/major_education/3-3.png';

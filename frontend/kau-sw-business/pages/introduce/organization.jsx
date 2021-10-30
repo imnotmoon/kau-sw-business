@@ -1,13 +1,11 @@
 import React from 'react';
 import ContentFrame from '../../components/ContentFrame';
 
-// interface
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 import styled from 'styled-components';
 import ImageContent from '../../components/ImageContent';
 
-// images
 import img1 from '../../public/img/introduce/1-9.png';
 import withHead from '../../components/hoc/withHead';
 

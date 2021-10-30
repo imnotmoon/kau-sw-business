@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// components
 import ContentFrame from '../../components/ContentFrame';
 import withHead from '../../components/hoc/withHead';
 

@@ -2,12 +2,10 @@ import React from 'react';
 import ContentFrame from '../../components/ContentFrame';
 import styled from 'styled-components';
 
-// component
 import Title from '../../components/Title';
 import Subtitle from '../../components/Subtitle';
 import ImageContent from '../../components/ImageContent';
 
-// images
 import img1 from '../../public/img/introduce/1-6.png';
 import withHead from '../../components/hoc/withHead';
 
