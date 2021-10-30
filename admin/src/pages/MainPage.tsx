@@ -5,7 +5,7 @@ import Header from '../components/Header';
 
 function MainPage() {
   const history = useHistory();
-  // if (!sessionStorage.getItem("token")) history.push("/login");
+  if (!sessionStorage.getItem("token")) history.push("/login");
 
   return (
     <Container>

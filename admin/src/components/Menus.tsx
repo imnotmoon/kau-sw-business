@@ -62,6 +62,7 @@ const Container = styled.div`
 
 const menuItems = [
   { menu: '공지관리', href: '/' },
+  { menu: '배너관리', href: '/'},
   { menu: '캘린더관리', href: '/' },
   { menu: '계정관리', href: '/' },
 ];
