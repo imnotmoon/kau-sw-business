@@ -1,9 +1,9 @@
-import React from "react";
-import ContentFrame from "../../components/ContentFrame";
-import withHead from "../../components/hoc/withHead";
+import React from 'react';
+import ContentFrame from '../../components/ContentFrame';
+import withHead from '../../components/hoc/withHead';
 
 const NonDiscipline = () => {
-	return <ContentFrame title="비교과" state={1}></ContentFrame>;
+  return <ContentFrame title="비교과" state={1}></ContentFrame>;
 };
 
-export default withHead(NonDiscipline, "");
+export default withHead(NonDiscipline, '');

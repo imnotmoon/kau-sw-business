@@ -1,14 +1,14 @@
-import React from 'react'
-import styled from 'styled-components'
-import { COLORS } from '../styles/theme'
+import React from 'react';
+import styled from 'styled-components';
+import { COLORS } from '../styles/theme';
 
 const DATA = {
-  address : '(10540) 경기도 고양시 덕양구 항공대학로 76',
-  tel : 'TEL - (02) 300-0114',
-  fax : 'FAX - (02) 3158-5769',
-  email : 'E-mail - webmaster@kau.ac.kr',
-  right : 'COPYRIGHT 2012 Korea Aerospace University. All right reserved.'
-}
+  address: '(10540) 경기도 고양시 덕양구 항공대학로 76',
+  tel: 'TEL - (02) 300-0114',
+  fax: 'FAX - (02) 3158-5769',
+  email: 'E-mail - webmaster@kau.ac.kr',
+  right: 'COPYRIGHT 2012 Korea Aerospace University. All right reserved.',
+};
 
 const Footer = () => {
   return (
@@ -25,8 +25,8 @@ const Footer = () => {
         <div>{DATA.right}</div>
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.footer`
   position: absolute;
@@ -43,10 +43,10 @@ const Container = styled.footer`
     width: 30%;
     height: 100%;
     display: flex;
-    flex-direction : column;
+    flex-direction: column;
     color: ${COLORS.TEXT};
     & > div {
-      white-space: nowrap
+      white-space: nowrap;
     }
   }
 
@@ -55,12 +55,12 @@ const Container = styled.footer`
   }
 
   & > div:nth-of-type(2) {
-    justify-content : flex-end;
+    justify-content: flex-end;
   }
 
   @media screen and (max-width: 720px) {
     flex-direction: column;
   }
-`
+`;
 
-export default Footer
+export default Footer;

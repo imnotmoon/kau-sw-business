@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
-import { COLORS } from '../styles/theme'
+import React from 'react';
+import styled from 'styled-components';
+import { COLORS } from '../styles/theme';
 
-import { notiData, newsData } from '../utils/sample-data'
-import HeadlineCardItem from './HeadlineCardItem'
+import { notiData, newsData } from '../utils/sample-data';
+import HeadlineCardItem from './HeadlineCardItem';
 
 const HeadlineCard = ({ title, src }) => {
   return (
@@ -15,8 +15,8 @@ const HeadlineCard = ({ title, src }) => {
       {title === '공지사항' && notiData.map((item, idx) => <HeadlineCardItem key={idx} {...item} />)}
       {title === '사업단소식' && newsData.map((item, idx) => <HeadlineCardItem key={idx} {...item} />)}
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   width: 25vw;
@@ -31,7 +31,7 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     & > h3 {
       font-weight: 400;
       font-size: 22px;
@@ -41,6 +41,6 @@ const Container = styled.div`
   @media screen and (max-width: 720px) {
     width: 70vw;
   }
-`
+`;
 
-export default HeadlineCard
+export default HeadlineCard;

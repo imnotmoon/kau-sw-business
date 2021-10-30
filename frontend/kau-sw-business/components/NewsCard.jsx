@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from 'styled-components'
-import { COLORS } from '../styles/theme'
+import React from 'react';
+import styled from 'styled-components';
+import { COLORS } from '../styles/theme';
 
 const NewsCard = ({ data }) => {
   const { title, state, startDate, endDate } = data;
@@ -15,8 +15,8 @@ const NewsCard = ({ data }) => {
         {endDate}
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   width: 20vw;
@@ -33,6 +33,6 @@ const Container = styled.div`
     align-items: center;
     color: ${COLORS.TITLE};
   }
-`
+`;
 
-export default NewsCard
+export default NewsCard;
