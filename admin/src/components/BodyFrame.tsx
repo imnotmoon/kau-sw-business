@@ -11,10 +11,10 @@ const BodyFrame = ({ children }: BodyFrameProp) => {
 
 const Container = styled.section`
 	margin-top: 30px;
-	background: rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(20px);
+	background: rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(50px);
 	height: calc(100vh - 140px);
-	border-radius: 20px;
+	border-radius: 10px;
 	width: 90vw;
 `;
 
