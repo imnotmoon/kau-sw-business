@@ -1,10 +1,14 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const CalendarPage = () => {
-	return <Container></Container>;
-};
+import Layout from "../components/Layout";
 
-const Container = styled.div``;
+const CalendarPage = () => {
+	return (
+		<Layout>
+			<div></div>
+		</Layout>
+	);
+};
 
 export default CalendarPage;

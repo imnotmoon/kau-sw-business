@@ -1,10 +1,14 @@
-import styled from "@emotion/styled";
 import React from "react";
+import styled from "@emotion/styled";
+
+import Layout from "../components/Layout";
 
 const AccountPage = () => {
-	return <Container></Container>;
+	return (
+		<Layout>
+			<div></div>
+		</Layout>
+	);
 };
-
-const Container = styled.div``;
 
 export default AccountPage;
