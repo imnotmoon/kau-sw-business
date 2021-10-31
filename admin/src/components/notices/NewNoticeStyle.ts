@@ -30,6 +30,7 @@ export const Title = styled.h1`
 	color: white;
 	font-weight: 300;
 	height: 50px;
+	font-size: 24px;
 	border-bottom: 1px solid white;
 `;
 

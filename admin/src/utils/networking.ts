@@ -12,11 +12,11 @@ const APIs = {
 		const result = axios.post<LoginResponse>(`${BASE_URL}/api/login`, body, HEADER).then((result) => result.data);
 		return result;
 	},
-	getNoticeSummary: (category: string, count: number) => {
+	getNoticeSummary: (category?: string, count?: number) => {
 		let url = `${BASE_URL}/api/notice/summary`;
 		if (category) url += `?category=${category}`;
-		if (count > 0) url += `&count=${count}`;
-		const result = axios.post<NoticeSummaryResponse>(url).then((result) => result.data);
+		if (count && count > 0) url += `&count=${count}`;
+		const result = axios.get<NoticeSummaryResponse>(url).then((result) => result.data);
 		return result;
 	},
 };
