@@ -24,12 +24,8 @@ const Container = styled.div`
 `;
 
 const Body = styled.div`
-	margin-top: 30px;
-	width: 90vw;
-	height: calc(100vh - 140px);
-	background-color: rgba(255, 255, 255, 0.1);
-	border-radius: 10px;
-	backdrop-filter: blur(50px);
+	width: 100vw;
+	height: calc(100vh - 80px);
 `;
 
 export default Layout;
