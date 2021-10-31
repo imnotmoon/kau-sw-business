@@ -17,6 +17,13 @@ const FileService = {
   },
 
   /**
+   * Signle Image 추가
+   * @param {Object} file
+   * @returns
+   */
+  addImage: async (file) => uploadImage(file),
+
+  /**
    * Mupltiple 파일 데이터 추가
    * @param {String} noticeId
    * @param {Array} files [file1, file2,,,]
@@ -68,6 +75,13 @@ const FileService = {
  * @returns
  */
 const uploadFile = async (file) => fse.outputFile(`${process.env.PWD}/files/${file.filename}`, file.buffer);
+
+/**
+ * 이미지 저장
+ * @param {Array} files
+ * @returns
+ */
+const uploadImage = async (file) => fse.outputFile(`${process.env.IMAGE_DIR}/images/${file.filename}`, file.buffer);
 
 /**
  * 파일 삭제
