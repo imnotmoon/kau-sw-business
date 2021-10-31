@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import Header from "./Header";
 
 interface LayoutProp {
-	children: React.ReactChild;
+	children: React.ReactNode;
 }
 
 const Layout = ({ children }: LayoutProp) => {
@@ -27,6 +27,7 @@ const Body = styled.div`
 	width: 100vw;
 	height: calc(100vh - 80px);
 	position: relative;
+	display: flex;
 `;
 
 export default Layout;

@@ -34,12 +34,10 @@ const menus: Menus = {
 };
 
 const Container = styled.div`
-	position: absolute;
 	height: 100%;
 	top: 0px;
 	left: 0px;
 	width: 250px;
-	padding: 30px 0px;
 
 	background-color: rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(50px);
