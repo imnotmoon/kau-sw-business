@@ -26,7 +26,9 @@ const Menus = () => {
 			{menuItems.map(({ menu, href }, idx) => {
 				return (
 					<div key={idx}>
-						<NavLink to={href}>{menu}</NavLink>
+						<NavLink to={href} activeStyle={activeStyle}>
+							{menu}
+						</NavLink>
 					</div>
 				);
 			})}
@@ -35,6 +37,11 @@ const Menus = () => {
 			</div>
 		</Container>
 	);
+};
+
+const activeStyle = {
+	background: "rgba(255, 255, 255, 0.1)",
+	borderBottom: "1px solid white",
 };
 
 const Container = styled.div`
@@ -46,17 +53,23 @@ const Container = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
-		&:hover {
-			background: rgba(255, 255, 255, 0.1);
-			border-bottom: 1px solid white;
-		}
+		color: white;
 	}
 
 	& a {
 		text-decoration: none;
 		color: white;
 		font-weight: 400;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.1);
+			border-bottom: 1px solid grey;
+		}
 	}
 `;
 
