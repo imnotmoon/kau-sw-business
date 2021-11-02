@@ -15,7 +15,7 @@ const ScheduleService = {
    * @param {Object}
    * @returns
    */
-  findSchedules: async ({ category, from, to }) => {
+  findAllByCondition: async ({ category, from, to }) => {
     const categoryOption = category ? { category } : {};
     const fromOption = from
       ? {

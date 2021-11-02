@@ -1,11 +1,16 @@
 const router = require('express').Router();
 const controller = require('../controllers/schedule');
 
-router.get('/', controller.getAll);
+// Get All Schedules
+router.get('/', controller.getSchedules);
 
-// TODO: 등록, 수정, 삭제
-// router.post(controller.add);
-// router.put(controller.update);
-// router.delete('/:id', controller.delete);
+// TODO: Token 인증 필요
+
+// Add Schedule
+router.post('/', controller.createSchedule);
+// Edit Schedule data
+router.put('/', controller.updateSchedule);
+// Delete Admin
+router.delete('/:id', controller.removeSchedule);
 
 module.exports = router;
