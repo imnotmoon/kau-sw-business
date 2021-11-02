@@ -4,11 +4,29 @@ const { Banner } = db;
 
 const BannerService = {
   /**
-   * 공개 배너 조회
-   * @param {String} id
+   * 배너 추가
+   * @param {Object} data
    * @returns
    */
-  findOpenBanners: async () =>
+  add: async (data) => Banner.create(data),
+
+  /**
+   * 전체 배너 조회
+   * @returns
+   */
+  findAll: async () =>
+    Banner.findAll({
+      order: [
+        ['viewOrder', 'DESC'],
+        ['createdAt', 'DESC'],
+      ],
+    }),
+
+  /**
+   * 공개 배너 조회
+   * @returns
+   */
+  findAllOpen: async () =>
     Banner.findAll({
       attributes: ['imageUrl', 'title', 'content'],
       where: {
@@ -19,20 +37,21 @@ const BannerService = {
         ['createdAt', 'DESC'],
       ],
     }),
+
+  /**
+   * 배너 수정
+   * @param {String} id
+   * @param {Object} data
+   * @returns
+   */
+  update: async (id, data) => Banner.update(data, { where: { id } }),
+
+  /**
+   * 배너 삭제
+   * @param {Number} id
+   * @returns
+   */
+  delete: async (id) => Banner.destroy({ where: { id } }),
 };
-
-/**
- * 이미지 저장
- * @param {Array} files
- * @returns
- */
-// const uploadImage = async (file) => fse.outputFile(`${process.env.PWD}/images/${file.filename}`, file.buffer);
-
-/**
- * 이미지 삭제
- * @param {String} filename
- * @returns
- */
-// const removeImage = async (filename) => fse.remove(`${process.env.PWD}/images/${filename}`);
 
 module.exports = BannerService;

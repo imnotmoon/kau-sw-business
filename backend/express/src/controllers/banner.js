@@ -1,10 +1,54 @@
+const createError = require('http-errors');
 const BannerService = require('../services/banner');
+const FileService = require('../services/file');
 
 const BannerController = {
-  get: async (req, res) => {
-    const banners = await BannerService.findOpenBanners();
+  getOpenBanners: async (req, res) => {
+    const banners = await BannerService.findAllOpen();
 
     return res.status(200).json({ data: banners });
+  },
+
+  getBanners: async (req, res) => {
+    const banners = await BannerService.findAll();
+
+    return res.status(200).json({ data: banners });
+  },
+
+  createBanner: async (req, res, next) => {
+    const data = req.body;
+    const file = req.file;
+
+    const filename = await FileService.addImage(file);
+    const result = await BannerService.add({ ...data, imageUrl: `/images/${filename}` });
+
+    if (!result || !result.id) return next(createError(500));
+
+    return res.status(201).json({ success: true, bannerId: result.id });
+  },
+
+  updateBanner: async (req, res, next) => {
+    const { id, ...rest } = req.body;
+    const file = req.file;
+
+    if (!id) return next(createError(400, 'id is required'));
+    let imageUrl;
+    if (file) {
+      const filename = await FileService.addImage(file);
+      imageUrl = `/images/${filename}`;
+    }
+    BannerService.update(id, { ...rest, imageUrl });
+
+    return res.status(200).json({ success: true });
+  },
+
+  deleteBanner: async (req, res, next) => {
+    const { id } = req.params;
+
+    const deleted = await BannerService.delete(id);
+    if (!deleted) return next(createError(404, '존재하지 않는 ID'));
+
+    return res.status(200).json({ success: true });
   },
 };
 
