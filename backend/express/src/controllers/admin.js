@@ -1,5 +1,4 @@
 const createError = require('http-errors');
-// const bcrypt = require('bcryptjs');
 const AdminService = require('../services/admin');
 
 const AdminController = {
@@ -25,7 +24,7 @@ const AdminController = {
 
     const result = await AdminService.add({
       userId,
-      password /*password: bcrypt.hashSync(password, 8)*/,
+      password,
       name,
     });
 
