@@ -21,7 +21,11 @@ const FileService = {
    * @param {Object} file
    * @returns
    */
-  addImage: async (file) => uploadImage(file),
+  addImage: async (file) => {
+    file.filename = fileNameGenerator(file.originalname);
+    uploadImage(file);
+    return file.filename;
+  },
 
   /**
    * Mupltiple 파일 데이터 추가

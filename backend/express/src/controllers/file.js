@@ -3,27 +3,7 @@ const { fileNameGenerator } = require('../utils/filename');
 const FileService = require('../services/file');
 
 const FileController = {
-  add: async (req, res) => {
-    const { id } = req.body;
-    const file = req.file;
-
-    file.filename = fileNameGenerator(file.originalname);
-    FileService.uploadFile(file);
-    FileService.add({ filename: file.filename, name: file.originalname, noticeId: id });
-
-    return res.status(200).json({ success: true, noticeId: id });
-  },
-
-  addImage: async (req, res) => {
-    const file = req.file;
-
-    file.filename = fileNameGenerator(file.originalname);
-    FileService.addImage(file);
-
-    return res.status(200).json({ success: true, url: `${process.env.IMAGE_URL}/${file.filename}` });
-  },
-
-  getOne: async (req, res, next) => {
+  getFileByPk: async (req, res, next) => {
     const { id } = req.params;
 
     const file = await FileService.findOne(id);
@@ -33,7 +13,24 @@ const FileController = {
     return res.status(200).download(`${process.env.PWD}/files/${filename}`, name);
   },
 
-  delete: async (req, res, next) => {
+  saveFile: async (req, res) => {
+    const { id } = req.body;
+    const file = req.file;
+
+    FileService.add({ filename: file.filename, name: file.originalname, noticeId: id });
+
+    return res.status(200).json({ success: true, noticeId: id });
+  },
+
+  saveImage: async (req, res) => {
+    const file = req.file;
+
+    const filename = await FileService.addImage(file);
+
+    return res.status(200).json({ success: true, url: `${process.env.IMAGE_URL}/${filename}` });
+  },
+
+  deleteFile: async (req, res, next) => {
     const { id } = req.params;
 
     const file = await FileService.findOne(id);

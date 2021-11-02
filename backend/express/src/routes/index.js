@@ -16,7 +16,7 @@ router.post(
   multer({
     limits: { fileSize: FILE_MAX_SIZE },
   }).single('image'),
-  FileController.addImage
+  FileController.saveImage
 );
 
 module.exports = router;
