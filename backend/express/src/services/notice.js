@@ -11,11 +11,50 @@ const NoticeService = {
   add: async (data) => Notice.create(data),
 
   /**
+   * 공지사항 조회
+   * @param {String} id
+   * @returns
+   */
+  findOne: async (id) =>
+    Notice.findByPk(id, {
+      include: [
+        {
+          model: File,
+          as: 'files',
+          attributes: ['id', 'name'],
+        },
+      ],
+    }),
+
+  /**
+   * 공지사항 전체 개수 조회
+   * @param {Object}
+   * @returns
+   */
+  getTotal: async ({ category, title, content, writer }) => {
+    const categoryOption = category ? { category } : {};
+    return Notice.count({
+      where: {
+        ...categoryOption,
+        title: {
+          [Op.like]: `%${title}%`,
+        },
+        content: {
+          [Op.like]: `%${content}%`,
+        },
+        writer: {
+          [Op.like]: `%${writer}%`,
+        },
+      },
+    });
+  },
+
+  /**
    * 공지사항 전체 조회
    * @param {Object}
    * @returns
    */
-  findNotices: async ({ category, pageNo, rowsPerPage, title, content, writer }) => {
+  findAllByCondition: async ({ category, pageNo, rowsPerPage, title, content, writer }) => {
     const categoryOption = category ? { category } : {};
     const limit = parseInt(rowsPerPage);
     const offset = (parseInt(pageNo) - 1) * limit;
@@ -43,52 +82,11 @@ const NoticeService = {
   },
 
   /**
-   * 공지사항 전체 개수 조회
+   * 대표 공지 조회
    * @param {Object}
    * @returns
    */
-  getTotal: async ({ category, title, content, writer }) => {
-    const categoryOption = category ? { category } : {};
-    return Notice.count({
-      where: {
-        ...categoryOption,
-        title: {
-          [Op.like]: `%${title}%`,
-        },
-        content: {
-          [Op.like]: `%${content}%`,
-        },
-        writer: {
-          [Op.like]: `%${writer}%`,
-        },
-      },
-    });
-  },
-
-  /**
-   * 공지사항 조회 수 없데이트
-   * @param {String} id
-   * @returns
-   */
-  updateViewCnt: async (id) => Notice.increment('viewCount', { where: { id } }),
-
-  /**
-   * 공지사항 조회
-   * @param {String} id
-   * @returns
-   */
-  findOne: async (id) =>
-    Notice.findByPk(id, {
-      include: [
-        {
-          model: File,
-          as: 'files',
-          attributes: ['id', 'name'],
-        },
-      ],
-    }),
-
-  find: async ({ category, limit }) => {
+  findSummary: async ({ category, limit }) => {
     const categoryOption = category ? { category } : {};
     return Notice.findAll({
       attributes: ['id', 'title', 'createdAt'],
@@ -102,6 +100,13 @@ const NoticeService = {
       limit,
     });
   },
+
+  /**
+   * 공지사항 조회 수 업데이트
+   * @param {String} id
+   * @returns
+   */
+  updateViewCnt: async (id) => Notice.increment('viewCount', { where: { id } }),
 
   /**
    * 공지사항 수정
