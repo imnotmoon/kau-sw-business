@@ -20,7 +20,7 @@ const BannerController = {
     const file = req.file;
 
     const filename = await FileService.addImage(file);
-    const result = await BannerService.add({ ...data, imageUrl: `/images/${filename}` });
+    const result = await BannerService.add({ ...data, imageUrl: `${process.env.IMAGE_URL}/${filename}` });
 
     if (!result || !result.id) return next(createError(500));
 
@@ -35,7 +35,7 @@ const BannerController = {
     let imageUrl;
     if (file) {
       const filename = await FileService.addImage(file);
-      imageUrl = `/images/${filename}`;
+      imageUrl = `${process.env.IMAGE_URL}/${filename}`;
     }
     BannerService.update(id, { ...rest, imageUrl });
 
