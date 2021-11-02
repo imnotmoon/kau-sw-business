@@ -97,7 +97,7 @@ const NoticeService = {
         ['pinFlag', 'DESC'],
         ['createdAt', 'DESC'],
       ],
-      limit,
+      limit: parseInt(limit),
     });
   },
 
