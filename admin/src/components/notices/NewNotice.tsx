@@ -35,6 +35,11 @@ const NewNotice = () => {
 		setTitle((e.target as HTMLInputElement).value);
 	}
 
+	const onClickUploadButton = () => {
+		if(!fileInputRef.current) return;
+		fileInputRef.current.click();
+	}
+
 	const onClickSubmit = async () => {
 		if(!window.confirm('공지사항을 등록하시겠습니까?')) return;
 		if(!fileInputRef.current) return;
@@ -75,7 +80,7 @@ const NewNotice = () => {
 			</div>
 			<FileUploader>
 				<input type="file" multiple ref={fileInputRef}/>
-				<button>파일 업로드</button>
+				<button onClick={onClickUploadButton}>파일 업로드</button>
 			</FileUploader>
 			<div>
 				<Button onClick={onClickPreview}>미리보기</Button>
