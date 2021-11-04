@@ -1,13 +1,13 @@
 import React from "react";
 import Carousel from "../components/Carousel";
 import styled from "styled-components";
+import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import withHead from "../components/hoc/withHead";
 import Board from "../components/Board";
 import { COLORS } from "../styles/theme";
-import axios from "axios";
 
 const Home = ({ notiData, newsData, bannerData }) => {
   return (
