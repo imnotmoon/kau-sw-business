@@ -3,9 +3,9 @@ import styled from '@emotion/styled'
 
 const EditAuthority = () => {
   return (
-    <div>
+    <Container>
       
-    </div>
+    </Container>
   )
 }
 const Container = styled.div``

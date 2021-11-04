@@ -8,16 +8,24 @@ import { Container, Title, Button } from "./NewNoticeStyle";
 const NewNotice = () => {
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const editorRef = useRef<Editor | null>(null);
+	console.log(editorState)
 
 	const onEditorStateChange = (editorState: EditorState) => {
 		setEditorState(editorState);
 	};
 
+	const options = {
+		editorState: editorState,
+		ref: editorRef,
+		onEditorStateChange: onEditorStateChange,
+
+	}
+
 	return (
 		<Container>
 			<Title>새 공지사항 작성</Title>
 			<div>
-				<Editor editorState={editorState} ref={editorRef} onEditorStateChange={onEditorStateChange} />
+				<Editor {...options} />
 			</div>
 			<div>
 				<Button>완료</Button>
@@ -25,5 +33,7 @@ const NewNotice = () => {
 		</Container>
 	);
 };
+
+
 
 export default NewNotice;
