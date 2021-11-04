@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const multer = require('multer');
 const { FILE_MAX_SIZE } = require('../utils/constant');
-const controller = require('../controllers/file');
+const errorHandler = require('../utils/error-handler');
+const { getFileByPk, saveFile, deleteFile } = require('../controllers/file');
 
-router.get('/:id', controller.getFileByPk);
+router.get('/:id', errorHandler(getFileByPk));
 
 // TODO: 인증
 // docs 에 없음
@@ -12,8 +13,8 @@ router.post(
   multer({
     limits: { fileSize: FILE_MAX_SIZE },
   }).single('file'),
-  controller.saveFile
+  errorHandler(saveFile)
 );
-router.delete('/:id', controller.deleteFile);
+router.delete('/:id', errorHandler(deleteFile));
 
 module.exports = router;

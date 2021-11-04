@@ -1,22 +1,23 @@
 const router = require('express').Router();
 const multer = require('multer');
-const controller = require('../controllers/banner');
 const { FILE_MAX_SIZE } = require('../utils/constant');
+const errorHanlder = require('../utils/error-handler');
+const { getOpenBanners, getBanners, createBanner, updateBanner, deleteBanner } = require('../controllers/banner');
 
 // Get Banners opened
-router.get('/summary', controller.getOpenBanners);
+router.get('/summary', errorHanlder(getOpenBanners));
 
 // TODO: Token 인증 필요
 
 // Get All Banners
-router.get('/', controller.getBanners);
+router.get('/', errorHanlder(getBanners));
 // Add Banner
 router.post(
   '/',
   multer({
     limits: { fileSize: FILE_MAX_SIZE },
   }).single('image'),
-  controller.createBanner
+  errorHanlder(createBanner)
 );
 // Edit Banner Data
 router.put(
@@ -24,9 +25,9 @@ router.put(
   multer({
     limits: { fileSize: FILE_MAX_SIZE },
   }).single('newImage'),
-  controller.updateBanner
+  errorHanlder(updateBanner)
 );
 // Delete Banner
-router.delete('/:id', controller.deleteBanner);
+router.delete('/:id', errorHanlder(deleteBanner));
 
 module.exports = router;

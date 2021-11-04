@@ -1,17 +1,18 @@
 const router = require('express').Router();
-const controller = require('../controllers/admin');
+const errorHanlder = require('../utils/error-handler');
+const { getAdminByPk, getAdmins, createAdmin, updateAdmin, removeAdmin } = require('../controllers/admin');
 
 // TODO: Token 인증 필요
 
 // Get Admin By PK
-router.get('/:id', controller.getAdminByPk);
+router.get('/:id', errorHanlder(getAdminByPk));
 // Get All Admins
-router.get('/', controller.getAdmins);
+router.get('/', errorHanlder(getAdmins));
 // Add Admin
-router.post('/', controller.createAdmin);
+router.post('/', errorHanlder(createAdmin));
 // Edit Admin data
-router.put('/', controller.updateAdmin);
+router.put('/', errorHanlder(updateAdmin));
 // Delete Admin
-router.delete('/:id', controller.removeAdmin);
+router.delete('/:id', errorHanlder(removeAdmin));
 
 module.exports = router;
