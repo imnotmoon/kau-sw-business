@@ -6,15 +6,15 @@ import HeadlineCard from './HeadlineCard';
 import { boardElements } from '../utils/sample-data';
 import NewsCard from './NewsCard';
 
-function Board() {
+function Board({notiData, newsData}) {
   return (
     <Container>
       <Title>
         <span>KAU</span> HEADLINE
       </Title>
       <Section>
-        <HeadlineCard title="공지사항" src="#"></HeadlineCard>
-        <HeadlineCard title="사업단소식" src="#"></HeadlineCard>
+        <HeadlineCard data={notiData} title="공지사항" src="#"></HeadlineCard>
+        <HeadlineCard data={newsData} title="사업단소식" src="#"></HeadlineCard>
       </Section>
       <Title>
         SW중심사업단 <span>NEWS</span>

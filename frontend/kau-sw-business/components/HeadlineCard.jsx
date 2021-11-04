@@ -5,15 +5,14 @@ import { COLORS } from '../styles/theme';
 import { notiData, newsData } from '../utils/sample-data';
 import HeadlineCardItem from './HeadlineCardItem';
 
-const HeadlineCard = ({ title, src }) => {
+const HeadlineCard = ({ data, title, src }) => {
   return (
     <Container>
       <div>
         <h3>{title}</h3>
         <a href={src}>more...</a>
       </div>
-      {title === '공지사항' && notiData.map((item, idx) => <HeadlineCardItem key={idx} {...item} />)}
-      {title === '사업단소식' && newsData.map((item, idx) => <HeadlineCardItem key={idx} {...item} />)}
+      {data.map((item) => <HeadlineCardItem key={item.id} {...item} />)}
     </Container>
   );
 };

@@ -6,28 +6,19 @@ import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const Carousel = () => {
-  const [banners, setBanners] = useState([
-    { src: '/img/main_visual_img01.png', alt: '' },
-    { src: '/img/main_visual_img02.png', alt: '' },
-    { src: '/img/main_visual_img03.png', alt: '' },
-  ]);
-
-  useEffect(() => {
-    //! API : get banner images
-  }, []);
+const Carousel = ({bannerData}) => {
 
   return (
     <CarouselSlider {...settings}>
-      {banners.map((item, idx) => {
+      {bannerData.map((item, idx) => {
         return (
           <section key={idx}>
-            <h1>제목입니다.</h1>
-            <h3>소제목입니다.</h3>
+            <h1>{item.title}</h1>
+            <h3>{item.content}</h3>
             <div>
               <CarouselItem>
                 <div>
-                  <Image src={item.src} alt={item.alt} width={1920} height={380} layout="fixed" />
+                  <Image src={item.imageUrl} alt={item.title} width={1920} height={380} layout="fixed" />
                 </div>
               </CarouselItem>
             </div>

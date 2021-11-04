@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 import { COLORS } from '../styles/theme';
 
-const HeadlineCardItem = ({ link, title, postdate }) => {
+const HeadlineCardItem = ({ id, title, createdAt }) => {
   return (
     <Container>
-      <a href={link}>{title}</a>
-      <div>{postdate}</div>
+      <a href=''>{title}</a>
+      <div>{moment(createdAt).format('YYYY.MM.DD')}</div>
     </Container>
   );
 };
