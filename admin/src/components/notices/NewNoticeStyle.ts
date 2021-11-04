@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 	& > div:nth-of-type(3) {
 		width: 90%;
-		height: 50vh;
+		height: 40vh;
 		border: 1px solid white;
 		background: rgba(255, 255, 255, 0.7);
 	}
