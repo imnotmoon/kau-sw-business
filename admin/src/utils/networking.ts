@@ -12,6 +12,7 @@ const APIs = {
 		const result = axios.post<LoginResponse>(`${BASE_URL}/api/login`, body, HEADER).then((result) => result.data);
 		return result;
 	},
+
 	getNoticeSummary: (category?: string, count?: number) => {
 		let url = `${BASE_URL}/api/notice/summary`;
 		if (category) url += `?category=${category}`;
@@ -19,6 +20,14 @@ const APIs = {
 		const result = axios.get<NoticeSummaryResponse>(url).then((result) => result.data);
 		return result;
 	},
+
+	postNotice: (data: FormData) => {
+		return axios.post(`${BASE_URL}/api/notice`, data, {
+			headers: {
+				'Content-Type' : 'multipart-formdata'
+			}
+		}).then(result => result.data);
+	}
 };
 
 export default APIs;

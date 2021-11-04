@@ -9,14 +9,14 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 
-	& > div:nth-of-type(1) {
+	& > div:nth-of-type(3) {
 		width: 90%;
-		height: 70vh;
+		height: 50vh;
 		border: 1px solid white;
 		background: rgba(255, 255, 255, 0.7);
 	}
 
-	& > div:nth-of-type(2) {
+	& > div:nth-of-type(5) {
 		width: 90%;
 		height: 10vh;
 		display: flex;
@@ -44,9 +44,68 @@ export const Button = styled.button`
 	color: white;
 	font-size: 16px;
 	font-weight: 500;
+	margin-left: 30px;
 
 	&:hover {
 		border: 2px solid rgba(35, 221, 2, 0.6);
 		color: rgba(35, 221, 2, 0.6);
 	}
 `;
+
+export const TitleInput = styled.div`
+	width: 90%;
+	height: 50px;
+	margin: 10px 0;
+	display: flex;
+	justify-content: space-between;
+
+	& > span {
+		color: white;
+		font-family: 'Noto Sans KR';
+		font-size: 18px;
+		padding-left: 20px;
+	}
+
+	& > input {
+		width: 85%;
+		height: 30px;
+		background: rgba(255, 255, 255, 0.3);
+		border: 1px solid white;
+		padding-left: 20px;
+		font-size: 18px;
+
+		&:focus {
+			outline: none;
+			background-color: rgba(255, 255, 255, 0.6);
+			
+		}
+	}
+`
+
+export const FileUploader = styled.div`
+	width: 90%;
+	height: 50px;
+	margin: 10px 0;
+
+	& > input {
+		width: 0px;
+		height: 0px;
+		position: absolute;
+		visibility: hidden;
+	}
+
+	& > button {
+		height: 100%;
+		border: 1px solid white;
+		background-color: rgba(255, 255, 255, 0.3);
+		width: 100%;
+		color: white;
+		font-size: 18px;
+		transition: all 0.5s ease;
+
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.7);
+			transition: all 0.3s ease;
+		}
+	}
+`
