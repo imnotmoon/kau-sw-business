@@ -18,6 +18,9 @@ const BannerController = {
   createBanner: async (req, res, next) => {
     const data = req.body;
     const file = req.file;
+    const { title } = data;
+    if (!title) return next(createError(400, 'title is required'));
+    if (!file) return next(createError(400, 'image is required'));
 
     const filename = await FileService.addImage(file);
     const result = await BannerService.add({ ...data, imageUrl: `${process.env.IMAGE_URL}/${filename}` });
@@ -46,7 +49,7 @@ const BannerController = {
     const { id } = req.params;
 
     const deleted = await BannerService.delete(id);
-    if (!deleted) return next(createError(404, '존재하지 않는 ID'));
+    if (!deleted) return next(createError(404, 'banner not exists'));
 
     return res.status(200).json({ success: true });
   },

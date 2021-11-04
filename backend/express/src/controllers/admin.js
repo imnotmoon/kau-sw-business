@@ -6,7 +6,7 @@ const AdminController = {
     const { id } = req.params;
 
     const admin = await AdminService.findOne(id);
-    if (!admin) return next(createError(404, '존재하지 않는 ID'));
+    if (!admin) return next(createError(404, 'admin not exists'));
 
     return res.status(200).json({ data: admin });
   },
@@ -19,8 +19,12 @@ const AdminController = {
   createAdmin: async (req, res, next) => {
     const { userId, password, name } = req.body;
 
+    if (!userId) return next(createError(400, 'userId is required'));
+    if (!password) return next(createError(400, 'password is required'));
+    if (!name) return next(createError(400, 'name is required'));
+
     const admin = await AdminService.findByUserId(userId);
-    if (admin) return next(createError(409, '이미 존재하는 User Id'));
+    if (admin) return next(createError(409, 'userId already exits'));
 
     const result = await AdminService.add({
       userId,
@@ -40,7 +44,7 @@ const AdminController = {
 
     if (rest.userId) {
       const admin = await AdminService.findByUserId(rest.userId);
-      if (admin && admin.id !== id) return next(createError(409, '이미 존재하는 User Id'));
+      if (admin && admin.id !== id) return next(createError(409, 'userId already exits'));
     }
     await AdminService.update(id, rest);
 
@@ -51,7 +55,7 @@ const AdminController = {
     const { id } = req.params;
 
     const deleted = await AdminService.delete(id);
-    if (!deleted) return next(createError(404, '존재하지 않는 ID'));
+    if (!deleted) return next(createError(404, 'admin not exists'));
 
     return res.status(200).json({ success: true });
   },

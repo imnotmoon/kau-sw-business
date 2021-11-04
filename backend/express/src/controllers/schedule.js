@@ -14,7 +14,11 @@ const ScheduleController = {
 
   createSchedule: async (req, res, next) => {
     const data = req.body;
-    // TODO: 필수 항목 확인
+    const { startDate, endDate, title, category } = data;
+    if (!startDate) return next(createError(400, 'startDate is required'));
+    if (!endDate) return next(createError(400, 'endDate is required'));
+    if (!title) return next(createError(400, 'title is required'));
+    if (!category) return next(createError(400, 'category is required'));
 
     const result = await ScheduleService.add(data);
     if (!result || !result.id) return next(createError(500));
@@ -36,7 +40,7 @@ const ScheduleController = {
 
     if (!id) return next(createError(400, 'id is required'));
     const deleted = await ScheduleService.delete(id);
-    if (!deleted) return next(createError(404, '존재하지 않는 ID'));
+    if (!deleted) return next(createError(404, 'schedule not exists'));
 
     return res.status(200).json({ success: true });
   },

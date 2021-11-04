@@ -9,7 +9,7 @@ const NoticeController = {
     await NoticeService.updateViewCnt(id);
 
     const notice = await NoticeService.findOne(id);
-    if (!notice) return next(createError(404, '존재하지 않는 ID'));
+    if (!notice) return next(createError(404, 'notice not exists'));
 
     return res.status(200).json({ data: notice });
   },
@@ -43,7 +43,12 @@ const NoticeController = {
   createNotice: async (req, res, next) => {
     const data = req.body;
     const files = req.files;
-    // TODO: 필수 항목 확인
+    const { title, content, writer, category } = data;
+    if (!title) return next(createError(400, 'title is required'));
+    if (!content) return next(createError(400, 'content is required'));
+    if (!writer) return next(createError(400, 'writer is required'));
+    if (!category) return next(createError(400, 'category is required'));
+
     const result = await NoticeService.add(data);
     if (!result || !result.id) return next(createError(500));
 
@@ -71,7 +76,7 @@ const NoticeController = {
     const { id } = req.params;
 
     const deleted = await NoticeService.delete(id);
-    if (!deleted) return next(createError(404, '존재하지 않는 ID'));
+    if (!deleted) return next(createError(404, 'notice not exists'));
 
     return res.status(200).json({ success: true });
   },
