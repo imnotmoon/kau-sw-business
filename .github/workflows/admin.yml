@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths: [admin/**]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -24,7 +25,9 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Update npm version
+      run: npm install -g npm@7.21.0
     - name: Install dependencies
-      run: npm install
+      run: npm ci
     - name: Build
       run: npm run build 
