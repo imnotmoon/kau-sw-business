@@ -1,9 +1,9 @@
-name: Admin CI
+name: Client CI
 
 on:
   push:
     branches: [main]
-    paths: [admin/**]
+    paths: [frontend/kau-sw-business/**]
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: admin
+        working-directory: frontend/kau-sw-business
 
     steps:
     - uses: actions/checkout@v2
