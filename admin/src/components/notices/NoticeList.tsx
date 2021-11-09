@@ -1,30 +1,58 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+
 import APIs from "../../utils/networking";
 import { NoticeSummary } from "../../interfaces";
+import { COLORS } from "../../utils/styled";
+import Confirm from "./Confirm";
 
 const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
+	const [modal, setModal] = useState({ show: false, idx: -1 });
 
 	useEffect(() => {
 		APIs.getNoticeSummary().then((result) => setNotices(result.data));
 	}, []);
 
-	const onClickNotification = (idx: number) => {
+	const onClickEdit = (idx: number) => {
 		return (e: React.MouseEvent) => {
 			console.log(idx)
 		}
 	}
 
+	const onClickDelete = (idx: number) => {
+		return (e: React.MouseEvent) => {
+			setModal({ show: true, idx })
+		}
+	}
+
+	const closeModal = (e: React.MouseEvent) => {
+		e.stopPropagation();
+		setModal({ show: false, idx: -1});
+	}
+
 	return (
+		<>
 		<Container>
 			<Title>공지사항 수정/삭제</Title>
 			<Body>
+				<List>
 				{notices.map((item, idx: number) => (
-					<div key={idx} onClick={onClickNotification(item.id)}>{item.title}</div>
+					<Notice key={idx}>
+						<div>
+							<div>{item.title}</div>
+							<ButtonWrapper>
+								<Button onClick={onClickEdit(item.id)}>수정</Button>
+								<Button onClick={onClickDelete(item.id)}>삭제</Button>
+							</ButtonWrapper>
+						</div>
+					</Notice>
 				))}
+				</List>
 			</Body>
 		</Container>
+		{modal.show && <Confirm idx={modal.idx} close={closeModal}/>}
+		</>
 	);
 };
 
@@ -50,12 +78,53 @@ const Title = styled.h1`
 
 const Body = styled.div`
 	width: 90%;
+`;
+
+const List = styled.div`
+	overflow-y: scroll;
+`;
+
+const Notice = styled.div`
+	height: 50px;
+	width: 100%;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: content-box;
+	padding: 10px 0px;
+	border-bottom: 1px solid ${COLORS.BORDER};
 
 	& > div {
-		height: 50px;
-		width: 100%;
-		color: white;
+		width: 90%;
+		display: grid;
+		grid-template-columns: 4fr 1fr;
+		align-items: center;
+		justify-content: space-between;
 	}
-`;
+
+	&:hover {
+		background-color: ${COLORS.BACKGROUND};
+	}
+`
+
+const ButtonWrapper = styled.div`
+	display: flex;
+`
+
+const Button = styled.button`
+	width: 80px;
+	height: 40px;
+	border: 1px solid white;
+	color: white;
+	background: none;
+	margin-left: 5px;
+	transition: all 0.3s ease;
+
+	&:hover {
+		background-color: ${COLORS.LIGHTBLUE};
+		transition: all 0.3s ease;
+	}
+`
 
 export default NoticeList;
