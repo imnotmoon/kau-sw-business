@@ -1,0 +1,35 @@
+name: Server CI/CD
+
+on:
+  push:
+    branches: [main]
+    paths: [backend/express/**]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+     - name: Configure SSH
+       run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/develop.key
+          chmod 600 ~/.ssh/develop.key
+          cat >>~/.ssh/config <<END
+          Host deploy
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/develop.key
+            StrictHostKeyChecking no
+          END
+       env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          
+     - name: Run Install
+       run: ssh deploy 'cd ~/kau-sw-business/backend/express && git pull && npm ci'
+     - name: Reload PM2
+       run: ssh deploy 'pm2 reload aisw-be'
+       
