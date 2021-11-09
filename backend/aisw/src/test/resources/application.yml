@@ -1,6 +1,0 @@
-spring:
-  jpa:
-    properties:
-      hibernate:
-        format_sql: true
-        default_batch_fetch_size: 100
