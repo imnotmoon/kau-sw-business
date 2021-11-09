@@ -75,7 +75,6 @@ const NewNotice = () => {
 			})
 		}
 
-		// Not Tested Yet
 		const result = await APIs.postNotice(formData);
 		if(result.success) {
 			alert('공지사항을 정상적으로 등록했습니다.');
@@ -112,7 +111,6 @@ const NewNotice = () => {
 						<Button onClick={onClickSubmit}>완료</Button>
 					</div>
 				</div>
-				
 			</Container>
 			{ previewModal && <PreviewModal state={editorState} close={setPreviewModal} title={title}/>}
 		</>

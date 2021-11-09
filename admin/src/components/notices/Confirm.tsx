@@ -8,8 +8,8 @@ const Confirm = ({ idx, close } : { idx: number, close: (e: React.MouseEvent) =>
 
   const onClickConfirm = async () => {
     const result = await APIs.deleteNotice(idx);
-    console.log(result);
     if(result.success) setDeleted(true);
+    else alert('삭제에 실패했습니다.');
   }
 
   return (
