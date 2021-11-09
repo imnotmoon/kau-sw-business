@@ -101,7 +101,6 @@ const BannerItem = styled.div`
     position: absolute;
     bottom: 20px;
     right: 20px;
-    font-size: 17px;
 
     &:hover {
       background-color: ${COLORS.LIGHTBLUE};
