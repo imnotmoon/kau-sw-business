@@ -101,9 +101,11 @@ const BannerItem = styled.div`
     position: absolute;
     bottom: 20px;
     right: 20px;
+    transition: all 0.3s ease;
 
     &:hover {
       background-color: ${COLORS.LIGHTBLUE};
+      transition: all 0.3s ease;
     }
   }
   
