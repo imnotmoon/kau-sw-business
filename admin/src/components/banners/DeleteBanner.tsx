@@ -6,11 +6,12 @@ import { Banner } from '../../interfaces'
 import Confirm from '../Confirm'
 import APIs from '../../utils/networking'
 import { COLORS } from '../../utils/styled'
+import EditBannerModal from './EditBannerModal'
 
 const DeleteBanner = () => {
   const [bannerList, setBannerList] = useState<Banner[]>([]);
   const [modal, setModal] = useState({ show: false, idx: -1 });
-  console.log(bannerList)
+  const [edit, setEdit] = useState({ show: false, idx: -1 });
 
   useEffect(() => {
     APIs.getBannerSummary().then((res) => setBannerList(res));
@@ -24,11 +25,15 @@ const DeleteBanner = () => {
 
   const onClickEditBanner = (idx: number) => {
     return (e: React.MouseEvent) => {
-      console.log(idx);
+      setEdit({ show: true, idx: idx });
     }
   }
 
-  const closeModal = () => {
+  const closeEditModal = () => {
+    setEdit({ show: false, idx: -1 });
+  }
+
+  const closeDeleteModal = () => {
     setModal({ show: false, idx: -1 });
   }
 
@@ -48,7 +53,8 @@ const DeleteBanner = () => {
           )}
         </List>
       </Container>
-      {modal.show && <Confirm idx={modal.idx} close={closeModal} API={APIs.deleteBanner}/>}
+      {modal.show && <Confirm idx={modal.idx} close={closeDeleteModal} API={APIs.deleteBanner}/>}
+      {edit.show && <EditBannerModal idx={edit.idx} close={closeEditModal}/>}
     </>
   )
 }

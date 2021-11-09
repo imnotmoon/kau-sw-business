@@ -38,6 +38,9 @@ const APIs = {
 		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);
 	},
 
+	editBanner: () => {
+	},
+
 	deleteBanner: (idx: number) => {
 		return axios.delete(`${BASE_URL}/api/banner/${idx}`).then((res) => res.data);
 	},
