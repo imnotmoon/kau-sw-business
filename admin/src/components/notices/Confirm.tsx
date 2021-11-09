@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { COLORS } from '../../utils/styled'
+import APIs from '../../utils/networking'
 
 const Confirm = ({ idx, close } : { idx: number, close: (e: React.MouseEvent) => void }) => {
+  const [deleted, setDeleted] = useState(false);
+
+  const onClickConfirm = async () => {
+    const result = await APIs.deleteNotice(idx);
+    console.log(result);
+    if(result.success) setDeleted(true);
+  }
+
   return (
     <Container onClick={close}>
       <Modal onClick={(e) => e.stopPropagation()}>
-        <div>정말 삭제하시겠습니까?</div>
-        <div>
-          <button onClick={close}>취소</button>
-          <button>확인</button>
-        </div>
+        {deleted 
+          ? <><div>삭제되었습니다.</div><button onClick={close}>닫기</button></> 
+          : (
+            <>
+              <div>정말 삭제하시겠습니까?</div>
+              <div>
+                <button onClick={close}>취소</button>
+                <button onClick={onClickConfirm}>확인</button>
+              </div>
+            </>
+          )}
       </Modal>
     </Container>
   )

@@ -27,6 +27,10 @@ const APIs = {
 				'Content-Type' : 'multipart-formdata'
 			}
 		}).then(result => result.data);
+	},
+
+	deleteNotice: (idx: number) => {
+		return axios.delete(`${BASE_URL}/api/notice/${idx}`).then((res) => res.data);
 	}
 };
 

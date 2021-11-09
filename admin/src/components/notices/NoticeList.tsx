@@ -12,7 +12,7 @@ const NoticeList = () => {
 
 	useEffect(() => {
 		APIs.getNoticeSummary().then((result) => setNotices(result.data));
-	}, []);
+	}, [modal]);
 
 	const onClickEdit = (idx: number) => {
 		return (e: React.MouseEvent) => {
