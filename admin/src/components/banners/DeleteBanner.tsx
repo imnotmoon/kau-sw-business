@@ -16,9 +16,15 @@ const DeleteBanner = () => {
     APIs.getBannerSummary().then((res) => setBannerList(res));
   }, [modal])
 
-  const onClickBanner = (idx: number) => {
+  const onClickDeleteBanner = (idx: number) => {
     return (e: React.MouseEvent) => {
       setModal({ show: true, idx: idx });
+    }
+  }
+
+  const onClickEditBanner = (idx: number) => {
+    return (e: React.MouseEvent) => {
+      console.log(idx);
     }
   }
 
@@ -29,13 +35,14 @@ const DeleteBanner = () => {
   return (
     <>
       <Container>
-        <Title>배너 삭제</Title>
+        <Title>배너 수정/삭제</Title>
         <List>
           {bannerList.map((banner, idx) => 
             <BannerItem>
               <span>{banner.title}</span>
               <span>{banner.content}</span>
-              <button onClick={onClickBanner(idx)}>삭제</button>
+              <button onClick={onClickEditBanner(idx)} style={{right: '120px'}}>수정</button>
+              <button onClick={onClickDeleteBanner(idx)}>삭제</button>
               <img src={banner.imageUrl} alt={banner.title}/>
             </BannerItem>
           )}
@@ -91,7 +98,7 @@ const BannerItem = styled.div`
     max-width: 100%;
   }
 
-  & button {
+  & > button {
     width: 80px;
     height: 40px;
     border: 1px solid white;
