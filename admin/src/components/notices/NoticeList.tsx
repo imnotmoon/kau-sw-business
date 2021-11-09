@@ -3,19 +3,25 @@ import styled from "@emotion/styled";
 import APIs from "../../utils/networking";
 import { NoticeSummary } from "../../interfaces";
 
-const EditNotice = () => {
+const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
 
 	useEffect(() => {
 		APIs.getNoticeSummary().then((result) => setNotices(result.data));
 	}, []);
 
+	const onClickNotification = (idx: number) => {
+		return (e: React.MouseEvent) => {
+			console.log(idx)
+		}
+	}
+
 	return (
 		<Container>
 			<Title>공지사항 수정/삭제</Title>
 			<Body>
 				{notices.map((item, idx: number) => (
-					<div key={idx}>{item.title}</div>
+					<div key={idx} onClick={onClickNotification(item.id)}>{item.title}</div>
 				))}
 			</Body>
 		</Container>
@@ -52,4 +58,4 @@ const Body = styled.div`
 	}
 `;
 
-export default EditNotice;
+export default NoticeList;

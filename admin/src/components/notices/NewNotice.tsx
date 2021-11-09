@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, ContentState, convertToRaw } from "draft-js";
@@ -11,6 +12,7 @@ import APIs from "../../utils/networking";
 import FilePreviewer from "./FilePreviewer";
 
 const NewNotice = () => {
+	const history = useHistory();
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
 	const [files, setFiles] = useState<File[]>([]);
@@ -75,7 +77,10 @@ const NewNotice = () => {
 
 		// Not Tested Yet
 		const result = await APIs.postNotice(formData);
-		console.log(result);
+		if(result.success) {
+			alert('공지사항을 정상적으로 등록했습니다.');
+			history.push('/');
+		}
 	}
 
 	const options = {
@@ -86,30 +91,30 @@ const NewNotice = () => {
 
 	return (
 		<>
-		<Container>
-		<Title>새 공지사항 작성</Title>
-			<div>
-				<TitleInput>
-					<span>제목</span>
-					<input type="text" value={title} onChange={onChangeTitleInput}/>
-				</TitleInput>
-				<NoticeFilter  filters={filters} set={setFilters}/>
-				<div onClick={onClickBackground}>
-					<Editor {...options} />
-				</div>
-				<FileUploader>
-					<input type="file" multiple ref={fileInputRef} onChange={onChangeFiles}/>
-					<button onClick={onClickUploadButton}>파일 업로드</button>
-				</FileUploader>
-				{renderFileList() && <FilePreviewer files={files} removeFile={removeFile}/>}
+			<Container>
+			<Title>새 공지사항 작성</Title>
 				<div>
-					<Button onClick={onClickPreview}>미리보기</Button>
-					<Button onClick={onClickSubmit}>완료</Button>
+					<TitleInput>
+						<span>제목</span>
+						<input type="text" value={title} onChange={onChangeTitleInput}/>
+					</TitleInput>
+					<NoticeFilter  filters={filters} set={setFilters}/>
+					<div onClick={onClickBackground}>
+						<Editor {...options} />
+					</div>
+					<FileUploader>
+						<input type="file" multiple ref={fileInputRef} onChange={onChangeFiles}/>
+						<button onClick={onClickUploadButton}>파일 업로드</button>
+					</FileUploader>
+					{renderFileList() && <FilePreviewer files={files} removeFile={removeFile}/>}
+					<div>
+						<Button onClick={onClickPreview}>미리보기</Button>
+						<Button onClick={onClickSubmit}>완료</Button>
+					</div>
 				</div>
-			</div>
-			
-		</Container>
-		{ previewModal && <PreviewModal state={editorState} close={setPreviewModal} title={title}/>}
+				
+			</Container>
+			{ previewModal && <PreviewModal state={editorState} close={setPreviewModal} title={title}/>}
 		</>
 	);
 };

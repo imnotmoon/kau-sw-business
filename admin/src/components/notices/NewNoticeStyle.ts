@@ -94,7 +94,7 @@ export const TitleInput = styled.div`
 export const FileUploader = styled.div`
 	width: 90%;
 	height: 50px;
-	margin: 10px 0;
+	margin: 20px 0;
 
 	& > input {
 		width: 0px;
@@ -104,7 +104,7 @@ export const FileUploader = styled.div`
 	}
 
 	& > button {
-		height: 100%;
+		height: 50px;
 		border: 1px solid white;
 		background-color: rgba(255, 255, 255, 0.3);
 		width: 100%;
