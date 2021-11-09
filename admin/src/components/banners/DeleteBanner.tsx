@@ -5,6 +5,7 @@ import { Title } from '../notices/NewNoticeStyle'
 import { Banner } from '../../interfaces'
 import Confirm from '../Confirm'
 import APIs from '../../utils/networking'
+import { COLORS } from '../../utils/styled'
 
 const DeleteBanner = () => {
   const [bannerList, setBannerList] = useState<Banner[]>([]);
@@ -31,9 +32,10 @@ const DeleteBanner = () => {
         <Title>배너 삭제</Title>
         <List>
           {bannerList.map((banner, idx) => 
-            <BannerItem onClick={onClickBanner(idx)}>
+            <BannerItem>
               <span>{banner.title}</span>
               <span>{banner.content}</span>
+              <button onClick={onClickBanner(idx)}>삭제</button>
               <img src={banner.imageUrl} alt={banner.title}/>
             </BannerItem>
           )}
@@ -88,6 +90,22 @@ const BannerItem = styled.div`
   & img {
     max-width: 100%;
   }
+
+  & button {
+    width: 80px;
+    height: 40px;
+    border: 1px solid white;
+    color: white;
+    background: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    &:hover {
+      background-color: ${COLORS.LIGHTBLUE};
+    }
+  }
+  
 `
 
 export default DeleteBanner
