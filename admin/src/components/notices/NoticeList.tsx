@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import APIs from "../../utils/networking";
 import { NoticeSummary } from "../../interfaces";
 import { COLORS } from "../../utils/styled";
-import Confirm from "./Confirm";
+import Confirm from "../Confirm";
 
 const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
@@ -51,7 +51,7 @@ const NoticeList = () => {
 				</List>
 			</Body>
 		</Container>
-		{modal.show && <Confirm idx={modal.idx} close={closeModal}/>}
+		{modal.show && <Confirm idx={modal.idx} close={closeModal} API={APIs.deleteNotice}/>}
 		</>
 	);
 };

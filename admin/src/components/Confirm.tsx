@@ -1,13 +1,18 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { COLORS } from '../../utils/styled'
-import APIs from '../../utils/networking'
+import { COLORS } from '../utils/styled'
 
-const Confirm = ({ idx, close } : { idx: number, close: (e: React.MouseEvent) => void }) => {
+interface Prop {
+  idx: number;
+  close: (e: React.MouseEvent) => void
+  API : Function;
+}
+
+const Confirm = ({ idx, close, API } : Prop) => {
   const [deleted, setDeleted] = useState(false);
 
   const onClickConfirm = async () => {
-    const result = await APIs.deleteNotice(idx);
+    const result = await API(idx);
     if(result.success) setDeleted(true);
     else alert('삭제에 실패했습니다.');
   }
