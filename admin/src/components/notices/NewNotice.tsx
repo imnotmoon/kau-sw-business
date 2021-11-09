@@ -8,10 +8,12 @@ import { Container, Title, Button, TitleInput, FileUploader } from "./NewNoticeS
 import PreviewModal from "./PreviewModal";
 import NoticeFilter from "./NoticeFilter";
 import APIs from "../../utils/networking";
+import FilePreviewer from "./FilePreviewer";
 
 const NewNotice = () => {
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
+	const [files, setFiles] = useState<File[]>([]);
 	const [title, setTitle] = useState('');
 	const [filters, setFilters] = useState({ category: 'notice', pin: true })
 
@@ -38,6 +40,22 @@ const NewNotice = () => {
 	const onClickUploadButton = () => {
 		if(!fileInputRef.current) return;
 		fileInputRef.current.click();
+	}
+
+	const onChangeFiles = (e: React.FormEvent) => {
+		if(!(e.target as HTMLInputElement).files) return;
+		setFiles(Array.from((e.target as HTMLInputElement).files!));
+	}
+
+	const renderFileList = () => {
+		if(files.length === 0) return false;
+		return true;
+	}
+
+	const removeFile = (idx: number) => {
+		const newFiles = [...files];
+		newFiles.splice(idx, 1);
+		setFiles(newFiles);
 	}
 
 	const onClickSubmit = async () => {
@@ -80,9 +98,10 @@ const NewNotice = () => {
 					<Editor {...options} />
 				</div>
 				<FileUploader>
-					<input type="file" multiple ref={fileInputRef}/>
+					<input type="file" multiple ref={fileInputRef} onChange={onChangeFiles}/>
 					<button onClick={onClickUploadButton}>파일 업로드</button>
 				</FileUploader>
+				{renderFileList() && <FilePreviewer files={files} removeFile={removeFile}/>}
 				<div>
 					<Button onClick={onClickPreview}>미리보기</Button>
 					<Button onClick={onClickSubmit}>완료</Button>

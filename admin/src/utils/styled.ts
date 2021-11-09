@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 export const COLORS = {
   BORDER: 'rgba(255, 255, 255, 0.28)',
   BACKGROUND: 'rgba(255, 255, 255, 0.18)',
+  FOG : 'rgba(255, 255, 255, 0.3)',
+  LIGHTBLUE: 'rgba(85, 129, 179, 0.8)',
 };
 
 export const WDiv = styled.div`
