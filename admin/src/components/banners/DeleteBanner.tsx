@@ -96,10 +96,12 @@ const BannerItem = styled.div`
     height: 40px;
     border: 1px solid white;
     color: white;
-    background: none;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
     position: absolute;
     bottom: 20px;
     right: 20px;
+    font-size: 17px;
 
     &:hover {
       background-color: ${COLORS.LIGHTBLUE};
