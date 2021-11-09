@@ -69,23 +69,26 @@ const NewNotice = () => {
 	return (
 		<>
 		<Container>
-			<Title>새 공지사항 작성</Title>
-			<TitleInput>
-				<span>제목</span>
-				<input type="text" value={title} onChange={onChangeTitleInput}/>
-			</TitleInput>
-			<NoticeFilter  filters={filters} set={setFilters}/>
-			<div onClick={onClickBackground}>
-				<Editor {...options} />
-			</div>
-			<FileUploader>
-				<input type="file" multiple ref={fileInputRef}/>
-				<button onClick={onClickUploadButton}>파일 업로드</button>
-			</FileUploader>
+		<Title>새 공지사항 작성</Title>
 			<div>
-				<Button onClick={onClickPreview}>미리보기</Button>
-				<Button onClick={onClickSubmit}>완료</Button>
+				<TitleInput>
+					<span>제목</span>
+					<input type="text" value={title} onChange={onChangeTitleInput}/>
+				</TitleInput>
+				<NoticeFilter  filters={filters} set={setFilters}/>
+				<div onClick={onClickBackground}>
+					<Editor {...options} />
+				</div>
+				<FileUploader>
+					<input type="file" multiple ref={fileInputRef}/>
+					<button onClick={onClickUploadButton}>파일 업로드</button>
+				</FileUploader>
+				<div>
+					<Button onClick={onClickPreview}>미리보기</Button>
+					<Button onClick={onClickSubmit}>완료</Button>
+				</div>
 			</div>
+			
 		</Container>
 		{ previewModal && <PreviewModal state={editorState} close={setPreviewModal} title={title}/>}
 		</>
