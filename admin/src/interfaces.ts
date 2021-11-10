@@ -12,3 +12,17 @@ export interface NoticeSummary {
 export interface NoticeSummaryResponse {
 	data: Array<NoticeSummary>;
 }
+
+export interface BannerSummaryResponse {
+	data: Array<Banner>;
+}
+
+export interface Banner {
+	id?: number;
+	imageUrl: string;
+	title: string;
+	content: string;
+	viewOrder?: number;
+	useFlag?: boolean;
+	createdAt?: Date;
+}

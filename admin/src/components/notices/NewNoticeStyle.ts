@@ -2,25 +2,32 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
 	width: 100%;
-	height: 100%;
 	background-color: rgba(255, 255, 255, 0.2);
 	backdrop-filter: blur(100px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 
-	& > div:nth-of-type(3) {
-		width: 90%;
-		height: 40vh;
-		border: 1px solid white;
-		background: rgba(255, 255, 255, 0.7);
-	}
-
-	& > div:nth-of-type(5) {
-		width: 90%;
-		height: 10vh;
+	& > div:first-of-type {
 		display: flex;
-		justify-content: flex-end;
+		flex-direction: column;
+		overflow-y: scroll;
+		align-items: center;
+		& > div:nth-of-type(3) {
+			width: 90%;
+			height: 40vh;
+			min-height: 300px;
+			border: 1px solid white;
+			background: rgba(255, 255, 255, 0.7);
+		}
+	
+		& > div:nth-of-type(5) {
+			width: 90%;
+			height: 10vh;
+			display: flex;
+			justify-content: flex-end;
+			margin-bottom: 30px;
+		}
 	}
 `;
 
@@ -35,7 +42,7 @@ export const Title = styled.h1`
 `;
 
 export const Button = styled.button`
-	margin-top: 30px;
+	margin-top: 20px;
 	height: 50px;
 	width: 150px;
 	background: none;
@@ -45,10 +52,12 @@ export const Button = styled.button`
 	font-size: 16px;
 	font-weight: 500;
 	margin-left: 30px;
+	transition: all 0.3s ease;
 
 	&:hover {
-		border: 2px solid rgba(35, 221, 2, 0.6);
-		color: rgba(35, 221, 2, 0.6);
+		border: 1px solid rgba(85, 129, 179, 0.8);
+		background-color: rgba(85, 129, 179, 0.8);
+		transition: all 0.5s ease;
 	}
 `;
 
@@ -85,7 +94,7 @@ export const TitleInput = styled.div`
 export const FileUploader = styled.div`
 	width: 90%;
 	height: 50px;
-	margin: 10px 0;
+	margin: 20px 0;
 
 	& > input {
 		width: 0px;
@@ -95,7 +104,7 @@ export const FileUploader = styled.div`
 	}
 
 	& > button {
-		height: 100%;
+		height: 50px;
 		border: 1px solid white;
 		background-color: rgba(255, 255, 255, 0.3);
 		width: 100%;
