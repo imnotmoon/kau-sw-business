@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Banner, BannerSummaryResponse, LoginResponse, NoticeSummaryResponse } from "../interfaces";
+import { BannerSummaryResponse, LoginResponse, NoticeSummaryResponse } from "../interfaces";
 
 const BASE_URL = "http://15.164.68.133";
 const HEADER = {
