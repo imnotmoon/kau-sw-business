@@ -18,20 +18,37 @@ const NoticeList = () => {
 
 	const onClickEdit = (idx: number) => {
 		return async (e: React.MouseEvent) => {
-			const result = await APIs.getNoticeDetail(idx);
-			setEditing(result);
+			if(editing?.id === idx) {
+				setEditing(null);
+			} else {
+				const result = await APIs.getNoticeDetail(idx);
+				setEditing(result);
+			}
 		}
 	}
 
-	const onClickDelete = (idx: number) => {
+	const onClickDelete = (id: number) => {
 		return (e: React.MouseEvent) => {
-			setModal({ show: true, idx })
+			setModal({ show: true, idx: id })
 		}
 	}
 
 	const closeModal = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		setModal({ show: false, idx: -1});
+	}
+
+	const noticeGenerator = (item: NoticeSummary) => {
+		return (
+		<Notice >
+			<div>
+				<div>{item.title}</div>
+				<ButtonWrapper>
+					<Button onClick={onClickEdit(item.id)}>{editing?.id === item.id ? '취소' : '수정'}</Button>
+					<Button onClick={onClickDelete(item.id)}>삭제</Button>
+				</ButtonWrapper>
+			</div>
+		</Notice>);
 	}
 
 	return (
@@ -42,15 +59,7 @@ const NoticeList = () => {
 				<List>
 				{notices.map((item, idx: number) => (
 					<div key={idx}>
-					<Notice >
-						<div>
-							<div>{item.title}</div>
-							<ButtonWrapper>
-								<Button onClick={onClickEdit(item.id)}>수정</Button>
-								<Button onClick={onClickDelete(item.id)}>삭제</Button>
-							</ButtonWrapper>
-						</div>
-					</Notice>
+					{noticeGenerator(item)}
 					{editing?.id === item.id && <EditNotice content={editing} />}
 					</div>
 				))}

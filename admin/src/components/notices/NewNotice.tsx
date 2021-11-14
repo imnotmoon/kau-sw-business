@@ -12,7 +12,7 @@ import APIs from "../../utils/networking";
 import FilePreviewer from "./FilePreviewer";
 import { NoticeDetail } from "../../interfaces";
 
-const NewNotice = ({ content } : {content?: NoticeDetail }) => {
+const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editing?: boolean }) => {
 	const history = useHistory();
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
@@ -76,9 +76,10 @@ const NewNotice = ({ content } : {content?: NoticeDetail }) => {
 			})
 		}
 
-		const result = await APIs.postNotice(formData);
+		const result = editing ? await APIs.editNotice(formData) : await APIs.postNotice(formData);
+		console.log(result)
 		if(result.success) {
-			alert('공지사항을 정상적으로 등록했습니다.');
+			alert(`공지사항을 정상적으로 ${editing ? '수정' : '등록'}했습니다.`);
 			history.push('/');
 		}
 	}
@@ -92,7 +93,7 @@ const NewNotice = ({ content } : {content?: NoticeDetail }) => {
 	return (
 		<>
 			<Container>
-			<Title>새 공지사항 작성</Title>
+			<Title>{editing ? '공지사항 수정' : '새 공지사항 작성'}</Title>
 				<div>
 					<TitleInput>
 						<span>제목</span>

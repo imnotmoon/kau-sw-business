@@ -6,7 +6,7 @@ import NewNotice from './NewNotice'
 const EditNotice = ({ content } : { content: NoticeDetail}) => {
   return (
     <Container>
-      <NewNotice content={content} />
+      <NewNotice content={content} editing={true} />
     </Container>
   )
 }

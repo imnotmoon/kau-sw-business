@@ -27,7 +27,7 @@ const APIs = {
 			headers: {
 				'Content-Type' : 'multipart-formdata'
 			},
-			withCredentials: true ,
+			withCredentials: true,
 		}).then(res => res.data);
 	},
 
@@ -39,6 +39,17 @@ const APIs = {
 		return axios.delete(`${BASE_URL}/api/notice/${idx}`).then((res) => res.data);
 	},
 
+	editNotice: (data: FormData) => {
+		for(const key of Object.keys(data)) {
+			console.log(key, data.get(key))
+		}
+		return axios.put(`${BASE_URL}/api/notice`, data, {
+			headers: {
+				'Content-Type': 'multipart-formdata',
+			},
+			withCredentials: true,
+		})
+	},
 
 	getBannerSummary: () => {
 		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);
