@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BannerSummaryResponse, LoginResponse, NoticeSummaryResponse } from "../interfaces";
+import { BannerSummaryResponse, LoginResponse, NoticeDetailResponse, NoticeSummaryResponse } from "../interfaces";
 
 const BASE_URL = "http://15.164.68.133";
 const HEADER = {
@@ -27,14 +27,29 @@ const APIs = {
 			headers: {
 				'Content-Type' : 'multipart-formdata'
 			},
-			withCredentials: true ,
+			withCredentials: true,
 		}).then(res => res.data);
+	},
+
+	getNoticeDetail: (id: number) => {
+		return axios.get<NoticeDetailResponse>(`${BASE_URL}/api/notice/${id}`).then(res => res.data.data);
 	},
 
 	deleteNotice: (idx: number) => {
 		return axios.delete(`${BASE_URL}/api/notice/${idx}`).then((res) => res.data);
 	},
 
+	editNotice: (data: FormData) => {
+		for(const key of Object.keys(data)) {
+			console.log(key, data.get(key))
+		}
+		return axios.put(`${BASE_URL}/api/notice`, data, {
+			headers: {
+				'Content-Type': 'multipart-formdata',
+			},
+			withCredentials: true,
+		})
+	},
 
 	getBannerSummary: () => {
 		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);

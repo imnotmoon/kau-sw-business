@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
 import APIs from "../../utils/networking";
-import { NoticeSummary } from "../../interfaces";
+import EditNotice from "./EditNotice";
+import { NoticeDetail, NoticeSummary } from "../../interfaces";
 import { COLORS } from "../../utils/styled";
 import Confirm from "../Confirm";
 
 const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
+	const [editing, setEditing] = useState<NoticeDetail | null>(null);
 	const [modal, setModal] = useState({ show: false, idx: -1 });
 
 	useEffect(() => {
@@ -15,20 +17,38 @@ const NoticeList = () => {
 	}, [modal]);
 
 	const onClickEdit = (idx: number) => {
-		return (e: React.MouseEvent) => {
-			console.log(idx)
+		return async (e: React.MouseEvent) => {
+			if(editing?.id === idx) {
+				setEditing(null);
+			} else {
+				const result = await APIs.getNoticeDetail(idx);
+				setEditing(result);
+			}
 		}
 	}
 
-	const onClickDelete = (idx: number) => {
+	const onClickDelete = (id: number) => {
 		return (e: React.MouseEvent) => {
-			setModal({ show: true, idx })
+			setModal({ show: true, idx: id })
 		}
 	}
 
 	const closeModal = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		setModal({ show: false, idx: -1});
+	}
+
+	const noticeGenerator = (item: NoticeSummary) => {
+		return (
+		<Notice >
+			<div>
+				<div>{item.title}</div>
+				<ButtonWrapper>
+					<Button onClick={onClickEdit(item.id)}>{editing?.id === item.id ? '취소' : '수정'}</Button>
+					<Button onClick={onClickDelete(item.id)}>삭제</Button>
+				</ButtonWrapper>
+			</div>
+		</Notice>);
 	}
 
 	return (
@@ -38,15 +58,10 @@ const NoticeList = () => {
 			<Body>
 				<List>
 				{notices.map((item, idx: number) => (
-					<Notice key={idx}>
-						<div>
-							<div>{item.title}</div>
-							<ButtonWrapper>
-								<Button onClick={onClickEdit(item.id)}>수정</Button>
-								<Button onClick={onClickDelete(item.id)}>삭제</Button>
-							</ButtonWrapper>
-						</div>
-					</Notice>
+					<div key={idx}>
+					{noticeGenerator(item)}
+					{editing?.id === item.id && <EditNotice content={editing} />}
+					</div>
 				))}
 				</List>
 			</Body>

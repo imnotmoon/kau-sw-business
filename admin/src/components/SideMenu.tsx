@@ -20,8 +20,8 @@ const SideMenu = ({ page, currentPage, setDetailMenu }: SideMenuProps) => {
 		<Container>
 			{Object.keys(menus[page]).map((key, idx: number) => {
 				return (
-					<MenuItem key={idx}>
-						<div onClick={onClickMenu}>{key}</div>
+					<MenuItem key={idx} onClick={onClickMenu}>
+						<div>{key}</div>
 					</MenuItem>
 				);
 			})}

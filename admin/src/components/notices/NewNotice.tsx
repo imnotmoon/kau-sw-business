@@ -10,13 +10,14 @@ import PreviewModal from "./PreviewModal";
 import NoticeFilter from "./NoticeFilter";
 import APIs from "../../utils/networking";
 import FilePreviewer from "./FilePreviewer";
+import { NoticeDetail } from "../../interfaces";
 
-const NewNotice = () => {
+const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editing?: boolean }) => {
 	const history = useHistory();
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
-	const [files, setFiles] = useState<File[]>([]);
-	const [title, setTitle] = useState('');
+	const [files, setFiles] = useState<File[]>(content?.files ? content.files : []);
+	const [title, setTitle] = useState(content?.title ? content.title : '');
 	const [filters, setFilters] = useState({ category: 'notice', pin: true })
 
 	const editorRef = useRef<Editor | null>(null);
@@ -75,9 +76,10 @@ const NewNotice = () => {
 			})
 		}
 
-		const result = await APIs.postNotice(formData);
+		const result = editing ? await APIs.editNotice(formData) : await APIs.postNotice(formData);
+		console.log(result)
 		if(result.success) {
-			alert('공지사항을 정상적으로 등록했습니다.');
+			alert(`공지사항을 정상적으로 ${editing ? '수정' : '등록'}했습니다.`);
 			history.push('/');
 		}
 	}
@@ -91,7 +93,7 @@ const NewNotice = () => {
 	return (
 		<>
 			<Container>
-			<Title>새 공지사항 작성</Title>
+			<Title>{editing ? '공지사항 수정' : '새 공지사항 작성'}</Title>
 				<div>
 					<TitleInput>
 						<span>제목</span>
