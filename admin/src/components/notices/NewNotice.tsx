@@ -10,13 +10,14 @@ import PreviewModal from "./PreviewModal";
 import NoticeFilter from "./NoticeFilter";
 import APIs from "../../utils/networking";
 import FilePreviewer from "./FilePreviewer";
+import { NoticeDetail } from "../../interfaces";
 
-const NewNotice = () => {
+const NewNotice = ({ content } : {content?: NoticeDetail }) => {
 	const history = useHistory();
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
-	const [files, setFiles] = useState<File[]>([]);
-	const [title, setTitle] = useState('');
+	const [files, setFiles] = useState<File[]>(content?.files ? content.files : []);
+	const [title, setTitle] = useState(content?.title ? content.title : '');
 	const [filters, setFilters] = useState({ category: 'notice', pin: true })
 
 	const editorRef = useRef<Editor | null>(null);

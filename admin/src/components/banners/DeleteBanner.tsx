@@ -43,7 +43,7 @@ const DeleteBanner = () => {
         <Title>배너 수정/삭제</Title>
         <List>
           {bannerList.map((banner, idx) => 
-            <BannerItem>
+            <BannerItem key={idx}>
               <span>{banner.title}</span>
               <span>{banner.content}</span>
               <button onClick={onClickEditBanner(idx)} style={{right: '120px'}}>수정</button>

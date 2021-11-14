@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
 import APIs from "../../utils/networking";
-import { NoticeSummary } from "../../interfaces";
+import EditNotice from "./EditNotice";
+import { NoticeDetail, NoticeSummary } from "../../interfaces";
 import { COLORS } from "../../utils/styled";
 import Confirm from "../Confirm";
 
 const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
+	const [editing, setEditing] = useState<NoticeDetail | null>(null);
 	const [modal, setModal] = useState({ show: false, idx: -1 });
 
 	useEffect(() => {
@@ -15,8 +17,9 @@ const NoticeList = () => {
 	}, [modal]);
 
 	const onClickEdit = (idx: number) => {
-		return (e: React.MouseEvent) => {
-			console.log(idx)
+		return async (e: React.MouseEvent) => {
+			const result = await APIs.getNoticeDetail(idx);
+			setEditing(result);
 		}
 	}
 
@@ -38,7 +41,8 @@ const NoticeList = () => {
 			<Body>
 				<List>
 				{notices.map((item, idx: number) => (
-					<Notice key={idx}>
+					<div key={idx}>
+					<Notice >
 						<div>
 							<div>{item.title}</div>
 							<ButtonWrapper>
@@ -47,6 +51,8 @@ const NoticeList = () => {
 							</ButtonWrapper>
 						</div>
 					</Notice>
+					{editing?.id === item.id && <EditNotice content={editing} />}
+					</div>
 				))}
 				</List>
 			</Body>

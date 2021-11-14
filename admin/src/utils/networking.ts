@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BannerSummaryResponse, LoginResponse, NoticeSummaryResponse } from "../interfaces";
+import { BannerSummaryResponse, LoginResponse, NoticeDetail, NoticeSummaryResponse } from "../interfaces";
 
 const BASE_URL = "http://15.164.68.133";
 const HEADER = {
@@ -27,6 +27,10 @@ const APIs = {
 				'Content-Type' : 'multipart-formdata'
 			}
 		}).then(res => res.data);
+	},
+
+	getNoticeDetail: (id: number) => {
+		return axios.get<{data: NoticeDetail}>(`${BASE_URL}/api/notice/${id}`).then(res => res.data.data);
 	},
 
 	deleteNotice: (idx: number) => {

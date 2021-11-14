@@ -9,6 +9,19 @@ export interface NoticeSummary {
 	createdAt: Date;
 }
 
+export interface NoticeDetail {
+	id: number;
+	title: "notice" | "news";
+	category: string;
+	files: File[];
+	content: string;
+	createdAt: Date;
+	updatedAt: Date;
+	writer: string;
+	viewCount: number;
+	pinFlag: boolean;
+}
+
 export interface NoticeSummaryResponse {
 	data: Array<NoticeSummary>;
 }
