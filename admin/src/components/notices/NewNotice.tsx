@@ -66,7 +66,7 @@ const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editi
 		const formData = new FormData();
 		formData.append('title', title);
 		formData.append('content', draftToHtml(convertToRaw(editorState.getCurrentContent())));
-		formData.append('writer', '...');
+		formData.append('writer', sessionStorage.getItem('username')!);
 		formData.append('category', filters.category);
 		formData.append('pinFlag', `${filters.pin}`);
 		if(fileInputRef.current!.files && fileInputRef.current!.files.length > 0) {
@@ -82,7 +82,7 @@ const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editi
 		formData.append('id', `${content!.id}`);
 		formData.append('title', content!.title);
 		formData.append('content', draftToHtml(convertToRaw(editorState.getCurrentContent())));
-		formData.append('writer', '...');
+		formData.append('writer', sessionStorage.getItem('username')!);
 		formData.append('category', filters.category);
 		formData.append('pinFlag', `${filters.pin}`);
 
