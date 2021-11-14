@@ -16,8 +16,24 @@ const AuthController = {
 
     if (!isAuthorized) return next(createError(401, 'check userId or password'));
 
-    const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET_KEY);
+    const token = jwt.sign({ id: admin.id, name: admin.name }, process.env.JWT_SECRET_KEY);
+    res.cookie('token', token, { path: '/', httpOnly: true });
     return res.status(200).json({ token, data: { id: admin.id, name: admin.name } });
+  },
+  verify: async (req, res, next) => {
+    const { token } = req.cookies;
+    if (!token || token === '') return next(createError(400, 'no authorization'));
+
+    try {
+      const result = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      if (!result.id) return next(createError(400, 'no authorization'));
+      console.log(result);
+      req.user = result;
+      next();
+    } catch (err) {
+      console.log(err.message);
+      return next(createError(400, 'no authorization'));
+    }
   },
 };
 

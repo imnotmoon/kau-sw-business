@@ -4,6 +4,7 @@ import { BannerSummaryResponse, LoginResponse, NoticeDetail, NoticeSummaryRespon
 const BASE_URL = "http://15.164.68.133";
 const HEADER = {
 	headers: { "Content-Type": "application/json" },
+	withCredentials: true ,
 };
 
 const APIs = {
@@ -25,7 +26,8 @@ const APIs = {
 		return axios.post(`${BASE_URL}/api/notice`, data, {
 			headers: {
 				'Content-Type' : 'multipart-formdata'
-			}
+			},
+			withCredentials: true ,
 		}).then(res => res.data);
 	},
 
