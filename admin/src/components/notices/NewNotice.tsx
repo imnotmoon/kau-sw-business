@@ -17,6 +17,7 @@ const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editi
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
 	const [files, setFiles] = useState<File[]>(content?.files ? content.files : []);
+	const [deletedFiles, setDeletedFiles] = useState<Number[]>([]);  // 삭제된 file id
 	const [title, setTitle] = useState(content?.title ? content.title : '');
 	const [filters, setFilters] = useState({ category: 'notice', pin: true })
 
@@ -92,7 +93,11 @@ const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editi
 		}
 
 		// TODO: 삭제된 파일 추가
-		
+		if(deletedFiles.length > 0) {
+			deletedFiles.forEach((fileId) => {
+				formData.append('deletedFiles', `${fileId}`);
+			})
+		}
 		return formData;
 	}
 
