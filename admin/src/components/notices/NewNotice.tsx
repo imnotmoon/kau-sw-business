@@ -61,20 +61,45 @@ const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editi
 		setFiles(newFiles);
 	}
 
-	const onClickSubmit = async () => {
-		if(!window.confirm('공지사항을 등록하시겠습니까?')) return;
-		if(!fileInputRef.current) return;
+	const buildNewNoticeFormData = () => {
 		const formData = new FormData();
 		formData.append('title', title);
 		formData.append('content', draftToHtml(convertToRaw(editorState.getCurrentContent())));
 		formData.append('writer', '...');
 		formData.append('category', filters.category);
 		formData.append('pinFlag', `${filters.pin}`);
-		if(fileInputRef.current.files && fileInputRef.current.files.length > 0) {
-			Array.from(fileInputRef.current.files).forEach(file => {
+		if(fileInputRef.current!.files && fileInputRef.current!.files.length > 0) {
+			Array.from(fileInputRef.current!.files).forEach(file => {
 				formData.append('files', file);
 			})
 		}
+		return formData;
+	}
+
+	const buildEditNoticeFormData = () => {
+		const formData = new FormData();
+		formData.append('id', `${content!.id}`);
+		formData.append('title', content!.title);
+		formData.append('content', draftToHtml(convertToRaw(editorState.getCurrentContent())));
+		formData.append('writer', '...');
+		formData.append('category', filters.category);
+		formData.append('pinFlag', `${filters.pin}`);
+
+		if(fileInputRef.current!.files && fileInputRef.current!.files.length > 0) {
+			Array.from(fileInputRef.current!.files).forEach(file => {
+				formData.append('files', file);
+			})
+		}
+
+		// TODO: 삭제된 파일 추가
+		
+		return formData;
+	}
+
+	const onClickSubmit = async () => {
+		if(!window.confirm('공지사항을 등록하시겠습니까?')) return;
+		if(!fileInputRef.current) return;
+		const formData = editing ? buildEditNoticeFormData() : buildNewNoticeFormData();
 
 		const result = editing ? await APIs.editNotice(formData) : await APIs.postNotice(formData);
 		console.log(result)
