@@ -2,6 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const { FILE_MAX_SIZE } = require('../utils/constant');
 const errorHandler = require('../utils/error-handler');
+const { verify } = require('../controllers/auth');
 const {
   getNoticeSummary,
   getNoticeByPk,
@@ -15,7 +16,7 @@ router.get('/summary', errorHandler(getNoticeSummary));
 router.get('/:id', errorHandler(getNoticeByPk));
 router.get('/', errorHandler(getNotices));
 
-// TODO: 인증
+router.use('/', verify);
 router.post(
   '/',
   multer({

@@ -43,13 +43,13 @@ const NoticeController = {
   createNotice: async (req, res, next) => {
     const data = req.body;
     const files = req.files;
-    const { title, content, writer, category } = data;
+    const { name } = req.user;
+    const { title, content, category } = data;
     if (!title) return next(createError(400, 'title is required'));
     if (!content) return next(createError(400, 'content is required'));
-    if (!writer) return next(createError(400, 'writer is required'));
     if (!category) return next(createError(400, 'category is required'));
 
-    const result = await NoticeService.add(data);
+    const result = await NoticeService.add({ ...data, writer: name });
     if (!result || !result.id) return next(createError(500));
 
     FileService.addAll(result.id, files);
