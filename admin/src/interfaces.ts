@@ -22,6 +22,10 @@ export interface NoticeDetail {
 	pinFlag: boolean;
 }
 
+export interface NoticeDetailResponse {
+	data: NoticeDetail;
+}
+
 export interface NoticeSummaryResponse {
 	data: Array<NoticeSummary>;
 }
