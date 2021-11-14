@@ -27,7 +27,6 @@ const AuthController = {
     try {
       const result = jwt.verify(token, process.env.JWT_SECRET_KEY);
       if (!result.id) return next(createError(400, 'no authorization'));
-      console.log(result);
       req.user = result;
       next();
     } catch (err) {
