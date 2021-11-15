@@ -13,8 +13,8 @@ function Board({notiData, newsData}) {
         <span>KAU</span> HEADLINE
       </Title>
       <Section>
-        <HeadlineCard data={notiData} title="공지사항" src="#"></HeadlineCard>
-        <HeadlineCard data={newsData} title="사업단소식" src="#"></HeadlineCard>
+        <HeadlineCard data={notiData} title="공지사항" src="/community/notice"></HeadlineCard>
+        <HeadlineCard data={newsData} title="사업단소식" src="/community/news"></HeadlineCard>
       </Section>
       <Title>
         SW중심사업단 <span>NEWS</span>
