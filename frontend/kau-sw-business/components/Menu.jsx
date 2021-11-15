@@ -63,7 +63,8 @@ const Container = styled.div`
   z-index: 300;
 
   & > div {
-    width: 80%;
+    width: 100%;
+    margin: 0 5vw;
     display: flex;
     height: 100%;
     align-items: center;
@@ -118,8 +119,8 @@ const DetailMenu = styled.div`
 
   & > div {
     position: relative;
-    width: 600px;
-    margin-right: 10%;
+    width: 720px;
+    margin-right: 5vw;
     display: grid;
     grid-template-columns: repeat(${(props) => props.length}, 120px);
   }

@@ -121,4 +121,18 @@ export const MenuItems = [
 			},
 		],
 	},
+	{
+		title: "커뮤니티",
+		url: "/community/notice",
+		subElements: [
+			{
+				title: "공지사항",
+				url: "/community/notice",
+			},
+			{
+				title: "사업단소식",
+				url: "/community/news",
+			},
+		],
+	},
 ];
