@@ -17,7 +17,7 @@ const NewNotice = ({ content, editing = false } : {content?: NoticeDetail, editi
 	const [editorState, setEditorState] = useState(EditorState.createWithContent(ContentState.createFromText("")));
 	const [previewModal, setPreviewModal] = useState(false);
 	const [files, setFiles] = useState<File[]>(content?.files ? content.files : []);
-	const [deletedFiles, setDeletedFiles] = useState<Number[]>([]);  // 삭제된 file id
+	const [deletedFiles, ] = useState<Number[]>([]);  // 삭제된 file id
 	const [title, setTitle] = useState(content?.title ? content.title : '');
 	const [filters, setFilters] = useState({ category: 'notice', pin: true })
 
