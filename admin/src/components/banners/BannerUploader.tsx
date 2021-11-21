@@ -67,6 +67,8 @@ const BannerUploader = () => {
 		if (result.success) {
 			alert("성공적으로 배너를 등록했습니다.");
 			push("/banners");
+		} else {
+			alert("배너 등록에 실패했습니다.");
 		}
 	};
 
