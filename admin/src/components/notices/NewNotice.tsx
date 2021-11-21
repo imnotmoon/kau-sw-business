@@ -83,7 +83,6 @@ const NewNotice = ({ content, editing = false }: { content?: NoticeDetail; editi
 
 	const buildEditNoticeFormData = () => {
 		const formData = new FormData();
-		console.log(content, sessionStorage.getItem("username"), filters.category, filters.pin);
 		formData.append("id", `${content!.id}`);
 		formData.append("title", content!.title);
 		formData.append("content", draftToHtml(convertToRaw(editorState.getCurrentContent())));

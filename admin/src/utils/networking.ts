@@ -1,5 +1,11 @@
 import axios from "axios";
-import { BannerSummaryResponse, LoginResponse, NoticeDetailResponse, NoticeSummaryResponse } from "../interfaces";
+import {
+	BannerPostResponse,
+	BannerSummaryResponse,
+	LoginResponse,
+	NoticeDetailResponse,
+	NoticeSummaryResponse,
+} from "../interfaces";
 
 const BASE_URL = "http://15.164.68.133";
 const HEADER = {
@@ -58,7 +64,7 @@ const APIs = {
 
 	postBanner: (data: FormData) => {
 		return axios
-			.post(`${BASE_URL}/api/banner`, data, {
+			.post<BannerPostResponse>(`${BASE_URL}/api/banner`, data, {
 				headers: {
 					"Content-Type": "multipart-formdata",
 				},

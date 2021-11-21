@@ -7,8 +7,6 @@ interface Files {
 }
 
 const FilePreviewer = ({ files, removeFile }: Files) => {
-	console.log(files);
-
 	const onClickRemoveButton = (e: React.MouseEvent) => {
 		const idx = (e.target as HTMLDivElement).closest("div")?.dataset.id;
 		if (!idx) return;

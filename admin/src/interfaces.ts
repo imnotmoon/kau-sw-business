@@ -43,3 +43,8 @@ export interface Banner {
 	useFlag?: boolean;
 	createdAt?: Date;
 }
+
+export interface BannerPostResponse {
+	bannerId: number;
+	success: boolean;
+}

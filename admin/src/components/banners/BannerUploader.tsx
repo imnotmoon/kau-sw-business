@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { useHistory } from "react-router-dom";
+
 import { COLORS } from "../../utils/styled";
+import APIs from "../../utils/networking";
 
 const BannerUploader = () => {
 	const fileRef = useRef<HTMLInputElement | null>(null);
@@ -11,6 +14,8 @@ const BannerUploader = () => {
 	const [order, setOrder] = useState<number>(0);
 	const [flag, setFlag] = useState<boolean>(true);
 
+	const { push } = useHistory();
+
 	const onClickUpload = () => {
 		if (!fileRef.current) return;
 		fileRef.current.click();
@@ -18,7 +23,6 @@ const BannerUploader = () => {
 
 	const onChangeFileInput = (e: React.FormEvent) => {
 		if (!(e.target as HTMLInputElement).files || (e.target as HTMLInputElement).files!.length === 0) return;
-		console.log((e.target as HTMLInputElement).files, image);
 		setImage((e.target as HTMLInputElement).files![0]);
 	};
 
@@ -45,12 +49,25 @@ const BannerUploader = () => {
 		conf && setImage(null);
 	};
 
-	const onClickUploadButon = () => {
+	const onClickUploadButon = async () => {
+		if (!image) {
+			alert("이미지를 등록해주세요.");
+			return;
+		}
 		const conf = window.confirm("배너를 등록하시겠습니까?");
 		if (!conf) return;
 		const formData = new FormData();
 		formData.append("title", bigTitle);
 		formData.append("content", content);
+		formData.append("viewOrder", `${order}`);
+		formData.append("useFlag", flag ? "true" : "false");
+		formData.append("image", image);
+
+		const result = await APIs.postBanner(formData);
+		if (result.success) {
+			alert("성공적으로 배너를 등록했습니다.");
+			push("/banners");
+		}
 	};
 
 	useEffect(() => {
