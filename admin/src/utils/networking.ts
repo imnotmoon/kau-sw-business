@@ -4,7 +4,7 @@ import { BannerSummaryResponse, LoginResponse, NoticeDetailResponse, NoticeSumma
 const BASE_URL = "http://15.164.68.133";
 const HEADER = {
 	headers: { "Content-Type": "application/json" },
-	withCredentials: true ,
+	withCredentials: true,
 };
 
 const APIs = {
@@ -23,16 +23,18 @@ const APIs = {
 	},
 
 	postNotice: (data: FormData) => {
-		return axios.post(`${BASE_URL}/api/notice`, data, {
-			headers: {
-				'Content-Type' : 'multipart-formdata'
-			},
-			withCredentials: true,
-		}).then(res => res.data);
+		return axios
+			.post(`${BASE_URL}/api/notice`, data, {
+				headers: {
+					"Content-Type": "multipart-formdata",
+				},
+				withCredentials: true,
+			})
+			.then((res) => res.data);
 	},
 
 	getNoticeDetail: (id: number) => {
-		return axios.get<NoticeDetailResponse>(`${BASE_URL}/api/notice/${id}`).then(res => res.data.data);
+		return axios.get<NoticeDetailResponse>(`${BASE_URL}/api/notice/${id}`).then((res) => res.data.data);
 	},
 
 	deleteNotice: (idx: number) => {
@@ -40,23 +42,21 @@ const APIs = {
 	},
 
 	editNotice: (data: FormData) => {
-		for(const key of Object.keys(data)) {
-			console.log(key, data.get(key))
-		}
-		return axios.put(`${BASE_URL}/api/notice`, data, {
-			headers: {
-				'Content-Type': 'multipart-formdata',
-			},
-			withCredentials: true,
-		})
+		return axios
+			.put(`${BASE_URL}/api/notice`, data, {
+				headers: {
+					"Content-Type": "multipart-formdata",
+				},
+				withCredentials: true,
+			})
+			.then((res) => res.data);
 	},
 
 	getBannerSummary: () => {
 		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);
 	},
 
-	editBanner: () => {
-	},
+	editBanner: () => {},
 
 	deleteBanner: (idx: number) => {
 		return axios.delete(`${BASE_URL}/api/banner/${idx}`).then((res) => res.data);
