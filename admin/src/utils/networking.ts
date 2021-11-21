@@ -56,6 +56,17 @@ const APIs = {
 		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);
 	},
 
+	postBanner: (data: FormData) => {
+		return axios
+			.post(`${BASE_URL}/api/banner`, data, {
+				headers: {
+					"Content-Type": "multipart-formdata",
+				},
+				withCredentials: true,
+			})
+			.then((res) => res.data);
+	},
+
 	editBanner: () => {},
 
 	deleteBanner: (idx: number) => {
