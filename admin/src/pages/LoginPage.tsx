@@ -5,7 +5,6 @@ import APIs from "../utils/networking";
 import { Container, Div, Input, Button } from "./LoginPageStyle";
 
 const LoginPage = () => {
-	console.log("login page");
 	const [id, setId] = useState("");
 	const [password, setPassword] = useState("");
 	const history = useHistory();
