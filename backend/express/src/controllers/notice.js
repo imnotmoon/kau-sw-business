@@ -58,15 +58,15 @@ const NoticeController = {
   },
 
   updateNotice: async (req, res, next) => {
-    const { id, deleteFiles, ...rest } = req.body;
+    const { id, deletedFiles, ...rest } = req.body;
     const files = req.files;
 
     if (!id) return next(createError(400, 'id is required'));
     await NoticeService.update(id, rest);
 
     FileService.addAll(id, files);
-    if (deleteFiles && deleteFiles.length > 0) {
-      FileService.deleteAll(deleteFiles);
+    if (deletedFiles && deletedFiles.length > 0) {
+      FileService.deleteAll(deletedFiles);
     }
 
     return res.status(200).json({ success: true });
