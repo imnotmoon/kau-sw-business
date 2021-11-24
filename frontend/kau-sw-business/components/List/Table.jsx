@@ -1,19 +1,27 @@
 import React from "react";
+import { useRouter } from "next/router";
 import moment from "moment";
 import styled from "styled-components";
 
 import { COLORS } from "../../styles/theme";
 
 function Table({ data, pageMap }) {
+  const router = useRouter();
   return (
     <CustomTable>
       <thead>
         <TableHead>
-          <TableHeadColumn minWidth="50px" width="50px">번호</TableHeadColumn>
+          <TableHeadColumn minWidth="50px" width="50px">
+            번호
+          </TableHeadColumn>
           <TableHeadColumn width="auto">제목</TableHeadColumn>
-          <TableHeadColumn minWidth="90px" width="150px">글쓴이</TableHeadColumn>
+          <TableHeadColumn minWidth="90px" width="150px">
+            글쓴이
+          </TableHeadColumn>
           <TableHeadColumn width="50px">조회</TableHeadColumn>
-          <TableHeadColumn minWidth="100px" width="100px">날짜</TableHeadColumn>
+          <TableHeadColumn minWidth="100px" width="100px">
+            날짜
+          </TableHeadColumn>
         </TableHead>
       </thead>
       <tbody>
@@ -24,7 +32,13 @@ function Table({ data, pageMap }) {
                 pageMap.rowsPerPage * (pageMap.pageNo - 1) -
                 index}
             </TableData>
-            <TableData textAlign="left">{row.title}</TableData>
+            <TableData
+              textAlign="left"
+              cursor="pointer"
+              onClick={() => router.push(`${router.pathname}/${row.id}`)}
+            >
+              {row.title}
+            </TableData>
             <TableData>{row.writer}</TableData>
             <TableData>{row.viewCount}</TableData>
             <TableData>{moment(row.createdAt).format("YYYY-MM-DD")}</TableData>
@@ -61,5 +75,6 @@ const TableData = styled.td`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: ${({ cursor = "default" }) => cursor};
 `;
 export default Table;

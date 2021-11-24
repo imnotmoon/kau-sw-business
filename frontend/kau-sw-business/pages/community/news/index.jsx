@@ -1,9 +1,10 @@
+
 import React from "react";
 import axios from "axios";
 
-import ContentFrame from "../../components/ContentFrame";
-import withHead from "../../components/hoc/withHead";
-import List from "../../components/List";
+import ContentFrame from "../../../components/ContentFrame";
+import withHead from "../../../components/hoc/withHead";
+import List from "../../../components/List";
 
 const News = (props) => {
   return (
