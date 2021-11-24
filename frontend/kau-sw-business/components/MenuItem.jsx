@@ -5,7 +5,9 @@ import { COLORS } from '../styles/theme';
 const MenuItem = ({ elem, idx, title }) => {
   return title === elem.title ? (
     <Container key={idx} style={{ background: '#262f41', color: 'white' }}>
-      <a>{elem.title}</a>
+      <a href={elem.url} > {/** 공지사항 상세 페이지에서 다시 리스트로 넘어가게 하려면 필요 */}
+        <a>{elem.title}</a>
+      </a>
     </Container>
   ) : (
     <Container key={idx}>
