@@ -12,7 +12,7 @@ const Notice = (props) => {
 export const getServerSideProps = async ({ query = {} }) => {
   const { page: pageNo = 1 } = query;
   const { data } = await axios.get(
-    `${process.env.API_BASE_URL}/notice?category=notice&rowsPerPage=2&pageNo=${pageNo}`
+    `${process.env.API_BASE_URL}/notice?category=notice&rowsPerPage=5&pageNo=${pageNo}`
   );
   return { props: data };
 };

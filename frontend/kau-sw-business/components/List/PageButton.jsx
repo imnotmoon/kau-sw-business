@@ -1,31 +1,60 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
 import { COLORS } from "../../styles/theme";
 
+const MAX_PAGE = 5;
+
 function List({ pageMap }) {
   const router = useRouter();
+  const startNum = useMemo(
+    () => Math.floor((parseInt(pageMap.pageNo) - 1) / MAX_PAGE) * MAX_PAGE,
+    [pageMap]
+  );
   return (
     <Wrapper>
-      {Array(Math.min(pageMap.totalNumberOfPages, 10))
+      {startNum > 0 && <PageNumButton onClick={() => router.push(
+              {
+                query: { page: 1 + startNum - MAX_PAGE },
+              },
+              undefined,
+              { scroll: false }
+            )}>◁</PageNumButton>}
+      {Array(Math.min(pageMap.totalNumberOfPages, startNum + MAX_PAGE)-startNum)
         .fill()
         .map((_, idx) => (
           <PageNumButton
             key={idx}
             onClick={() =>
-              router.push({
-                query: { page: 1 + Math.floor(pageMap.pageNo / 10) + idx },
-              })
+              router.push(
+                {
+                  query: { page: 1 + startNum + idx },
+                },
+                undefined,
+                { scroll: false }
+              )
             }
-            selected={
-              parseInt(pageMap.pageNo) ===
-              1 + Math.floor(pageMap.pageNo / 10) + idx
-            }
+            selected={parseInt(pageMap.pageNo) === 1 + startNum + idx}
           >
-            {1 + Math.floor(pageMap.pageNo / 10) + idx}
+            {1 + startNum + idx}
           </PageNumButton>
         ))}
+      {startNum + MAX_PAGE < pageMap.totalNumberOfPages && (
+        <PageNumButton
+          onClick={() =>
+            router.push(
+              {
+                query: { page: 1 + startNum + MAX_PAGE },
+              },
+              undefined,
+              { scroll: false }
+            )
+          }
+        >
+          ▷
+        </PageNumButton>
+      )}
     </Wrapper>
   );
 }
@@ -44,7 +73,7 @@ const PageNumButton = styled.button`
   color: ${({ selected }) => (selected ? COLORS.TEXT : COLORS.PRIMARY1)};
   background-color: ${({ selected }) =>
     selected ? COLORS.PRIMARY1 : COLORS.TEXT};
-    cursor: pointer;
+  cursor: pointer;
 `;
 
 export default List;
