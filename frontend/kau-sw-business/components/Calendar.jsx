@@ -16,18 +16,18 @@ const Calendar = ({ data, scheduleTable, maxIndex }) => {
 
         <tbody>
           {new Array(maxIndex + 1).fill(0).map((_, index) => {
-            const doneList = [];
+            const doneList = new Set();
             return (
               <tr key={index}>
                 {scheduleTable[index].map((schedule, idx) => {
                   if (!schedule) return <TableData key={idx} />;
-                  if (doneList.includes(schedule.id)) return;
+                  if (doneList.has(schedule.id)) return;
 
                   const colSpan =
                     moment(schedule.endDate).month() -
                     moment(schedule.startDate).month() +
                     1;
-                  doneList.push(schedule.id);
+                  doneList.add(schedule.id);
                   return (
                     <TableData key={schedule.id} colSpan={colSpan}>
                       {schedule.title}
