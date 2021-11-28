@@ -20,7 +20,7 @@ export const getServerSideProps = async () => {
   const startDate = today.startOf("year").format("YYYY-MM-DD");
   const endDate = today.endOf("year").format("YYYY-MM-DD");
   const { data } = await axios.get(
-    `${process.env.API_BASE_URL}/schedule?category=major&from=${startDate}&to=${endDate}`
+    `${process.env.API_BASE_URL}/schedule?category=major&from=${startDate}&to=${endDate}&type=duration`
   );
   // 캘린더 테이블에 들어가는 순서 정하기 위해 하나씩 확인
   const scheduleTable = {};
