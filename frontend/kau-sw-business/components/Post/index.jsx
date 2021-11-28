@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { useRouter } from 'next/router';
 
 import Title from '../Title';
 import { COLORS } from "../../styles/theme";
@@ -9,7 +10,12 @@ import { COLORS } from "../../styles/theme";
 const FILE_BASE_URL = 'http://15.164.68.133/.../'
 
 function Post({ data }) {
-  console.log(data.files);
+  const router = useRouter();
+
+  const onClickPrevButton = () => {
+    router.push('/community/notice');
+  }
+
   return (
     <>
       <Title text={data.title} />
@@ -35,7 +41,7 @@ function Post({ data }) {
         </Files>
       }
       <Buttons>
-        <Button>목록</Button>
+        <Button onClick={onClickPrevButton}>목록</Button>
       </Buttons>
     </>
   );
@@ -116,6 +122,7 @@ const Button = styled.button`
   color: white;
   font-size: 18px;
   border: none;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
