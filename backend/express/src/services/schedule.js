@@ -1,3 +1,4 @@
+const { sequelize } = require('../db/models');
 const db = require('../db/models');
 const { Schedule, Sequelize } = db;
 const { Op } = Sequelize;
@@ -39,6 +40,7 @@ const ScheduleService = {
         ...toOption,
       },
       order: [
+        [sequelize.fn('datediff', Sequelize.col('startDate'), Sequelize.col('endDate')), 'ASC'],
         ['startDate', 'ASC'],
         ['endDate', 'ASC'],
       ],
