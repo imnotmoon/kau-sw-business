@@ -6,7 +6,7 @@ import MenuItem from './MenuItem';
 
 const LeftBox = ({ title, state, front }) => {
   const subTitles = MenuItems[state].subElements;
-  console.log(subTitles);
+  // console.log(subTitles);
 
   return (
     <Container>
