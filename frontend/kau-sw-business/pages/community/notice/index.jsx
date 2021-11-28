@@ -6,7 +6,11 @@ import withHead from '../../../components/hoc/withHead';
 import List from "../../../components/List";
 
 const Notice = (props) => {
-  return <ContentFrame title="공지사항" state={5}><List {...props} /></ContentFrame>;
+  return (
+    <ContentFrame title="공지사항" state={5}>
+      <List {...props} />
+    </ContentFrame>
+  );
 };
 
 export const getServerSideProps = async ({ query = {} }) => {
