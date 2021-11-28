@@ -16,7 +16,7 @@ const ScheduleService = {
    * @param {Object}
    * @returns
    */
-  findAllByCondition: async ({ category, from, to }) => {
+  findAllByCondition: async ({ category, from, to, order }) => {
     const categoryOption = category ? { category } : {};
     const fromOption = from
       ? {
@@ -32,6 +32,10 @@ const ScheduleService = {
           },
         }
       : {};
+    const durationOrderBy =
+      order === 'duration'
+        ? [[sequelize.fn('datediff', Sequelize.col('startDate'), Sequelize.col('endDate')), 'ASC']]
+        : [];
     return Schedule.findAll({
       attributes: ['id', 'startDate', 'endDate', 'title', 'link', 'category'],
       where: {
@@ -39,11 +43,7 @@ const ScheduleService = {
         ...fromOption,
         ...toOption,
       },
-      order: [
-        [sequelize.fn('datediff', Sequelize.col('startDate'), Sequelize.col('endDate')), 'ASC'],
-        ['startDate', 'ASC'],
-        ['endDate', 'ASC'],
-      ],
+      order: [...durationOrderBy, ['startDate', 'ASC'], ['endDate', 'ASC']],
     });
   },
 
