@@ -3,9 +3,9 @@ const ScheduleService = require('../services/schedule');
 
 const ScheduleController = {
   getSchedules: async (req, res) => {
-    const { category, from, to } = req.query;
+    const { category, from, to, order = 'date' } = req.query;
 
-    const schedules = await ScheduleService.findAllByCondition({ category, from, to });
+    const schedules = await ScheduleService.findAllByCondition({ category, from, to, order });
 
     return res.status(200).json({
       data: schedules,
