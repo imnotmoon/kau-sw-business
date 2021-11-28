@@ -64,16 +64,21 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 3px;
 `;
 
 const PageNumButton = styled.button`
   width: 30px;
   height: 25px;
-  border: 0.5px solid ${COLORS.PRIMARY1};
+  border: none;
   color: ${({ selected }) => (selected ? COLORS.TEXT : COLORS.PRIMARY1)};
-  background-color: ${({ selected }) =>
-    selected ? COLORS.PRIMARY1 : COLORS.TEXT};
   cursor: pointer;
+  background-color: ${({selected}) => selected ? COLORS.PRIMARY1 : 'none'};
+
+  &:hover {
+    background-color: ${({ selected }) =>
+    selected ? COLORS.PRIMARY1 : COLORS.TEXT};
+  }
 `;
 
 export default List;
