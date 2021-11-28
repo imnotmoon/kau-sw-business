@@ -1,6 +1,8 @@
 ## Configuration
 ```bash
 # development
+docker-compose up -d # 상위 디렉토리에서 
+
 npm install
 npx sequelize db:migrate
 npx sequelize db:seed:all
