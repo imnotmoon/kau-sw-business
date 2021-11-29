@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import moment from "moment";
 import ContentFrame from "../../components/ContentFrame";
 import withHead from "../../components/hoc/withHead";
