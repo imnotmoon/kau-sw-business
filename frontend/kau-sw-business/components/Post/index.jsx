@@ -13,7 +13,7 @@ function Post({ data }) {
   const router = useRouter();
 
   const onClickPrevButton = () => {
-    router.push('/community/notice');
+    router.back();
   }
 
   return (
