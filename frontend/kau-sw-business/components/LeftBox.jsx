@@ -25,6 +25,7 @@ const Container = styled.div`
   min-width: 200px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 
   @media screen and (max-width: 720px) {
     display: none;
