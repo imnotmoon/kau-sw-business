@@ -1,19 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-import { COLORS } from '../styles/theme';
+import React from "react";
+import Link from "next/link";
+import styled from "styled-components";
+import { COLORS } from "../styles/theme";
 
 const MenuItem = ({ elem, idx, title }) => {
   return title === elem.title ? (
-    <Container key={idx} style={{ background: '#262f41', color: 'white' }}>
-      <a href={elem.url} > {/** 공지사항 상세 페이지에서 다시 리스트로 넘어가게 하려면 필요 */}
-        {elem.title}
-      </a>
+    <Container key={idx} style={{ background: "#262f41", color: "white" }}>
+      {/** 공지사항 상세 페이지에서 다시 리스트로 넘어가게 하려면 필요 */}
+      <Link href={elem.url}>{elem.title}</Link>
     </Container>
   ) : (
-    <Container key={idx}>
-      <a href={elem.url} style={{ color: 'black' }}>
-        {elem.title}
-      </a>
+    <Container key={idx} style={{ color: "black" }}>
+      <Link href={elem.url}>{elem.title}</Link>
     </Container>
   );
 };

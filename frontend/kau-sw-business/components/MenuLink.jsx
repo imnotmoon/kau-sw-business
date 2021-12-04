@@ -8,7 +8,7 @@ const MenuLink = ({ idx, item, selectedMenu, onFocusSignleMenu }) => {
   return (
     <Container key={idx} onMouseEnter={onFocusSignleMenu}>
       <Link href={MenuItems[idx].url}>
-        <a style={{ color: selectedMenu === item.title ? 'white' : '#e2e2e2' }}>{item.title}</a>
+        <span style={{ color: selectedMenu === item.title ? 'white' : '#e2e2e2' }}>{item.title}</span>
       </Link>
     </Container>
   );

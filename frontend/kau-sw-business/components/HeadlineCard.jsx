@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { COLORS } from '../styles/theme';
 
@@ -10,7 +11,7 @@ const HeadlineCard = ({ data, title, src }) => {
     <Container>
       <div>
         <h3>{title}</h3>
-        <a href={src}>more...</a>
+        <Link href={src}>more...</Link>
       </div>
       {data.map((item) => <HeadlineCardItem key={item.id} {...item} src={src}/>)}
     </Container>
