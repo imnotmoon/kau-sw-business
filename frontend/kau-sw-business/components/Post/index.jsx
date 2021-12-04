@@ -37,7 +37,7 @@ function Post({ data }) {
       {data.files && data.files.length > 0 && 
         <Files>
           <h3>첨부파일</h3>
-          {data.files.map((file) => <a key={file.id} href={file.name}>{file.name}</a>)}
+          {data.files.map((file) => <a key={file.id} href={`${process.env.API_BASE_URL}/file/${file.id}`}>{file.name}</a>)}
         </Files>
       }
       <Buttons>
