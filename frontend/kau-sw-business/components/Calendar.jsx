@@ -18,7 +18,7 @@ const Calendar = ({ data, scheduleTable, maxIndex }) => {
           {new Array(maxIndex + 1).fill(0).map((_, index) => {
             const doneList = new Set();
             return (
-              <tr key={index}>
+              <TableRow key={index}>
                 {scheduleTable[index].map((schedule, idx) => {
                   if (!schedule) return <TableData key={idx} />;
                   if (doneList.has(schedule.id)) return;
@@ -34,7 +34,7 @@ const Calendar = ({ data, scheduleTable, maxIndex }) => {
                     </TableData>
                   );
                 })}
-              </tr>
+              </TableRow>
             );
           })}
         </tbody>
@@ -55,6 +55,10 @@ const TableHeadColumn = styled.th`
   min-width: 100px;
   border: 1px solid;
 `;
+
+const TableRow = styled.tr`
+  height: 75px;
+`
 
 const TableData = styled.td`
   border: 1px solid;
