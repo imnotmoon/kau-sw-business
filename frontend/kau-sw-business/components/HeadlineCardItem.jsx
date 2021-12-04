@@ -1,12 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import moment from 'moment';
 import { COLORS } from '../styles/theme';
 
-const HeadlineCardItem = ({ id, title, createdAt }) => {
+const HeadlineCardItem = ({ src, id, title, createdAt }) => {
   return (
     <Container>
-      <a href=''>{title}</a>
+      <Link href={`${src}/${id}`}>{title}</Link>
       <div>{moment(createdAt).format('YYYY.MM.DD')}</div>
     </Container>
   );

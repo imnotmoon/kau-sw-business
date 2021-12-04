@@ -12,7 +12,7 @@ const HeadlineCard = ({ data, title, src }) => {
         <h3>{title}</h3>
         <a href={src}>more...</a>
       </div>
-      {data.map((item) => <HeadlineCardItem key={item.id} {...item} />)}
+      {data.map((item) => <HeadlineCardItem key={item.id} {...item} src={src}/>)}
     </Container>
   );
 };
