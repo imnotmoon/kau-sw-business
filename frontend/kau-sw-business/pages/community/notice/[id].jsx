@@ -18,7 +18,7 @@ export const getServerSideProps = async ({ params }) => {
   }
   const { id } = params;
   const { data } = await axios.get(
-    `${process.env.API_BASE_URL}/notice/${id}`
+    `${process.env.API_BASE_URL}/notice/${id}?type=read-only`
   );
   return { props: data  };
 };
