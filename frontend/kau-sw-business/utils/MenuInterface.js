@@ -77,10 +77,10 @@ export const MenuItems = [
 		title: "SW기초·융합교육",
 		url: "/basic_education/introduce",
 		subElements: [
-			// {
-			//   title: '캘린더',
-			//   url: '/basic_education/calendar',
-			// },
+			{
+			  title: '캘린더',
+			  url: '/basic_education/calendar',
+			},
 			{
 				title: "소개",
 				url: "/basic_education/introduce",
@@ -136,3 +136,23 @@ export const MenuItems = [
 		],
 	},
 ];
+
+
+export const HomeCalendarItems = [
+	{
+	  title: 'SW전공교육',
+	  url: "/major_education/calendar",
+	},
+	{
+	  title: '산학협력',
+	  url: "/collab_industry/calendar",
+	},
+	{
+	  title: 'SW기초·융합교육',
+	  url: '/basic_education/calendar',
+	},
+	{
+	  title: 'SW가치확산',
+	  url: "/influences/calendar",
+	},
+  ];

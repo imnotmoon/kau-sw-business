@@ -1,29 +1,34 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { COLORS } from '../styles/theme';
-import HeadlineCard from './HeadlineCard';
-import { boardElements } from '../utils/sample-data';
-import NewsCard from './NewsCard';
+import { COLORS } from "../styles/theme";
+import HeadlineCard from "./HeadlineCard";
+import { HomeCalendarItems } from "../utils/MenuInterface";
+import NewsCard from "./NewsCard";
 
-function Board({notiData, newsData}) {
+function Board({ notiData, newsData }) {
   return (
     <Container>
       <Title>
         <span>KAU</span> HEADLINE
       </Title>
       <Section>
-        <HeadlineCard data={notiData} title="공지사항" src="/community/notice"></HeadlineCard>
-        <HeadlineCard data={newsData} title="사업단소식" src="/community/news"></HeadlineCard>
+        <HeadlineCard
+          data={notiData}
+          title="공지사항"
+          src="/community/notice"
+        ></HeadlineCard>
+        <HeadlineCard
+          data={newsData}
+          title="사업단소식"
+          src="/community/news"
+        ></HeadlineCard>
       </Section>
-      <Title>
-        SW중심사업단 <span>NEWS</span>
-      </Title>
-      <SectionNews>
-        {boardElements.map((data, idx) => (
+      <SectionCalendar>
+        {HomeCalendarItems.map((data, idx) => (
           <NewsCard key={idx} data={data} />
         ))}
-      </SectionNews>
+      </SectionCalendar>
     </Container>
   );
 }
@@ -62,7 +67,8 @@ const Section = styled.section`
   }
 `;
 
-const SectionNews = styled(Section)`
+const SectionCalendar = styled(Section)`
+  margin-top: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 
