@@ -29,7 +29,7 @@ const Calendar = ({ data, scheduleTable, maxIndex }) => {
                     1;
                   doneList.add(schedule.id);
                   return (
-                    <TableData key={schedule.id} colSpan={colSpan}>
+                    <TableData key={idx} colSpan={colSpan}>
                       {schedule.title}
                     </TableData>
                   );
