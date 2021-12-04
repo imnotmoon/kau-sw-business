@@ -5,8 +5,9 @@ const FileService = require('../services/file');
 const NoticeController = {
   getNoticeByPk: async (req, res, next) => {
     const { id } = req.params;
+    const { type } = req.query;
 
-    await NoticeService.updateViewCnt(id);
+    if (type === 'read-only') await NoticeService.updateViewCnt(id);
 
     const notice = await NoticeService.findOne(id);
     if (!notice) return next(createError(404, 'notice not exists'));
