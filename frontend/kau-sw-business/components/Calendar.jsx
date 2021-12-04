@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import moment from "moment";
+import { COLORS } from "../styles/theme";
 
-const Calendar = ({ data, scheduleTable, maxIndex }) => {
+const Calendar = ({ scheduleTable, maxIndex }) => {
   return (
     <Wrapper>
       <Table>
@@ -29,7 +30,7 @@ const Calendar = ({ data, scheduleTable, maxIndex }) => {
                     1;
                   doneList.add(schedule.id);
                   return (
-                    <TableData key={idx} colSpan={colSpan}>
+                    <TableData key={idx} colSpan={colSpan} backgroundColor={COLORS.BACKGROUND}>
                       {schedule.title}
                     </TableData>
                   );
@@ -49,21 +50,24 @@ const Wrapper = styled.div`
 
 const Table = styled.table`
   border-collapse: collapse;
+  color: ${COLORS.PRIMARY1};
 `;
 
 const TableHeadColumn = styled.th`
   min-width: 100px;
-  border: 1px solid;
+  border: 1px solid ${COLORS.PRIMARY1};
 `;
 
 const TableRow = styled.tr`
   height: 75px;
-`
+`;
 
 const TableData = styled.td`
-  border: 1px solid;
+  border: 1px solid ${COLORS.PRIMARY1};
   text-align: center;
   word-break: keep-all;
+  background-color: ${({ backgroundColor = "transparent" }) =>
+    backgroundColor};
 `;
 
 const MONTHS = [
