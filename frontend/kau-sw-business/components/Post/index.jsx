@@ -13,7 +13,14 @@ function Post({ data }) {
   const router = useRouter();
 
   const onClickPrevButton = () => {
+    const currentUrlPrefix = router.pathname.substring(0, router.pathname.length-5);
     router.back();
+    router.beforePopState(({url, as, options})=>{
+      if(url.startsWith(currentUrlPrefix)) return true;
+      
+      document.location.href = currentUrlPrefix;
+      return false;
+    })
   }
 
   return (
