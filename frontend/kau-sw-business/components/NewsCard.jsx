@@ -25,10 +25,10 @@ const Container = styled.div`
   align-items: center;
   width: 20vw;
   min-width: 250px;
-  background-color: ${COLORS.BACKGROUND};
+  background-color: ${COLORS.PRIMARY1};
   height: 200px;
-  border: 1px solid ${COLORS.CARD_BORDER};
-  color: ${COLORS.TEXT2};
+  border: 1px solid ${COLORS.PRIMARY1};
+  color: ${COLORS.BORDER};
 `;
 
 const Title = styled.header`
@@ -36,14 +36,14 @@ const Title = styled.header`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  color: ${COLORS.TITLE};
+  color: ${COLORS.BORDER};
   font-size: 22px;
   font-weight: 400;
 `;
 
 const LinkButton = styled.div`
-  margin-top: 8px;
-  border: 1px solid ${COLORS.TEXT2};
+  margin-top: 20px;
+  border: 1px solid ${COLORS.BORDER};
   padding: 5px 20px;
   cursor: pointer;
 `;
