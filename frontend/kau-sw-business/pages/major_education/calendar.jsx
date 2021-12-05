@@ -22,27 +22,13 @@ export const getServerSideProps = async () => {
   const today = moment();
   const startDate = today.startOf("year").format("YYYY-MM-DD");
   const endDate = today.endOf("year").format("YYYY-MM-DD");
-  const getDataByDuration = axios
-    .get(
-      `${process.env.API_BASE_URL}/schedule?category=major&from=${startDate}&to=${endDate}&type=duration`
-    )
-    .then(({ data }) => data)
-    .catch((err) => console.log(err));
-  const getDataByDate = axios
-    .get(
-      `${process.env.API_BASE_URL}/schedule?category=major&from=${startDate}&to=${endDate}`
-    )
-    .then(({ data }) => data)
-    .catch((err) => console.log(err));
-  const [dataByDuration, dataByDate] = await Promise.all([
-    getDataByDuration,
-    getDataByDate,
-  ]);
 
-  const { scheduleTable, maxIndex } = generateScheduleTable(
-    dataByDuration.data
+  const { data } = await axios.get(
+    `${process.env.API_BASE_URL}/schedule?category=major&from=${startDate}&to=${endDate}`
   );
-  return { props: { scheduleTable, maxIndex, scheduleList: dataByDate.data } };
+
+  const { scheduleTable, maxIndex } = generateScheduleTable(data.data);
+  return { props: { scheduleTable, maxIndex, scheduleList: data.data } };
 };
 
 export default withHead(Calendar);
