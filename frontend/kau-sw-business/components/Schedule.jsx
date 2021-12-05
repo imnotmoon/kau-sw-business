@@ -22,7 +22,7 @@ const Schedule = ({ scheduleList, scheduleTable, maxIndex }) => {
         <tbody>
           {scheduleList.map((schedule) => (
             <TableRow key={schedule.id}>
-              <TableData width="30%">
+              <TableData width="fit-content">
                 {moment(schedule.startDate).format("YYYY.MM.DD(ddd)")}
                 {(schedule.startDate !== schedule.endDate) && 
                 ` ~ ${moment(schedule.endDate).format("YYYY.MM.DD(ddd)")}`}
@@ -39,7 +39,7 @@ const Schedule = ({ scheduleList, scheduleTable, maxIndex }) => {
 const Wrapper = styled.div`
   margin-top: 20px;
   width: 100%;
-  color: ${COLORS.PRIMARY1}
+  color: ${COLORS.PRIMARY1};
 `;
 
 const Table = styled.table`
@@ -52,14 +52,15 @@ const TableRow = styled.tr`
   height: 55px;
 
   > td: first-child {
-      background-color: ${COLORS.BACKGROUND}
+      background-color: ${COLORS.BACKGROUND};
+      white-space: nowrap;
   }
 `;
 
 const TableData = styled.td`
   text-align: left;
   width: ${({ width = "200px" }) => width};
-  padding-left: 10px;
+  padding: 0 10px;
   border-top: 1px solid ${COLORS.PRIMARY1};
   border-bottom: 1px solid ${COLORS.PRIMARY1};
   word-break: keep-all;
