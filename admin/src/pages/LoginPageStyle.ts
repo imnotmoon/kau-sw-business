@@ -40,6 +40,7 @@ export const Button = styled.button`
   border-radius: 16px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
+  cursor: pointer;
 
   &:hover,
   active {
@@ -55,6 +56,10 @@ export const Input = styled.div`
   font-size: 18px;
   margin-top: 36px;
 
+  > b {
+    cursor: default;
+  }
+
   & > input {
     color: black;
     backdrop-filter: blur(16px) saturate(180%);
@@ -64,5 +69,6 @@ export const Input = styled.div`
     border: 1px solid ${COLORS.BORDER};
     height: 28px;
     padding-left: 10px;
+    outline: none;
   }
 `;
