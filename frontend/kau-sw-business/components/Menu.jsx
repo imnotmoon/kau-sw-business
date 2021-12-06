@@ -1,17 +1,18 @@
-import React, { useState, useCallback } from 'react';
-import styled from 'styled-components';
-import Image from 'next/image';
+import React, { useState, useCallback } from "react";
+import styled from "styled-components";
+import Image from "next/image";
 
-import { MenuItems } from '../utils/MenuInterface';
-import { COLORS } from '../styles/theme';
-import useToggleDetailMenu from '../hooks/useToggleDetailMenu';
-import MenuLink from './MenuLink';
+import { MenuItems } from "../utils/MenuInterface";
+import { COLORS } from "../styles/theme";
+import useToggleDetailMenu from "../hooks/useToggleDetailMenu";
+import MenuLink from "./MenuLink";
 
-import logo from '../public/img/logo_01.png';
+import logo from "../public/img/logo_01.png";
 
 const Menu = () => {
-  const { dropdownRef, onMouseEnterMenu, onMouseLeaveMenu, buildDetailMenu } = useToggleDetailMenu();
-  const [selectedMenu, setSelectedMenu] = useState('사업단 소개');
+  const { dropdownRef, onMouseEnterMenu, onMouseLeaveMenu, buildDetailMenu } =
+    useToggleDetailMenu();
+  const [selectedMenu, setSelectedMenu] = useState("사업단 소개");
 
   const onFocusSingleMenu = useCallback((e) => {
     const menuName = e.target.innerText.trim();
@@ -19,14 +20,20 @@ const Menu = () => {
   }, []);
 
   const onClickLogo = () => {
-    location.href = '/';
+    location.href = "/";
   };
 
   return (
     <>
       <Container>
         <div>
-          <Image src={logo} width={205} height={36} alt="logo" onClick={onClickLogo} />
+          <Image
+            src={logo}
+            width={205}
+            height={36}
+            alt="logo"
+            onClick={onClickLogo}
+          />
           <MenuEntry onMouseEnter={onMouseEnterMenu} length={MenuItems.length}>
             {MenuItems.map((item, idx) => (
               <MenuLink
@@ -38,10 +45,14 @@ const Menu = () => {
               />
             ))}
           </MenuEntry>
-          <HambergerButton>Menu</HambergerButton>
+          <HambergerButton />
         </div>
       </Container>
-      <DetailMenu ref={dropdownRef} onMouseLeave={onMouseLeaveMenu} length={MenuItems.length}>
+      <DetailMenu
+        ref={dropdownRef}
+        onMouseLeave={onMouseLeaveMenu}
+        length={MenuItems.length}
+      >
         {buildDetailMenu(selectedMenu)}
       </DetailMenu>
     </>
@@ -127,6 +138,14 @@ const DetailMenu = styled.div`
 `;
 
 const HambergerButton = styled.button`
+  width: 21px;
+  height: 16px;
+  background: url("/img/m_all_menu.png") 0 0 no-repeat;
+  background-size: 20px auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
   @media screen and (min-width: 1000px) {
     display: none;
   }
