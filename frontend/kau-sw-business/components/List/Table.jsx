@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import moment from "moment";
 import styled from "styled-components";
 
@@ -28,7 +29,8 @@ function Table({ data, pageMap }) {
         {data.map((row, index) => (
           <TableRow key={row.id}>
             <TableData>
-              {pageMap.total -
+              {row.pinFlag && <Image src="/img/icon_notice.png" alt="pin" width="20" height="20" layout="fixed" />}
+              {!row.pinFlag && pageMap.total -
                 pageMap.rowsPerPage * (pageMap.pageNo - 1) -
                 index}
             </TableData>
