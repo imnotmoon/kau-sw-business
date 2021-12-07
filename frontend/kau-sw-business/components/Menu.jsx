@@ -5,6 +5,7 @@ import Image from "next/image";
 import { MenuItems } from "../utils/MenuInterface";
 import { COLORS } from "../styles/theme";
 import useToggleDetailMenu from "../hooks/useToggleDetailMenu";
+import useToggleSideDetailMenu from "../hooks/useToggleSideDetailMenu";
 import MenuLink from "./MenuLink";
 
 import logo from "../public/img/logo_01.png";
@@ -12,6 +13,7 @@ import logo from "../public/img/logo_01.png";
 const Menu = () => {
   const { dropdownRef, onMouseEnterMenu, onMouseLeaveMenu, buildDetailMenu } =
     useToggleDetailMenu();
+    const { sidebarRef, onClickMenuButton, onClickCloseButton, buildSideDetailMenu } = useToggleSideDetailMenu();
   const [selectedMenu, setSelectedMenu] = useState("사업단 소개");
 
   const onFocusSingleMenu = useCallback((e) => {
@@ -45,7 +47,7 @@ const Menu = () => {
               />
             ))}
           </MenuEntry>
-          <HambergerButton />
+          <HambergerButton onClick={onClickMenuButton}/>
         </div>
       </Container>
       <DetailMenu
@@ -55,6 +57,19 @@ const Menu = () => {
       >
         {buildDetailMenu(selectedMenu)}
       </DetailMenu>
+      <SideDetailMenu ref={sidebarRef}>
+        <SideDetailMenuHeader>
+          <Image
+            src="/img/close_btn.png"
+            alt="close"
+            width="20px"
+            height="20px"
+            layout="fixed"
+            onClick={onClickCloseButton}
+          />
+        </SideDetailMenuHeader>
+        {buildSideDetailMenu()}
+      </SideDetailMenu>
     </>
   );
 };
@@ -134,6 +149,39 @@ const DetailMenu = styled.div`
     margin-right: 5vw;
     display: grid;
     grid-template-columns: repeat(${(props) => props.length}, 120px);
+  }
+`;
+
+const SideDetailMenu = styled.div`
+  height: 100vh;
+  overflow: scroll;
+  width: 92%;
+  max-width: 325px;
+  background-color: ${COLORS.CARD_BORDER};
+  position: fixed;
+  right: -325px;
+  top: 0;
+  z-index: 500;
+  transition: right 0.3s ease;
+
+  > :last-child {
+    border-bottom: 1px solid ${COLORS.PRIMARY1};
+  }
+
+  @media screen and (min-width: 1000px) {
+    display: none;
+  }
+`;
+
+const SideDetailMenuHeader = styled.header`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;
+  padding: 0 20px;
+
+  > div {
+    cursor: pointer;
   }
 `;
 
