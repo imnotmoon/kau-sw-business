@@ -44,13 +44,13 @@ const NoticeController = {
   createNotice: async (req, res, next) => {
     const data = req.body;
     const files = req.files;
-    // const { name } = req.user; // TODO: cookie 적용하면 다시 적용
+    const { name } = req.user;
     const { title, content, category } = data;
     if (!title) return next(createError(400, 'title is required'));
     if (!content) return next(createError(400, 'content is required'));
     if (!category) return next(createError(400, 'category is required'));
 
-    const result = await NoticeService.add({ ...data, writer: '임시관리자' });
+    const result = await NoticeService.add({ ...data, writer: name });
     if (!result || !result.id) return next(createError(500));
 
     FileService.addAll(result.id, files);

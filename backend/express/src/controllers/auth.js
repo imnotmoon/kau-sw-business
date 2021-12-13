@@ -17,7 +17,7 @@ const AuthController = {
     if (!isAuthorized) return next(createError(401, 'check userId or password'));
 
     const token = jwt.sign({ id: admin.id, name: admin.name }, process.env.JWT_SECRET_KEY);
-    res.cookie('token', token, { path: '/', httpOnly: true }); // TODO: sameSite 옵션 쓰려면 epxress 버전 업 or setHeader 사용
+    res.cookie('token', token, { path: '/', httpOnly: true, sameSite: 'none' });
     return res.status(200).json({ token, data: { id: admin.id, name: admin.name } });
   },
   verify: async (req, res, next) => {
