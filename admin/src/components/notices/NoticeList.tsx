@@ -6,15 +6,19 @@ import EditNotice from "./EditNotice";
 import { NoticeDetail, NoticeSummary } from "../../interfaces";
 import { COLORS } from "../../utils/styled";
 import Confirm from "../Confirm";
+import NoticePagination from "./NoticePagination";
+import useNoticePagination from "../../hooks/useNoticePagination";
 
 const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
 	const [editing, setEditing] = useState<NoticeDetail | null>(null);
 	const [modal, setModal] = useState({ show: false, idx: -1 });
+	const { page, filter, onClickPage, onChangeFilter } = useNoticePagination();
 
 	useEffect(() => {
-		APIs.getNoticeSummary().then((result) => setNotices(result.data));
-	}, [modal]);
+		const category = filter === '공지사항' ? 'notice' : 'news';
+		APIs.getNoticeSummary(category).then((result) => setNotices(result.data));
+	}, [modal, filter]);
 
 	const onClickEdit = (idx: number) => {
 		return async (e: React.MouseEvent) => {
@@ -58,7 +62,9 @@ const NoticeList = () => {
 				<h1>공지사항 수정/삭제</h1>
 			<Filter>
 				{['공지사항', '뉴스'].map((item) => {
-					return <FilterItem selected={true}>{item}</FilterItem>
+					return <FilterItem 
+						selected={filter === item ? true : false} 
+						onClick={onChangeFilter}>{item}</FilterItem>
 				})}
 			</Filter>
 			</Title>
@@ -72,6 +78,7 @@ const NoticeList = () => {
 					</div>
 				))}
 				</List>
+				<NoticePagination currentPage={1} length={3} setPage={() => {}}></NoticePagination>
 			</Body>
 		</Container>
 		{modal.show && <Confirm idx={modal.idx} close={closeModal} API={APIs.deleteNotice}/>}
@@ -123,6 +130,8 @@ const Filter = styled.section`
 const FilterItem = styled.div<{selected : boolean}>`
 	color: white;
 	font-size: 18px;
+
+	font-weight: ${({selected}) => selected ? '600' : '400'};
 `
 
 const List = styled.div`
