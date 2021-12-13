@@ -15,13 +15,20 @@ const NoticePagination = ({currentPage, length, setPage}: INoticePagenation) => 
     }
   }
 
+  const [start, end] = [
+    Math.floor((currentPage-1) / 10) * 10,
+    length < 10 ? Math.ceil(length / 10) : Math.floor(currentPage / 10 * 10) + 10
+  ]
+
+  console.log(start, end);
+
   return (
     <Container>
       <Button>{'<'}</Button>
-      {Array.from({length}).map((_, idx) => {
+      {Array.from({length: end - start}).map((_, idx) => {
         return idx+1 === currentPage 
-          ? <Page current={true} onClick={onClickPageButton(idx+1)}>{idx+1}</Page> 
-          : <Page current={false} onClick={onClickPageButton(idx+1)}>{idx+1}</Page>
+          ? <Page current={true} onClick={onClickPageButton(start+idx+1)} key={idx}>{start+idx+1}</Page> 
+          : <Page current={false} onClick={onClickPageButton(start+idx+1)} key={idx}>{start+idx+1}</Page>
       })}
       <Button>{'>'}</Button>
     </Container>

@@ -62,7 +62,7 @@ const NoticeList = () => {
 				<h1>공지사항 수정/삭제</h1>
 			<Filter>
 				{['공지사항', '뉴스'].map((item) => {
-					return <FilterItem 
+					return <FilterItem key={item}
 						selected={filter === item ? true : false} 
 						onClick={onChangeFilter}>{item}</FilterItem>
 				})}
@@ -71,14 +71,14 @@ const NoticeList = () => {
 			
 			<Body>
 				<List>
-				{notices.map((item, idx: number) => (
+				{notices.filter((_, idx) => idx >= (page-1)*10 && idx < (page)*10).map((item, idx: number) => (
 					<div key={idx}>
 					{noticeGenerator(item)}
 					{editing?.id === item.id && <EditNotice content={editing} />}
 					</div>
 				))}
 				</List>
-				<NoticePagination currentPage={1} length={3} setPage={() => {}}></NoticePagination>
+				<NoticePagination currentPage={page} length={notices.length} setPage={onClickPage}></NoticePagination>
 			</Body>
 		</Container>
 		{modal.show && <Confirm idx={modal.idx} close={closeModal} API={APIs.deleteNotice}/>}
