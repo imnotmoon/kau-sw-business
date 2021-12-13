@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: true,
+    origin: ['https://aisw.kau.ac.kr', 'http://localhost:3000'],
     credentials: true,
   })
 );
