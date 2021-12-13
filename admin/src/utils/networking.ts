@@ -7,7 +7,7 @@ import {
 	NoticeSummaryResponse,
 } from "../interfaces";
 
-const BASE_URL = "http://15.164.68.133";
+const BASE_URL = "https://aisw.kau.ac.kr";
 const HEADER = {
 	headers: { "Content-Type": "application/json" },
 	withCredentials: true,

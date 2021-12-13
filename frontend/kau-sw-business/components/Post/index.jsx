@@ -6,9 +6,6 @@ import { useRouter } from 'next/router';
 import Title from '../Title';
 import { COLORS } from "../../styles/theme";
 
-// NEXT ENV로 뺄 예정. 경로도 몰라 지금.
-const FILE_BASE_URL = 'http://15.164.68.133/.../'
-
 function Post({ data }) {
   const router = useRouter();
 

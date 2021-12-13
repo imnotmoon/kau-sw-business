@@ -1,7 +1,7 @@
 module.exports = {
   reactStrictMode: true,
-  images: { domains: ["15.164.68.133"] },
+  images: { domains: ["aisw.kau.ac.kr"] },
   env: {
-    API_BASE_URL: "http://15.164.68.133/api",
+    API_BASE_URL: "https://aisw.kau.ac.kr/api",
   },
 };
