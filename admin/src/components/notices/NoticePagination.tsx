@@ -20,8 +20,6 @@ const NoticePagination = ({currentPage, length, setPage}: INoticePagenation) => 
     length < 10 ? Math.ceil(length / 10) : Math.floor(currentPage / 10 * 10) + 10
   ]
 
-  console.log(start, end);
-
   return (
     <Container>
       <Button onClick={() => {currentPage > 1 && setPage(currentPage-1)}}>{'<'}</Button>
