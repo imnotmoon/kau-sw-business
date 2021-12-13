@@ -54,7 +54,15 @@ const NoticeList = () => {
 	return (
 		<>
 		<Container>
-			<Title>공지사항 수정/삭제</Title>
+			<Title>
+				<h1>공지사항 수정/삭제</h1>
+			<Filter>
+				{['공지사항', '뉴스'].map((item) => {
+					return <FilterItem selected={true}>{item}</FilterItem>
+				})}
+			</Filter>
+			</Title>
+			
 			<Body>
 				<List>
 				{notices.map((item, idx: number) => (
@@ -81,19 +89,41 @@ const Container = styled.div`
 	align-items: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+width: 90%;
+display: flex;
+justift-content: space-between;
+align-items: center;
+border-bottom: 1px solid white;
+
+& > h1 {
 	text-align: left;
 	width: 90%;
 	color: white;
 	font-weight: 300;
-	height: 50px;
 	font-size: 24px;
-	border-bottom: 1px solid white;
+}
+	
 `;
 
 const Body = styled.div`
 	width: 90%;
 `;
+
+const Filter = styled.section`
+	width: 90%;
+	padding-right: 30px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 30px;
+	height: 50px;
+`
+
+const FilterItem = styled.div<{selected : boolean}>`
+	color: white;
+	font-size: 18px;
+`
 
 const List = styled.div`
 	overflow-y: scroll;
