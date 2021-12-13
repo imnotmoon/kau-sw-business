@@ -16,7 +16,7 @@ router.get('/summary', errorHandler(getNoticeSummary));
 router.get('/:id', errorHandler(getNoticeByPk));
 router.get('/', errorHandler(getNotices));
 
-// router.use('/', verify);
+router.use('/', verify);
 router.post(
   '/',
   multer({
