@@ -1,23 +1,17 @@
 # kau-sw-business
-kau 소프트웨어중심대학사업부 사이트
-http://aisw.kau.ac.kr/
+[KAU 소프트웨어중심대학사업부 사이트](https://aisw.kau.ac.kr)
 
-### frontend
-nextjs
-### backend
-nodejs express
+## Front-end
+- Next.js
+- React
 
-##### dev env
-- eslint
-- prettier
-- husky
-- lint-staged
+## Back-end
+- Express.js
+- MySQL
 
-#### front server 실행
-- npm run front
+## Directory
 
-#### backe server 실행
-- npm run server
+- [Main Client](frontend/kau-sw-business)
+- [Admin Client](admin)
+- [Server](backend/express)
 
-### front & server 실행
-- npm run dev
