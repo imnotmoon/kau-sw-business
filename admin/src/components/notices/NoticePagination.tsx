@@ -24,13 +24,13 @@ const NoticePagination = ({currentPage, length, setPage}: INoticePagenation) => 
 
   return (
     <Container>
-      <Button>{'<'}</Button>
+      <Button onClick={() => {currentPage > 1 && setPage(currentPage-1)}}>{'<'}</Button>
       {Array.from({length: end - start}).map((_, idx) => {
         return idx+1 === currentPage 
           ? <Page current={true} onClick={onClickPageButton(start+idx+1)} key={idx}>{start+idx+1}</Page> 
           : <Page current={false} onClick={onClickPageButton(start+idx+1)} key={idx}>{start+idx+1}</Page>
       })}
-      <Button>{'>'}</Button>
+      <Button onClick={() => {currentPage < Math.floor(length / 10) && setPage(currentPage+1)}}>{'>'}</Button>
     </Container>
   )
 }
