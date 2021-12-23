@@ -44,13 +44,13 @@ const NoticeController = {
   createNotice: async (req, res, next) => {
     const data = req.body;
     const files = req.files;
-    // const { name = '임시관리자' } = req.user; // TODO: 사용자 인증 완료되면 추가
+    const { name = '임시관리자' } = req.user; // TODO: 사용자 인증 완료되면 추가
     const { title, content, category } = data;
     if (!title) return next(createError(400, 'title is required'));
     if (!content) return next(createError(400, 'content is required'));
     if (!category) return next(createError(400, 'category is required'));
 
-    const result = await NoticeService.add({ ...data, writer: '임시관리자' });
+    const result = await NoticeService.add({ ...data, writer: name });
     if (!result || !result.id) return next(createError(500));
 
     FileService.addAll(result.id, files);
