@@ -18,7 +18,7 @@ const AuthController = {
 
     const token = jwt.sign({ id: admin.id, name: admin.name }, process.env.JWT_SECRET_KEY);
     // res.cookie('token', token, { path: '/', httpOnly: true });
-    res.cookie('token', token, { path: '/', httpOnly: true, sameSite: 'none', secure: true });
+    res.cookie('token', token, { path: '/', httpOnly: true });
     return res.status(200).json({ token, data: { id: admin.id, name: admin.name } });
   },
   verify: async (req, res, next) => {

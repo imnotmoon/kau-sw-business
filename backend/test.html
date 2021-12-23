@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>File Uploads with Multer</title>
+  </head>
+
+  <body>
+    <h2>Text File Uploads with Multer</h2>
+
+    <form action="http://ec2-15-164-224-252.ap-northeast-2.compute.amazonaws.com:5000/api/notice" charset="UTF-8" enctype="multipart/form-data" method="POST">
+        <input type="text" name="title" /> <br /><br />
+        <input type="text" name="content" /> <br /><br />
+        <input type="text" name="writer" /> <br /><br />
+        <input type="text" name="category" /> <br /><br />
+        <label for="files">Multiple Text File:</label>
+      <input type="file" name="files" /> <br /><br />
+      <input type="file" name="files" /> <br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+  </body>
+
+</html>
