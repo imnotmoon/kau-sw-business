@@ -9,6 +9,7 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
 `;
+
 export const Div = styled(WDiv)`
   width: 500px;
   height: 300px;
@@ -30,6 +31,7 @@ export const Div = styled(WDiv)`
     justify-content: space-between;
   }
 `;
+
 export const Button = styled.button`
   width: 80px;
   height: 44px;
@@ -41,13 +43,15 @@ export const Button = styled.button`
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   cursor: pointer;
+  font-size: 17px;
+  color: white;
 
   &:hover,
   active {
     background-color: rgba(35, 221, 2, 0.6);
-    color: white;
   }
 `;
+
 export const Input = styled.div`
   display: grid;
   grid-template-columns: 2fr 3fr;

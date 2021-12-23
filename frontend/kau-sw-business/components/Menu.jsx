@@ -157,7 +157,8 @@ const SideDetailMenu = styled.div`
   overflow: scroll;
   width: 92%;
   max-width: 325px;
-  background-color: ${COLORS.CARD_BORDER};
+  background-color: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(50px);
   position: fixed;
   right: -325px;
   top: 0;
@@ -165,7 +166,7 @@ const SideDetailMenu = styled.div`
   transition: right 0.3s ease;
 
   > :last-child {
-    border-bottom: 1px solid ${COLORS.PRIMARY1};
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   }
 
   @media screen and (min-width: 1000px) {

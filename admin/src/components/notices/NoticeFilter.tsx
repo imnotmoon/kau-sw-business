@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 interface Filter {
   filters: { category: string, pin: boolean },
-  set: React.Dispatch<{ category: string, pin: boolean }>
+  set: React.Dispatch<{ category: string, pin: boolean }>,
 }
 
 const NoticeFilter = ({ filters, set } : Filter) => {

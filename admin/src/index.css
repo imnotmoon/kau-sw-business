@@ -6,7 +6,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   font-family: 'Noto Sans KR', sans-serif;
-  background-image: url('./bg.png');
   background-size: cover;
   height: 100vh;
   width: 100vw;

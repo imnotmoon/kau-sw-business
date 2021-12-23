@@ -6,15 +6,19 @@ import EditNotice from "./EditNotice";
 import { NoticeDetail, NoticeSummary } from "../../interfaces";
 import { COLORS } from "../../utils/styled";
 import Confirm from "../Confirm";
+import NoticePagination from "./NoticePagination";
+import useNoticePagination from "../../hooks/useNoticePagination";
 
 const NoticeList = () => {
 	const [notices, setNotices] = useState<NoticeSummary[]>([]);
 	const [editing, setEditing] = useState<NoticeDetail | null>(null);
 	const [modal, setModal] = useState({ show: false, idx: -1 });
+	const { page, filter, onClickPage, onChangeFilter } = useNoticePagination();
 
 	useEffect(() => {
-		APIs.getNoticeSummary().then((result) => setNotices(result.data));
-	}, [modal]);
+		const category = filter === '공지사항' ? 'notice' : 'news';
+		APIs.getNoticeSummary(category).then((result) => setNotices(result.data));
+	}, [modal, filter]);
 
 	const onClickEdit = (idx: number) => {
 		return async (e: React.MouseEvent) => {
@@ -54,16 +58,27 @@ const NoticeList = () => {
 	return (
 		<>
 		<Container>
-			<Title>공지사항 수정/삭제</Title>
+			<Title>
+				<h1>공지사항 수정/삭제</h1>
+			<Filter>
+				{['공지사항', '뉴스'].map((item) => {
+					return <FilterItem key={item}
+						selected={filter === item ? true : false} 
+						onClick={onChangeFilter}>{item}</FilterItem>
+				})}
+			</Filter>
+			</Title>
+			
 			<Body>
 				<List>
-				{notices.map((item, idx: number) => (
+				{notices.filter((_, idx) => idx >= (page-1)*10 && idx < (page)*10).map((item, idx: number) => (
 					<div key={idx}>
 					{noticeGenerator(item)}
 					{editing?.id === item.id && <EditNotice content={editing} />}
 					</div>
 				))}
 				</List>
+				<NoticePagination currentPage={page} length={notices.length} setPage={onClickPage}></NoticePagination>
 			</Body>
 		</Container>
 		{modal.show && <Confirm idx={modal.idx} close={closeModal} API={APIs.deleteNotice}/>}
@@ -81,19 +96,43 @@ const Container = styled.div`
 	align-items: center;
 `;
 
-const Title = styled.h1`
+const Title = styled.div`
+width: 90%;
+display: flex;
+justift-content: space-between;
+align-items: center;
+border-bottom: 1px solid white;
+
+& > h1 {
 	text-align: left;
 	width: 90%;
 	color: white;
 	font-weight: 300;
-	height: 50px;
 	font-size: 24px;
-	border-bottom: 1px solid white;
+}
+	
 `;
 
 const Body = styled.div`
 	width: 90%;
 `;
+
+const Filter = styled.section`
+	width: 90%;
+	padding-right: 30px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 30px;
+	height: 50px;
+`
+
+const FilterItem = styled.div<{selected : boolean}>`
+	color: white;
+	font-size: 18px;
+
+	font-weight: ${({selected}) => selected ? '600' : '400'};
+`
 
 const List = styled.div`
 	overflow-y: scroll;
