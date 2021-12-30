@@ -86,7 +86,6 @@ const EditCalendar = () => {
 const Container = styled.div`
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(100px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -139,6 +138,7 @@ const SearchOption = styled.div`
     align-items: center;
     height: 35px;
     position: relative;
+    transition: all 0.3s ease;
 
     & > div {
       width: 150px;
@@ -146,6 +146,7 @@ const SearchOption = styled.div`
     
     &:hover {
       background-color: rgba(85, 129, 179, 0.8);
+      transition: all 0.3s ease;
     }
   }
 `

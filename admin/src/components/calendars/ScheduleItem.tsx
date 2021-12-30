@@ -47,6 +47,7 @@ const Container = styled.div`
   min-width: 850px;
   overflow-x: scroll;
   cursor: pointer;
+  transition: all 0.5s ease;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);

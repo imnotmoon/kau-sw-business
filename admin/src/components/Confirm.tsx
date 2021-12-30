@@ -42,7 +42,7 @@ const Container = styled.div`
   left: 0px;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,8 +53,9 @@ const Modal = styled.div`
   width: 400px;
   height: 250px;
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
