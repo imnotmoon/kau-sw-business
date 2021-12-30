@@ -6,7 +6,6 @@ const EditCalendar = () => {
   return (
     <Container>
       <Title>일정 수정/삭제</Title>
-      
     </Container>
   )
 }
