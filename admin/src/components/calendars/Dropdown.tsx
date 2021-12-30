@@ -28,6 +28,7 @@ const Container = styled.div`
   width: 200px;
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid white;
+  backdrop-filter: blur(10px);
   color: white;
   position: absolute;
   top: 40px;

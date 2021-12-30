@@ -42,26 +42,25 @@ const Container = styled.div`
   left: 0px;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 900;
 `
 
 const Modal = styled.div`
   width: 400px;
   height: 250px;
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(40px);
+  background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   color: white;
-  z-index: 200;
+  z-index: 990;
 
   & > div {
     font-size: 18px;

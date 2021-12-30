@@ -8,6 +8,7 @@ import Calendar from './Calendar';
 import APIs from '../../utils/networking';
 import useToast from '../../utils/toastStore';
 import { Schedule } from '../../interfaces';
+import Confirm from '../Confirm';
 
 export const CATEGORY_MAP : any = {
   'SW 전공교육' : 'major',
@@ -32,6 +33,7 @@ const NewCalendar = ({ edit, schedule } : { edit : boolean, schedule? : Schedule
     onChangeCategory
   } = useCalendarInput(edit, schedule);
   const [_, setToast] = useToast();
+  const [confirm, setConfirm] = useState(false);
 
   const onClickSubmit = async () => {
     if(!checkPostAvailable()) {
@@ -71,60 +73,66 @@ const NewCalendar = ({ edit, schedule } : { edit : boolean, schedule? : Schedule
     }
   }
 
+  const onClickRemove = async () => {
+    setConfirm(true);
+  }
+
   return (
-    <Container>
-      <Title>일정 {edit ? '수정/삭제' : '등록'}</Title>
-      <Form>
-        <FormTitle>
-          <span>제목</span>
-          <input type="text" onChange={onChangeTitle} value={calendarForm.title}/>
-        </FormTitle>
-        <FormLink>
-          <span>연결 링크</span>
+    <>
+      <Container>
+        <Title>일정 {edit ? '수정/삭제' : '등록'}</Title>
+        <Form>
+          <FormTitle>
+            <span>제목</span>
+            <input type="text" onChange={onChangeTitle} value={calendarForm.title}/>
+          </FormTitle>
+          <FormLink>
+            <span>연결 링크</span>
+            <div>
+              <div onClick={() => { setShowBigCategory(!showBigCategory); setShowSmallCategory(false) }}>
+                {bigCategory}
+                {showBigCategory && <Dropdown onClick={onChangeBigCategory}/>}
+              </div>
+              <div onClick={() => { setShowSmallCategory(!showSmallCategory); setShowBigCategory(false) }}>
+                {smallCategory}
+                {showSmallCategory && <Dropdown bigCategory={bigCategory} onClick={onChangeSmallCategory}/>}
+              </div>
+            </div>
+          </FormLink>
+          <FormCategory>
+            <span>카테고리</span>
+            <div onClick={() => { setShowCalendarCategory(!showCalendarCategory); }}>
+              {calendarForm.category}
+              {showCalendarCategory && <Dropdown type="category" onClick={onChangeCategory} />}
+            </div>
+          </FormCategory>
           <div>
-            <div onClick={() => { setShowBigCategory(!showBigCategory); setShowSmallCategory(false) }}>
-              {bigCategory}
-              {showBigCategory && <Dropdown onClick={onChangeBigCategory}/>}
-            </div>
-            <div onClick={() => { setShowSmallCategory(!showSmallCategory); setShowBigCategory(false) }}>
-              {smallCategory}
-              {showSmallCategory && <Dropdown bigCategory={bigCategory} onClick={onChangeSmallCategory}/>}
-            </div>
+            <span>기간</span>
+            <Calendar 
+              startDate={calendarForm.startDate} 
+              endDate={calendarForm.endDate} 
+              changeStartDate={onChangeStartDate} 
+              changeEndDate={onChangeEndDate}
+            />
           </div>
-        </FormLink>
-        <FormCategory>
-          <span>카테고리</span>
-          <div onClick={() => { setShowCalendarCategory(!showCalendarCategory); }}>
-            {calendarForm.category}
-            {showCalendarCategory && <Dropdown type="category" onClick={onChangeCategory} />}
-          </div>
-        </FormCategory>
-        <div>
-          <span>기간</span>
-          <Calendar 
-            startDate={calendarForm.startDate} 
-            endDate={calendarForm.endDate} 
-            changeStartDate={onChangeStartDate} 
-            changeEndDate={onChangeEndDate}
-          />
-        </div>
-        {
-          edit 
-          ? <Buttons>
-              <Button>삭제</Button>
-              <Button onClick={onClickEdit}>수정</Button>
-            </Buttons>
-          : <Button onClick={onClickSubmit}>등록</Button>
-        }
-      </Form>
-    </Container>
+          {
+            edit 
+            ? <Buttons>
+                <Button onClick={onClickRemove}>삭제</Button>
+                <Button onClick={onClickEdit}>수정</Button>
+              </Buttons>
+            : <Button onClick={onClickSubmit}>등록</Button>
+          }
+        </Form>
+      </Container>
+      {confirm && <Confirm idx={schedule!.id} API={APIs.deleteSchedule} close={() => { setConfirm(false) }}/>}
+    </>
   )
 }
 
 const Container = styled.div`
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(100px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;

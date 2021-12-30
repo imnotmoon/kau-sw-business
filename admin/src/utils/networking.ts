@@ -110,6 +110,9 @@ const APIs = {
 		}).then((res) => res.data);
 	},
 
+	deleteSchedule : (id: number) => {
+		return axios.delete(`${BASE_URL}/api/schedule/${id}`).then((res) => res.data);
+	}
 
 };
 
