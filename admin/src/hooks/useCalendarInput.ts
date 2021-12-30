@@ -4,12 +4,14 @@ import { LINKS } from '../components/calendars/links';
 interface ICalendarForm {
   title?: string,
   link?: string,
-  startDate?: Date,
-  endDate?: Date,
+  startDate?: string,
+  endDate?: string,
 }
 
 const useCalendarInput = () => {
   const [calendarForm, setCalendarForm] = useState<ICalendarForm>({
+    startDate: '',
+    endDate: '',
   });
   const [bigCategory, setBigCategory] = useState<undefined | string>();
   const [smallCategory, setSmallCategory] = useState<undefined | string>();
@@ -20,12 +22,10 @@ const useCalendarInput = () => {
   } 
 
   const onChangeBigCategory = (e: React.MouseEvent) => {
-    console.log((e.target as HTMLDivElement).innerText)
     setBigCategory((e.target as HTMLDivElement).innerText.trim());
   }
 
   const onChangeSmallCategory = (e: React.MouseEvent) => {
-    console.log((e.target as HTMLDivElement).innerText)
     setSmallCategory((e.target as HTMLDivElement).innerText.trim());
   }
 
@@ -35,11 +35,22 @@ const useCalendarInput = () => {
   }, [smallCategory]);
 
   const onChangeStartDate = (e: React.FormEvent) => {
-
+    const newStartDate = (e.target as HTMLInputElement).value;
+    if(!calendarForm.endDate) {
+      setCalendarForm({ ...calendarForm, startDate: newStartDate });
+    } else {
+      if(calendarForm.endDate >= newStartDate) setCalendarForm({ ...calendarForm, startDate: newStartDate });
+    }
+    
   }
 
   const onChangeEndDate = (e: React.FormEvent) => {
-
+    const newEndDate = (e.target as HTMLInputElement).value;
+    if(!calendarForm.startDate) {
+      setCalendarForm({ ...calendarForm, endDate : newEndDate });
+    } else {
+      if(calendarForm.startDate <= newEndDate) setCalendarForm({ ...calendarForm, endDate: newEndDate });
+    }
   }
 
   return {

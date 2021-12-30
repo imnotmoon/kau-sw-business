@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 import { Title } from '../notices/NewNoticeStyle'
 import Dropdown from './Dropdown';
 import useCalendarInput from '../../hooks/useCalendarInput';
+import Calendar from './Calendar';
 
 const NewCalendar = () => {
   const [showBigCategory, setShowBigCategory] = useState(false);
@@ -24,7 +25,7 @@ const NewCalendar = () => {
       <Form>
         <FormTitle>
           <span>제목</span>
-          <input type="text" />
+          <input type="text" onChange={onChangeTitle}/>
         </FormTitle>
         <FormLink>
           <span>연결 링크</span>
@@ -39,13 +40,15 @@ const NewCalendar = () => {
             </div>
           </div>
         </FormLink>
-        <div>
+        <FormCalendar>
           <span>기간</span>
-          <div>
-            <div>시작 날짜</div>
-            <div>종료 날짜</div>
-          </div>
-        </div>
+          <Calendar 
+            startDate={calendarForm.startDate} 
+            endDate={calendarForm.endDate} 
+            changeStartDate={onChangeStartDate} 
+            changeEndDate={onChangeEndDate}
+          />
+        </FormCalendar>
       </Form>
     </Container>
   )
@@ -115,6 +118,10 @@ const FormLink = styled.div`
       position: relative;
     }
   }
+`
+
+const FormCalendar = styled.div`
+
 `
 
 export default NewCalendar
