@@ -40,6 +40,7 @@ const DateInput = styled.input`
   border: 1px solid white;
   height: 35px;
   width: 200px;
+  padding-left: 10px;
   
   &:focus {
     outline: none;

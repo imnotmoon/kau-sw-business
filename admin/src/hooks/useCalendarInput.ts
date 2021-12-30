@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { LINKS } from '../components/calendars/links';
 
-interface ICalendarForm {
-  title?: string,
-  link?: string,
-  startDate?: string,
-  endDate?: string,
+export interface ICalendarForm {
+  title: string,
+  link: string,
+  startDate: string,
+  endDate: string,
+  category: string,
 }
 
 const useCalendarInput = () => {
   const [calendarForm, setCalendarForm] = useState<ICalendarForm>({
+    title: '',
+    link: '',
     startDate: '',
     endDate: '',
+    category: 'major',
   });
   const [bigCategory, setBigCategory] = useState<undefined | string>();
   const [smallCategory, setSmallCategory] = useState<undefined | string>();
-
-  console.log(calendarForm);
 
   const onChangeTitle = (e: React.FormEvent) => {
     if(!(e.target as HTMLInputElement).value) return;
@@ -55,6 +57,10 @@ const useCalendarInput = () => {
     }
   }
 
+  const onChangeCategory = (e: React.MouseEvent) => {
+    setCalendarForm({ ...calendarForm, category: (e.target as HTMLDivElement).innerText.trim() })
+  }
+
   return {
     calendarForm,
     bigCategory,
@@ -64,6 +70,7 @@ const useCalendarInput = () => {
     onChangeSmallCategory,
     onChangeStartDate,
     onChangeEndDate,
+    onChangeCategory,
   }
 
 }

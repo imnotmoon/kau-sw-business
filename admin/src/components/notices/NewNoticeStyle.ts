@@ -57,7 +57,7 @@ export const Button = styled.button`
 	&:hover {
 		border: 1px solid rgba(85, 129, 179, 0.8);
 		background-color: rgba(85, 129, 179, 0.8);
-		transition: all 0.5s ease;
+		transition: all 0.3s ease;
 	}
 `;
 

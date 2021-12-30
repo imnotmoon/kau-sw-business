@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ICalendarForm } from "../hooks/useCalendarInput";
 import {
 	BannerPostResponse,
 	BannerSummaryResponse,
@@ -7,7 +8,7 @@ import {
 	NoticeSummaryResponse,
 } from "../interfaces";
 
-const BASE_URL = "";
+const BASE_URL = "https://aisw.kau.ac.kr";
 const HEADER = {
 	headers: { "Content-Type": "application/json" },
 	withCredentials: true,
@@ -78,6 +79,23 @@ const APIs = {
 	deleteBanner: (idx: number) => {
 		return axios.delete(`${BASE_URL}/api/banner/${idx}`).then((res) => res.data);
 	},
+
+	//* Schedules
+	getSchedules: () => {},
+	
+	postSchedule: (data: ICalendarForm) => {
+		return axios.post(`${BASE_URL}/api/schedule`, data, {
+			headers: {
+				"Content-Type": "application/json",
+			}
+		}).then((res) => res.data);
+	},
+
+	editSchedule: (data: FormData) => {
+
+	},
+
+
 };
 
 export default APIs;
