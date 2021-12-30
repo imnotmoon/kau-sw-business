@@ -18,7 +18,7 @@ const Dropdown = ({ type, bigCategory, onClick } : IDropdown) => {
   return (
     <Container>
       {items.map((menuName) => {
-        return <div onClick={onClick}>{menuName}</div>
+        return <div onClick={onClick} key={menuName}>{menuName}</div>
       })}
     </Container>
   )

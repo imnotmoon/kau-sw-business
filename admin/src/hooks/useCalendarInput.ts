@@ -16,6 +16,8 @@ const useCalendarInput = () => {
   const [bigCategory, setBigCategory] = useState<undefined | string>();
   const [smallCategory, setSmallCategory] = useState<undefined | string>();
 
+  console.log(calendarForm);
+
   const onChangeTitle = (e: React.FormEvent) => {
     if(!(e.target as HTMLInputElement).value) return;
     setCalendarForm({...calendarForm, title: (e.target as HTMLInputElement).value});

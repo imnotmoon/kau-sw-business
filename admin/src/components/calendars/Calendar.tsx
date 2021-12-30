@@ -13,11 +13,11 @@ const Calendar = ({startDate, endDate, changeStartDate, changeEndDate} : ICalend
     <Container>
       <div>
         <div>시작 날짜</div>
-        <input type="date" onChange={changeStartDate} value={startDate}/>
+        <DateInput type="date" onChange={changeStartDate} value={startDate}/>
       </div>
       <div>
         <div>종료 날짜</div>
-        <input type="date" onChange={changeEndDate} value={endDate}/>
+        <DateInput type="date" onChange={changeEndDate} value={endDate}/>
       </div>
     </Container>
   )
@@ -32,6 +32,17 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+`
+
+const DateInput = styled.input`
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid white;
+  height: 35px;
+  width: 200px;
+  
+  &:focus {
+    outline: none;
   }
 `
 
