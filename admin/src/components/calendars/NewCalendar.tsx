@@ -37,10 +37,10 @@ const NewCalendar = () => {
       setToast({show: true, content: '모든 내용을 입력해주세요.'});
       return;
     }
-    // const result = await APIs.postSchedule({...calendarForm, category: CATEGORY_MAP[calendarForm.category]});
-    // if(result.success) {
-    setToast({show: true, content: '일정 등록에 성공했습니다.'});
-    // }
+    const result = await APIs.postSchedule({...calendarForm, category: CATEGORY_MAP[calendarForm.category]});
+    if(result.success) {
+      setToast({show: true, content: '일정 등록에 성공했습니다.'});
+    }
   }
 
   const checkPostAvailable = () => {
