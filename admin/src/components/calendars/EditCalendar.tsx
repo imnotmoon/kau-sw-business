@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-const DeleteCalendar = () => {
+const EditCalendar = () => {
   return (
     <Container>
       
@@ -11,4 +11,4 @@ const DeleteCalendar = () => {
 
 const Container = styled.div``
 
-export default DeleteCalendar
+export default EditCalendar

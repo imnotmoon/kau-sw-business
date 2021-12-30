@@ -32,7 +32,7 @@ const SideMenu = ({ page, currentPage, setDetailMenu }: SideMenuProps) => {
 const menus: Menus = {
 	notices: { "새 공지사항 작성": "/notices/new", "공지사항 수정/삭제": "/notices/edit" },
 	banners: { "배너 등록" : '/banners/new', "배너 수정/삭제" : '/banners/edit'},
-	calendars: { "일정 등록" : '/calendars/new', "일정 삭제" : '/calendars/delete'},
+	calendars: { "일정 등록" : '/calendars/new', "일정 수정/삭제" : '/calendars/delete'},
 	accounts: { '계정 등록' : '/accounts/new', '권한 관리' : 'accounts/authority', '계정 삭제' : 'accounts/delete'}
 };
 

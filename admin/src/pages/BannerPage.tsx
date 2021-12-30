@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 import SideMenu from "../components/SideMenu";
 import NewBanner from "../components/banners/NewBanner";
-import DeleteBanner from "../components/banners/DeleteBanner";
+import DeleteBanner from "../components/banners/EditBanner";
 
 const BannerPage = () => {
 	const [detailMenu, setDetailMenu] = useState('배너 등록');
