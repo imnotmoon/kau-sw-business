@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
+
 import { LINKS } from '../components/calendars/links';
+import { Schedule } from '../interfaces';
+import { CATEGORY_MAP_REVERSE } from '../components/calendars/ScheduleItem';
 
 export interface ICalendarForm {
   title: string,
@@ -9,13 +12,13 @@ export interface ICalendarForm {
   category: string,
 }
 
-const useCalendarInput = () => {
+const useCalendarInput = (edit : boolean, schedule: undefined | Schedule) => {
   const [calendarForm, setCalendarForm] = useState<ICalendarForm>({
-    title: '',
-    link: '',
-    startDate: '',
-    endDate: '',
-    category: 'SW 전공교육',
+    title: schedule ? schedule.title : '',
+    link: schedule ? schedule.link : '',
+    startDate: schedule ? schedule.startDate : '',
+    endDate: schedule ? schedule.endDate : '',
+    category: schedule ? CATEGORY_MAP_REVERSE[schedule.category] : 'SW 전공교육',
   });
   const [bigCategory, setBigCategory] = useState<undefined | string>();
   const [smallCategory, setSmallCategory] = useState<undefined | string>();

@@ -8,6 +8,7 @@ import {
 	LoginResponse,
 	NoticeDetailResponse,
 	NoticeSummaryResponse,
+	Schedule,
 } from "../interfaces";
 
 const BASE_URL = "https://aisw.kau.ac.kr";
@@ -101,8 +102,12 @@ const APIs = {
 		}).then((res) => res.data);
 	},
 
-	editSchedule: (data: FormData) => {
-
+	putSchedule: (data: Schedule) => {
+		return axios.put(`${BASE_URL}/api/schedule`, data, {
+			headers: {
+				"Content-Type": "application/json",
+			}
+		}).then((res) => res.data);
 	},
 
 

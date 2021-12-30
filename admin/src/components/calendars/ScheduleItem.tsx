@@ -1,9 +1,10 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
 
-import { Schedule } from '../../interfaces'
+import { Schedule } from '../../interfaces';
+import NewCalendar from './NewCalendar';
 
-const CATEGORY_MAP: any = {
+export const CATEGORY_MAP_REVERSE: any = {
   'major' : 'SW 전공교육',
   'collab' : '산학협력',
   'SW기초·융합교육': 'basic',
@@ -11,15 +12,24 @@ const CATEGORY_MAP: any = {
 }
 
 const ScheduleItem = ({schedule} : {schedule: Schedule}) => {
+  const [opened, setOpened] = useState(false);
+
+  const onClickItem = (e:React.MouseEvent) => {
+    setOpened(!opened);
+  }
+
   return (
-    <Container>
-      <div>{schedule.id}</div>
-      <div>{schedule.title}</div>
-      <div>{CATEGORY_MAP[schedule.category]}</div>
-      <div>{schedule.link}</div>
-      <div>{schedule.startDate}</div>
-      <div>{schedule.endDate}</div>
-    </Container>
+    <>
+      <Container onClick={onClickItem}>
+        <div>{schedule.id}</div>
+        <div>{schedule.title}</div>
+        <div>{CATEGORY_MAP_REVERSE[schedule.category]}</div>
+        <div>{schedule.link}</div>
+        <div>{schedule.startDate}</div>
+        <div>{schedule.endDate}</div>
+      </Container>
+      {opened && <NewCalendar edit={true} schedule={schedule}/>}
+    </>
   )
 }
 
@@ -32,6 +42,11 @@ const Container = styled.div`
   color: white;
   min-width: 850px;
   overflow-x: scroll;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 
   & > div {
     display: flex;

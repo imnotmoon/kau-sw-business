@@ -7,6 +7,7 @@ import useCalendarInput, { ICalendarForm } from '../../hooks/useCalendarInput';
 import Calendar from './Calendar';
 import APIs from '../../utils/networking';
 import useToast from '../../utils/toastStore';
+import { Schedule } from '../../interfaces';
 
 export const CATEGORY_MAP : any = {
   'SW 전공교육' : 'major',
@@ -15,7 +16,7 @@ export const CATEGORY_MAP : any = {
   'SW가치확산': 'influence'
 }
 
-const NewCalendar = () => {
+const NewCalendar = ({ edit, schedule } : { edit : boolean, schedule? : Schedule }) => {
   const [showBigCategory, setShowBigCategory] = useState(false);
   const [showSmallCategory, setShowSmallCategory] = useState(false);
   const [showCalendarCategory, setShowCalendarCategory] = useState(false);
@@ -29,7 +30,7 @@ const NewCalendar = () => {
     onChangeStartDate, 
     onChangeEndDate,
     onChangeCategory
-  } = useCalendarInput();
+  } = useCalendarInput(edit, schedule);
   const [_, setToast] = useToast();
 
   const onClickSubmit = async () => {
@@ -40,6 +41,8 @@ const NewCalendar = () => {
     const result = await APIs.postSchedule({...calendarForm, category: CATEGORY_MAP[calendarForm.category]});
     if(result.success) {
       setToast({show: true, content: '일정 등록에 성공했습니다.'});
+    } else {
+      setToast({show: true, content: '일정 등록에 실패했습니다.'})
     }
   }
 
@@ -53,13 +56,28 @@ const NewCalendar = () => {
     return true;
   }
 
+  const onClickEdit = async () => {
+    if(!checkPostAvailable()) {
+      setToast({show: true, content: '모든 내용을 입력해주세요.'});
+      return;
+    }
+    const result = await APIs.putSchedule(
+      { id: schedule!.id, ...calendarForm, category: CATEGORY_MAP[calendarForm.category] }
+    );
+    if(result.success) {
+      setToast({show: true, content: '일정 수정에 성공했습니다.'});
+    } else {
+      setToast({show: true, content: '일정 수정에 실패했습니다.'})
+    }
+  }
+
   return (
     <Container>
-      <Title>일정 등록</Title>
+      <Title>일정 {edit ? '수정/삭제' : '등록'}</Title>
       <Form>
         <FormTitle>
           <span>제목</span>
-          <input type="text" onChange={onChangeTitle}/>
+          <input type="text" onChange={onChangeTitle} value={calendarForm.title}/>
         </FormTitle>
         <FormLink>
           <span>연결 링크</span>
@@ -90,7 +108,14 @@ const NewCalendar = () => {
             changeEndDate={onChangeEndDate}
           />
         </div>
-        <Button onClick={onClickSubmit}>등록</Button>
+        {
+          edit 
+          ? <Buttons>
+              <Button>삭제</Button>
+              <Button onClick={onClickEdit}>수정</Button>
+            </Buttons>
+          : <Button onClick={onClickSubmit}>등록</Button>
+        }
       </Form>
     </Container>
   )
@@ -179,6 +204,13 @@ const FormCategory = styled.div`
   }
 `
 
+const Buttons = styled.div`
+  width: 90%;
+  align-self: center;
+  display: flex !important;
+  justify-content: flex-end;
+`
+
 const Button = styled.button`
   margin-top: 80px;
   border: 1px solid white;
@@ -190,6 +222,7 @@ const Button = styled.button`
   border-radius: 5px;
   font-size: 16px;
   transition: all 0.3s ease;
+  margin-bottom: 30px;
 
   &:hover {
     background-color: rgba(85, 129, 179, 0.8);

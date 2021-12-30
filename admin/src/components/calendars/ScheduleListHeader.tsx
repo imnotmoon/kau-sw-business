@@ -23,6 +23,7 @@ const Header = styled.div`
   align-items: center;
   position: absolute;
   width: 90%;
+  z-index: 990;
   background-color: rgb(50, 50, 50);
   backdrop-filter: blur(5px);
 

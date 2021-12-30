@@ -16,7 +16,7 @@ const CalendarPage = () => {
 		<Layout>
 			<SideMenu page="calendars" currentPage={detailMenu} setDetailMenu={setDetailMenu}/>
 			<Body>
-				{detailMenu === '일정 등록' ? <NewCalendar /> : <EditCalendar />}
+				{detailMenu === '일정 등록' ? <NewCalendar edit={false} /> : <EditCalendar />}
 				{toast.show && <Toast />}
 			</Body>
 		</Layout>
