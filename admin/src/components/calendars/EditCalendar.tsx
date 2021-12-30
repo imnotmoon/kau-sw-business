@@ -52,7 +52,7 @@ const EditCalendar = () => {
       <Title>일정 수정/삭제</Title>
       <div>
         <Search>
-          <span>검색</span>
+          <span></span>
           <div>
             <SearchOption>
               <span>시작</span>
@@ -154,6 +154,8 @@ const SearchOption = styled.div`
 const ScheduleList = styled.section`
   overflow-y: scroll;
   height: calc(100vh - 300px);
+  width: 100%;
+  position: relative;
 `
 
 const Padding = styled.div`

@@ -22,10 +22,9 @@ const Header = styled.div`
   color: white;
   align-items: center;
   position: absolute;
-  width: 90%;
+  width: 100%;
   z-index: 200;
   background-color: rgb(50, 50, 50);
-  backdrop-filter: blur(5px);
 
   & > div {
     text-align: center;
