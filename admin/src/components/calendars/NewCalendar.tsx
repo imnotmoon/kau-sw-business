@@ -3,18 +3,20 @@ import styled from '@emotion/styled'
 
 import { Title } from '../notices/NewNoticeStyle'
 import Dropdown from './Dropdown';
+import useCalendarInput from '../../hooks/useCalendarInput';
 
 const NewCalendar = () => {
-  const [showBigCaategory, setShowBigCategory] = useState(false);
+  const [showBigCategory, setShowBigCategory] = useState(false);
   const [showSmallCategory, setShowSmallCategory] = useState(false);
-
-  const onClickBigCategory = (e: React.MouseEvent) => {
-
-  }
-
-  const onClickSmallCategory = (e: React.MouseEvent) => {
-
-  }
+  const { 
+    calendarForm,
+    bigCategory,
+    smallCategory,
+    onChangeTitle, 
+    onChangeBigCategory, 
+    onChangeSmallCategory, 
+    onChangeStartDate, 
+    onChangeEndDate} = useCalendarInput();
 
   return (
     <Container>
@@ -27,10 +29,14 @@ const NewCalendar = () => {
         <FormLink>
           <span>연결 링크</span>
           <div>
-            <div>대분류 드롭다운 들어갈 영역</div>
-            {showBigCaategory && <Dropdown type="big"/>}
-            <div>소분류 드롭다운 들어갈 영역</div>
-            {showSmallCategory && <Dropdown type="small"/>}
+            <div onClick={() => { setShowBigCategory(!showBigCategory); setShowSmallCategory(false) }}>
+              {bigCategory}
+              {showBigCategory && <Dropdown type="big" onClick={onChangeBigCategory}/>}
+            </div>
+            <div onClick={() => { setShowSmallCategory(!showSmallCategory); setShowBigCategory(false) }}>
+              {smallCategory}
+              {showSmallCategory && <Dropdown type="small" bigCategory={bigCategory} onClick={onChangeSmallCategory}/>}
+            </div>
           </div>
         </FormLink>
         <div>
@@ -103,6 +109,10 @@ const FormLink = styled.div`
       color: white;
       width: 200px;
       height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
   }
 `
