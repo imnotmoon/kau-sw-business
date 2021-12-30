@@ -41,9 +41,7 @@ const Container = styled.aside`
 	top: 0px;
 	left: 0px;
 	width: 250px;
-
 	background-color: rgba(255, 255, 255, 0.1);
-	backdrop-filter: blur(50px);
 
 	display: flex;
 	flex-direction: column;
