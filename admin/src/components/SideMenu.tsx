@@ -36,7 +36,7 @@ const menus: Menus = {
 	accounts: { '계정 등록' : '/accounts/new', '권한 관리' : 'accounts/authority', '계정 삭제' : 'accounts/delete'}
 };
 
-const Container = styled.div`
+const Container = styled.aside`
 	height: 100%;
 	top: 0px;
 	left: 0px;

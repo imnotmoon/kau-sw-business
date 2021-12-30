@@ -48,3 +48,23 @@ export interface BannerPostResponse {
 	bannerId: number;
 	success: boolean;
 }
+
+export interface getSchedulesParam {
+	startDate?: string;
+	endDate?: string;
+	category?: string;
+	order?: string;
+}
+
+export interface getSchedulesResponse {
+	data: Array<Schedule>;
+}
+
+export interface Schedule {
+	id: number;
+	category: string;
+	startDate: string;
+	endDate: string;
+	link: string;
+	title: string;
+}

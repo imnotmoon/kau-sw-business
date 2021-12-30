@@ -3,6 +3,8 @@ import { ICalendarForm } from "../hooks/useCalendarInput";
 import {
 	BannerPostResponse,
 	BannerSummaryResponse,
+	getSchedulesParam,
+	getSchedulesResponse,
 	LoginResponse,
 	NoticeDetailResponse,
 	NoticeSummaryResponse,
@@ -81,7 +83,15 @@ const APIs = {
 	},
 
 	//* Schedules
-	getSchedules: () => {},
+	getSchedules: ({ startDate, endDate, order, category}: getSchedulesParam) => {
+		let url = `${BASE_URL}/api/schedule?`
+		if(startDate && startDate.length > 0) url += `&from=${startDate}`;
+		if(endDate && endDate.length > 0) url += `&to=${endDate}`;
+		if(category && category.length > 0) url += `&category=${category}`
+		if(order && order.length > 0) url += `&order=${order}`
+
+		return axios.get<getSchedulesResponse>(url).then((res) => res.data);
+	},
 	
 	postSchedule: (data: ICalendarForm) => {
 		return axios.post(`${BASE_URL}/api/schedule`, data, {

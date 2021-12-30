@@ -8,7 +8,7 @@ import Calendar from './Calendar';
 import APIs from '../../utils/networking';
 import useToast from '../../utils/toastStore';
 
-const CATEGORY_MAP : any = {
+export const CATEGORY_MAP : any = {
   'SW 전공교육' : 'major',
   '산학협력': 'collab',
   'SW기초·융합교육': 'basic',
@@ -172,6 +172,10 @@ const FormCategory = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+
+    &:hover {
+      background-color: rgba(85, 129, 179, 0.8);
+    }
   }
 `
 

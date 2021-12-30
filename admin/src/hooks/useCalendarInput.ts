@@ -15,7 +15,7 @@ const useCalendarInput = () => {
     link: '',
     startDate: '',
     endDate: '',
-    category: 'major',
+    category: 'SW 전공교육',
   });
   const [bigCategory, setBigCategory] = useState<undefined | string>();
   const [smallCategory, setSmallCategory] = useState<undefined | string>();
@@ -45,7 +45,6 @@ const useCalendarInput = () => {
     } else {
       if(calendarForm.endDate >= newStartDate) setCalendarForm({ ...calendarForm, startDate: newStartDate });
     }
-    
   }
 
   const onChangeEndDate = (e: React.FormEvent) => {
