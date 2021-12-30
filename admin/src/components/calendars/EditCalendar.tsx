@@ -41,7 +41,11 @@ const EditCalendar = () => {
 
   useEffect(() => {
     APIs.getSchedules({startDate, endDate, category: CATEGORY_MAP[category], order: 'date'}).then(res => setSchedules(res.data));
-  }, [category, startDate, endDate])
+  }, [category, startDate, endDate]);
+
+  const refresh = () => {
+    APIs.getSchedules({startDate, endDate, category: CATEGORY_MAP[category], order: 'date'}).then(res => setSchedules(res.data));
+  }
 
   return (
     <Container>
@@ -71,7 +75,7 @@ const EditCalendar = () => {
           <ScheduleListHeader />
           <Padding />
           {schedules.map((schedule) => {
-            return <ScheduleItem schedule={schedule} key={schedule.id}/>
+            return <ScheduleItem schedule={schedule} key={schedule.id} refresh={refresh}/>
           })}
         </ScheduleList>
       </div>

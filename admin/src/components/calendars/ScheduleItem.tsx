@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { Schedule } from '../../interfaces';
@@ -11,12 +11,16 @@ export const CATEGORY_MAP_REVERSE: any = {
   'SW가치확산' : 'influence'
 }
 
-const ScheduleItem = ({schedule} : {schedule: Schedule}) => {
+const ScheduleItem = ({schedule, refresh} : { schedule: Schedule, refresh: () => void }) => {
   const [opened, setOpened] = useState(false);
 
   const onClickItem = (e:React.MouseEvent) => {
     setOpened(!opened);
   }
+
+  useEffect(() => {
+    refresh();
+  }, [opened])
 
   return (
     <>
@@ -28,7 +32,7 @@ const ScheduleItem = ({schedule} : {schedule: Schedule}) => {
         <div>{schedule.startDate}</div>
         <div>{schedule.endDate}</div>
       </Container>
-      {opened && <NewCalendar edit={true} schedule={schedule}/>}
+      {opened && <NewCalendar edit={true} schedule={schedule} />}
     </>
   )
 }
