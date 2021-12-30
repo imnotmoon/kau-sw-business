@@ -5,8 +5,11 @@ import Layout from "../components/Layout";
 import SideMenu from "../components/SideMenu";
 import NewCalendar from "../components/calendars/NewCalendar";
 import EditCalendar from "../components/calendars/EditCalendar";
+import Toast from "../components/Toast";
+import useToast from "../utils/toastStore";
 
 const CalendarPage = () => {
+	const [toast] = useToast();
 	const [detailMenu, setDetailMenu] = useState('일정 등록');
 
 	return (
@@ -14,6 +17,7 @@ const CalendarPage = () => {
 			<SideMenu page="calendars" currentPage={detailMenu} setDetailMenu={setDetailMenu}/>
 			<Body>
 				{detailMenu === '일정 등록' ? <NewCalendar /> : <EditCalendar />}
+				{toast.show && <Toast />}
 			</Body>
 		</Layout>
 	);

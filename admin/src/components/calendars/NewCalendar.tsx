@@ -6,6 +6,7 @@ import Dropdown from './Dropdown';
 import useCalendarInput, { ICalendarForm } from '../../hooks/useCalendarInput';
 import Calendar from './Calendar';
 import APIs from '../../utils/networking';
+import useToast from '../../utils/toastStore';
 
 const CATEGORY_MAP : any = {
   'SW 전공교육' : 'major',
@@ -29,12 +30,17 @@ const NewCalendar = () => {
     onChangeEndDate,
     onChangeCategory
   } = useCalendarInput();
+  const [_, setToast] = useToast();
 
   const onClickSubmit = async () => {
-    if(!checkPostAvailable()) return;
-    
-    const result = await APIs.postSchedule({...calendarForm, category: CATEGORY_MAP[calendarForm.category]});
-    console.log(result);
+    if(!checkPostAvailable()) {
+      setToast({show: true, content: '모든 내용을 입력해주세요.'});
+      return;
+    }
+    // const result = await APIs.postSchedule({...calendarForm, category: CATEGORY_MAP[calendarForm.category]});
+    // if(result.success) {
+    setToast({show: true, content: '일정 등록에 성공했습니다.'});
+    // }
   }
 
   const checkPostAvailable = () => {

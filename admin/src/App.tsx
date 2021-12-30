@@ -10,18 +10,18 @@ import AccountPage from "./pages/AccountPage";
 
 function App() {
 	return (
-		<Router>
-			<div className="App">
-				<Switch>
-					<Route exact path="/login" component={LoginPage} />
-					<Route exact path="/notices" component={NoticePage} />
-					<Route exact path="/banners" component={BannerPage} />
-					<Route exact path="/calendars" component={CalendarPage} />
-					<Route exact path="/accounts" component={AccountPage} />
-					<Route path="/" component={MainPage} />
-				</Switch>
-			</div>
-		</Router>
+			<Router>
+				<div className="App">
+					<Switch>
+						<Route exact path="/login" component={LoginPage} />
+						<Route exact path="/notices" component={NoticePage} />
+						<Route exact path="/banners" component={BannerPage} />
+						<Route exact path="/calendars" component={CalendarPage} />
+						<Route exact path="/accounts" component={AccountPage} />
+						<Route path="/" component={MainPage} />
+					</Switch>
+				</div>
+			</Router>
 	);
 }
 
