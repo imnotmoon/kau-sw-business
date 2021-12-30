@@ -17,5 +17,25 @@ export const LINKS : ILinks = {
     '오픈소스' : '/major_education/open_source',
     '마일리지' : '/major_education/mileage',
     '비교과' : '/major_education/non_discipline'
+  },
+  '산학협력': {
+    '캘린더' : '/collab_industry/calendar',
+    '소개' : '/collab_industry/introduce',
+    '산학프로젝트': '/collab_industry/project',
+    '인턴십' : '/collab_industry/internship',
+    '글로벌' : '/collab_industry/global'
+  },
+  'SW기초·융합교육': {
+    '캘린더' : '/basic_education/calendar',
+    '소개' : '/basic_education/introduce',
+    '입학전 교육': '/basic_education/before_entrance',
+    '기초교양교육': '/basic_education/electives',
+    '융합전공' : '/basic_education/additive_major'
+  },
+  'SW가치확산': {
+    '캘린더' : '/influences/calendar',
+    '소개' : '/influences/introduce',
+    '초중고' : '/influences/juniors',
+    'SW행사(교내)' : '/influences/events'
   }
 }
