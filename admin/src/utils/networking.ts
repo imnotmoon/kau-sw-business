@@ -13,7 +13,7 @@ import {
 	Schedule,
 } from "../interfaces";
 
-const BASE_URL = "https://aisw.kau.ac.kr";
+const BASE_URL = "";
 const HEADER = {
 	headers: { "Content-Type": "application/json" },
 	withCredentials: true,
