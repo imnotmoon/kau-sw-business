@@ -32,6 +32,7 @@ const Container = styled.div`
   align-items: center;
   color: black;
   font-size: 18px;
+  z-index: 999;
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 `
 

@@ -75,3 +75,7 @@ export interface Account {
 	password: string;
 	name: string;
 }
+
+export interface AccountResponse {
+	data: Array<Account>
+}

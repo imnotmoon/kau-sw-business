@@ -2,6 +2,7 @@ import axios from "axios";
 import { ICalendarForm } from "../hooks/useCalendarInput";
 import {
 	Account,
+	AccountResponse,
 	BannerPostResponse,
 	BannerSummaryResponse,
 	getSchedulesParam,
@@ -117,7 +118,7 @@ const APIs = {
 
 	//* Accounts
 	getAllAccounts : () => {
-		return axios.get(`${BASE_URL}/api/admin`).then((res) => res.data);	
+		return axios.get<AccountResponse>(`${BASE_URL}/api/admin`).then((res) => res.data);	
 	},
 
 	getAdminDetail : (id: number) => {
