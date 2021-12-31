@@ -3,21 +3,21 @@ import styled from "@emotion/styled";
 
 import APIs from "../../utils/networking";
 import EditNotice from "./EditNotice";
-import { NoticeDetail, NoticeSummary } from "../../interfaces";
+import { Notice, NoticeDetail } from "../../interfaces";
 import { COLORS } from "../../utils/styled";
 import Confirm from "../Confirm";
 import NoticePagination from "./NoticePagination";
 import useNoticePagination from "../../hooks/useNoticePagination";
 
 const NoticeList = () => {
-	const [notices, setNotices] = useState<NoticeSummary[]>([]);
+	const [notices, setNotices] = useState<Notice[]>([]);
 	const [editing, setEditing] = useState<NoticeDetail | null>(null);
 	const [modal, setModal] = useState({ show: false, idx: -1 });
 	const { page, filter, onClickPage, onChangeFilter } = useNoticePagination();
 
 	useEffect(() => {
 		const category = filter === '공지사항' ? 'notice' : 'news';
-		APIs.getNoticeSummary(category).then((result) => setNotices(result.data));
+		APIs.getAllNotice(category).then((result) => setNotices(result.data));
 	}, [modal, filter]);
 
 	const onClickEdit = (idx: number) => {
@@ -42,9 +42,9 @@ const NoticeList = () => {
 		setModal({ show: false, idx: -1});
 	}
 
-	const noticeGenerator = (item: NoticeSummary) => {
+	const noticeGenerator = (item: Notice) => {
 		return (
-		<Notice >
+		<NoticeItem >
 			<div>
 				<div>{item.title}</div>
 				<ButtonWrapper>
@@ -52,7 +52,7 @@ const NoticeList = () => {
 					<Button onClick={onClickDelete(item.id)}>삭제</Button>
 				</ButtonWrapper>
 			</div>
-		</Notice>);
+		</NoticeItem>);
 	}
 
 	return (
@@ -138,7 +138,7 @@ const List = styled.div`
 	overflow-y: scroll;
 `;
 
-const Notice = styled.div`
+const NoticeItem = styled.div`
 	height: 50px;
 	width: 100%;
 	color: white;

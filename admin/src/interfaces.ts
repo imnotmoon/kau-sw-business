@@ -9,6 +9,15 @@ export interface NoticeSummary {
 	createdAt: Date;
 }
 
+export interface Notice {
+	createdAt: Date;
+	id: number;
+	pinFlag: number;
+	title: string;
+	viewCount: number;
+	writer: string;
+}
+
 export interface NoticeDetail {
 	id: number;
 	title: "notice" | "news";
@@ -26,11 +35,11 @@ export interface NoticeDetailResponse {
 	data: NoticeDetail;
 }
 
-export interface NoticeSummaryResponse {
-	data: Array<NoticeSummary>;
+export interface NoticeResponse {
+	data: Array<Notice>;
 }
 
-export interface BannerSummaryResponse {
+export interface BannerResponse {
 	data: Array<Banner>;
 }
 

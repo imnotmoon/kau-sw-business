@@ -4,12 +4,12 @@ import {
 	Account,
 	AccountResponse,
 	BannerPostResponse,
-	BannerSummaryResponse,
+	BannerResponse,
 	getSchedulesParam,
 	getSchedulesResponse,
 	LoginResponse,
 	NoticeDetailResponse,
-	NoticeSummaryResponse,
+	NoticeResponse,
 	Schedule,
 } from "../interfaces";
 
@@ -26,11 +26,11 @@ const APIs = {
 		return result;
 	},
 
-	getNoticeSummary: (category?: string, count?: number) => {
-		let url = `${BASE_URL}/api/notice/summary`;
+	getAllNotice: (category?: string, count?: number) => {
+		let url = `${BASE_URL}/api/notice`;
 		if (category) url += `?category=${category}`;
 		if (count && count > 0) url += `&count=${count}`;
-		const result = axios.get<NoticeSummaryResponse>(url).then((result) => result.data);
+		const result = axios.get<NoticeResponse>(url).then((result) => result.data);
 		return result;
 	},
 
@@ -66,7 +66,7 @@ const APIs = {
 
 	//* Banners
 	getBannerSummary: () => {
-		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner`).then((res) => res.data.data);
+		return axios.get<BannerResponse>(`${BASE_URL}/api/banner`).then((res) => res.data.data);
 	},
 
 	postBanner: (data: FormData) => {
