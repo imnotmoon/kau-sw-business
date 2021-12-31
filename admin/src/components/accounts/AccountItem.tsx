@@ -23,11 +23,11 @@ const AccountItem = ({ account } : { account : Account }) => {
     <Container>
       <div>{account.name}</div>
       <div>{account.userId}</div>
-      <button onClick={onClickEdit} >수정</button>
+      <button onClick={onClickEdit} >{opened ? '취소' : '수정'}</button>
       <button onClick={onClickRemove} >삭제</button>
     </Container>
     {opened && <NewAccount edit={true} account={account}/>}
-    {confirm && <Confirm idx={+account.id!} close={() => { setConfirm(false); }} API={APIs.putAccount} /> }
+    {confirm && <Confirm idx={+account.id!} close={() => { setConfirm(false); }} API={APIs.deleteAccount} /> }
     </>
   )
 }
