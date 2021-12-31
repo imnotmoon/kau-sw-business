@@ -6,7 +6,7 @@ import { Account } from '../../interfaces'
 import APIs from '../../utils/networking'
 import AccountItem from './AccountItem'
 
-const EditAuthority = () => {
+const EditAccount = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const EditAuthority = () => {
   return (
     <Container>
       <Title>계정 수정/삭제</Title>
-      <div>
+      <AccountList>
         {accounts.map((account) => <AccountItem account={account} key={account.id} />)}
-      </div>
+      </AccountList>
     </Container>
   )
 }
@@ -35,4 +35,9 @@ const Container = styled.div`
   }
 `
 
-export default EditAuthority
+const AccountList = styled.div`
+  height: calc(100vh - 250px);
+  overflow-y: scroll;
+`
+
+export default EditAccount

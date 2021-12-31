@@ -4,8 +4,7 @@ import styled from "@emotion/styled";
 import Layout from "../components/Layout";
 import SideMenu from "../components/SideMenu";
 import NewAccount from "../components/accounts/NewAccount";
-import DeleteAccount from "../components/accounts/DeleteAccount";
-import EditAuthority from "../components/accounts/EditAuthority";
+import EditAccount from "../components/accounts/EditAccount";
 import Toast from "../components/Toast";
 import useToast from "../utils/toastStore";
 
@@ -17,10 +16,8 @@ const AccountPage = () => {
 			<SideMenu page="accounts" currentPage={detailMenu} setDetailMenu={setDetailMenu}></SideMenu>
 			<Body>
 				{detailMenu === '계정 등록' 
-					? <NewAccount /> 
-					: detailMenu === '권한 관리' 
-						? <EditAuthority /> 
-						: <DeleteAccount />}
+					? <NewAccount edit={false} /> 
+					: <EditAccount />}
 				{toast.show && <Toast />}
 			</Body>
 		</Layout>

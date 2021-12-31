@@ -4,10 +4,16 @@ import styled from '@emotion/styled'
 import { Title } from '../notices/NewNoticeStyle'
 import useToast from '../../utils/toastStore';
 import APIs from '../../utils/networking';
+import { Account } from '../../interfaces';
 
-const NewAccount = () => {
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
+interface INewAccount {
+  edit: boolean;
+  account?: Account;
+}
+
+const NewAccount = ({edit, account} : INewAccount) => {
+  const [name, setName] = useState(account ? account.name : '');
+  const [username, setUsername] = useState(account ? account.userId : '');
   const [password, setPassword] = useState('');
   const [rePassword, setRePassword] = useState('');
   const [_, setToast] = useToast();
@@ -60,26 +66,30 @@ const NewAccount = () => {
   const onClickSubmit = async () => {
     if(!validateId() || !validatePassword() || !validateRePassword() 
       || !username.length || !password.length || !rePassword.length) {
-      setToast({show: true, content: '계정 등록에 실패했습니다.'});
+      setToast({show: true, content: `계정 ${edit ? '수정' : '등록'}에 실패했습니다.`});
       return;
     }
-    const account = {
+    const newAccount = {
       userId: username,
       password,
       name
     };
 
-    const result = await APIs.postNewAccount(account);
+    if(edit) (newAccount as Account).id = `${account!.id}`;
+
+    const api = edit ? APIs.putAccount : APIs.postNewAccount;
+
+    const result = await api(newAccount);
     if(result.success) {
-      setToast({show: true, content: '계정 등록에 성공했습니다.'})
+      setToast({show: true, content: `계정 ${edit ? '수정' : '등록'}에 성공했습니다.`})
     } else {
-      setToast({show: true, content: '계정 등록에 실패했습니다.'});
+      setToast({show: true, content: `계정 ${edit ? '수정' : '등록'}에 실패했습니다.`});
     }
   }
 
   return (
     <Container>
-      <Title>계정 등록</Title>
+      <Title>계정 {edit ? '수정' : '등록'}</Title>
       <Form>
         <div>
           <span>이름</span>
@@ -105,7 +115,7 @@ const NewAccount = () => {
           <ValidateInput>{!validateRePassword() && '잘못된 비밀번호 재입력입니다.'}</ValidateInput>
         </div>
         <section>
-          <Button onClick={onClickSubmit}>등록</Button>
+          <Button onClick={onClickSubmit}>{edit ? '수정' : '등록'}</Button>
         </section>
       </Form>
     </Container>
@@ -114,11 +124,11 @@ const NewAccount = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
   background-color: rgba(255, 255, 255, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 60px;
 `
 
 const Form = styled.div`
@@ -173,6 +183,12 @@ const FormId = styled.div`
     background: none;
     border: 1px solid white;
     cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(85, 129, 179, 0.8);
+      transition: all 0.3s ease;
+    }
   }
 `
 
