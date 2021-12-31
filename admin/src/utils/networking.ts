@@ -64,6 +64,8 @@ const APIs = {
 			.then((res) => res.data);
 	},
 
+	//* Banners
+
 	getBannerSummary: () => {
 		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);
 	},
@@ -79,7 +81,14 @@ const APIs = {
 			.then((res) => res.data);
 	},
 
-	editBanner: () => {},
+	editBanner: (data: FormData) => {
+		return axios.put(`${BASE_URL}/api/banner`, data, {
+			headers: {
+				"Content-Type" : "multipart-formdata",
+			},
+			withCredentials: true,
+		})
+	},
 
 	deleteBanner: (idx: number) => {
 		return axios.delete(`${BASE_URL}/api/banner/${idx}`).then((res) => res.data);

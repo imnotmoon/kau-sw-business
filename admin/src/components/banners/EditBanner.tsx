@@ -54,7 +54,7 @@ const DeleteBanner = () => {
         </List>
       </Container>
       {modal.show && <Confirm idx={modal.idx} close={closeDeleteModal} API={APIs.deleteBanner}/>}
-      {edit.show && <EditBannerModal idx={edit.idx} close={closeEditModal}/>}
+      {edit.show && <EditBannerModal idx={edit.idx} close={closeEditModal} banner={bannerList[edit.idx]}/>}
     </>
   )
 }

@@ -1,14 +1,21 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 
+import { Banner } from '../../interfaces';
+import useToast from '../../utils/toastStore';
+import APIs from '../../utils/networking';
+
 interface Prop {
   idx: number,
   close: () => void,
+  banner: Banner
 }
 
-const EditBannerModal = ({ idx, close } : Prop) => {
-  const [large, setLarge] = useState('');
-  const [small, setSmall] = useState('');
+const EditBannerModal = ({ idx, close, banner } : Prop) => {
+  const [large, setLarge] = useState(banner.title);
+  const [small, setSmall] = useState(banner.content);
+  const [priority, setPriority] = useState(`${banner.viewOrder}`);
+  const [_, setToast] = useToast();
 
   const onChangeLarge = (e: React.FormEvent) => {
     setLarge((e.target as HTMLInputElement).value)
@@ -16,6 +23,39 @@ const EditBannerModal = ({ idx, close } : Prop) => {
 
   const onChagngeSmall = (e: React.FormEvent) => {
     setSmall((e.target as HTMLInputElement).value);
+  }
+
+  const onChangePriority = (e: React.FormEvent) => {
+    setPriority((e.target as HTMLInputElement).value);
+  }
+
+  const onClickConfirm = async () => {
+    if(!Number.isInteger(+priority)) {
+      setToast({show: true, content: '우선순위 값이 잘못되었습니다.'})
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', large);
+    formData.append('content', small);
+    formData.append('useFlag', "true");
+    priority && formData.append('viewOrder', priority);
+
+    const result = await APIs.editBanner(formData).then((res) => res.data);
+    if(result.success) {
+      setToast({show: true, content: '배너 수정에 성공했습니다.'});
+    } else {
+      setToast({show: true, content: '배너 수정에 실패했습니다.'});
+    }
+  }
+
+  const convertURLtoFile = async (url: string) => {
+    const file = await fetch(url);
+    const data = await file.blob();
+    const ext = url.split(".").pop();
+    const filename = url.split('/').pop();
+    const metadata = { type: `image/${ext}` };
+    return new File([data], filename!, metadata);
   }
 
   return (
@@ -31,10 +71,14 @@ const EditBannerModal = ({ idx, close } : Prop) => {
             <span>소제목</span>
             <input type="text" onChange={onChagngeSmall} value={small}/>
           </Input>
+          <Input>
+            <span>우선순위</span>
+            <input type="text" onChange={onChangePriority} value={priority} />
+          </Input>
         </Edit>
         <Buttons>
           <RejectButton onClick={close}>취소</RejectButton>
-          <ConfirmButton>확인</ConfirmButton>
+          <ConfirmButton onClick={onClickConfirm}>확인</ConfirmButton>
         </Buttons>
       </Modal>
     </Container>
@@ -47,8 +91,7 @@ const Container = styled.div`
   height: 100vh;
   top: 0px;
   left: 0px;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,10 +100,11 @@ const Container = styled.div`
 const Modal = styled.div`
   width: 70vw;
   min-width: 800px;
-  height: 40vh;
+  height: 45vh;
   min-height: 400px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
+  backdrop-filter: blur(10px);
   z-index: 200;
   display: flex;
   flex-direction: column;
@@ -116,7 +160,7 @@ const Buttons = styled.div`
 `
 
 const Button = styled.button`
-  width: 100px;
+  width: 150px;
   height: 50px;
   border: 1px solid white;
   border-radius: 10px;

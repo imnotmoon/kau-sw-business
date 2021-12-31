@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { COLORS } from "../../utils/styled";
 import APIs from "../../utils/networking";
+import useToast from "../../utils/toastStore";
 
 const BannerUploader = () => {
 	const fileRef = useRef<HTMLInputElement | null>(null);
@@ -13,6 +14,7 @@ const BannerUploader = () => {
 	const [content, setContent] = useState("");
 	const [order, setOrder] = useState<number>(0);
 	const [flag, setFlag] = useState<boolean>(true);
+	const [_, setToast] = useToast();
 
 	const { push } = useHistory();
 
@@ -65,10 +67,10 @@ const BannerUploader = () => {
 
 		const result = await APIs.postBanner(formData);
 		if (result.success) {
-			alert("성공적으로 배너를 등록했습니다.");
+			setToast({show: true, content: '배너 등록에 성공했습니다.'});
 			push("/banners");
 		} else {
-			alert("배너 등록에 실패했습니다.");
+			setToast({show: true, content: '배너 등록에 실패했습니다.'});
 		}
 	};
 

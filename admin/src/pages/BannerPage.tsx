@@ -5,13 +5,19 @@ import Layout from "../components/Layout";
 import SideMenu from "../components/SideMenu";
 import NewBanner from "../components/banners/NewBanner";
 import DeleteBanner from "../components/banners/EditBanner";
+import Toast from "../components/Toast";
+import useToast from "../utils/toastStore";
 
 const BannerPage = () => {
 	const [detailMenu, setDetailMenu] = useState('배너 등록');
+	const [toast] = useToast();
 	return (
 		<Layout>
 			<SideMenu page="banners" currentPage={detailMenu} setDetailMenu={setDetailMenu} />
-			<Body>{detailMenu === '배너 등록' ? <NewBanner /> : <DeleteBanner /> }</Body>
+			<Body>
+				{detailMenu === '배너 등록' ? <NewBanner /> : <DeleteBanner /> }
+				{ toast.show && <Toast /> }
+			</Body>
 		</Layout>
 	);
 };

@@ -11,6 +11,7 @@ import NoticeFilter from "./NoticeFilter";
 import APIs from "../../utils/networking";
 import FilePreviewer from "./FilePreviewer";
 import { NoticeDetail } from "../../interfaces";
+import useToast from "../../utils/toastStore";
 
 const NewNotice = ({ content, editing = false }: { content?: NoticeDetail; editing?: boolean }) => {
 	const history = useHistory();
@@ -20,6 +21,7 @@ const NewNotice = ({ content, editing = false }: { content?: NoticeDetail; editi
 	const [deletedFiles, setDeletedFiles] = useState<Number[]>([]); // 삭제된 file id
 	const [title, setTitle] = useState(content?.title ? content.title : "");
 	const [filters, setFilters] = useState({ category: "notice", pin: true });
+	const [toast, setToast] = useToast();
 
 	const editorRef = useRef<Editor | null>(null);
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -117,8 +119,10 @@ const NewNotice = ({ content, editing = false }: { content?: NoticeDetail; editi
 
 		const result = editing ? await APIs.editNotice(formData) : await APIs.postNotice(formData);
 		if (result.success) {
-			alert(`공지사항을 정상적으로 ${editing ? "수정" : "등록"}했습니다.`);
+			setToast({show: true, content: `공지사항 ${editing ? '수정' : '등록'}에 성공했습니다.`});
 			history.push("/");
+		} else {
+			setToast({show: true, content: `공지사항 ${editing ? '수정' : '등록'}에 실패했습니다.`})
 		}
 	};
 
