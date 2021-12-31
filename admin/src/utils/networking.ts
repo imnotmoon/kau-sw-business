@@ -65,9 +65,8 @@ const APIs = {
 	},
 
 	//* Banners
-
 	getBannerSummary: () => {
-		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner/summary`).then((res) => res.data.data);
+		return axios.get<BannerSummaryResponse>(`${BASE_URL}/api/banner`).then((res) => res.data.data);
 	},
 
 	postBanner: (data: FormData) => {

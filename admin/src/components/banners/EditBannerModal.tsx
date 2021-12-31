@@ -36,6 +36,7 @@ const EditBannerModal = ({ idx, close, banner } : Prop) => {
     }
 
     const formData = new FormData();
+    formData.append('id', `${banner.id}`);
     formData.append('title', large);
     formData.append('content', small);
     formData.append('useFlag', "true");
@@ -44,18 +45,10 @@ const EditBannerModal = ({ idx, close, banner } : Prop) => {
     const result = await APIs.editBanner(formData).then((res) => res.data);
     if(result.success) {
       setToast({show: true, content: '배너 수정에 성공했습니다.'});
+      close();
     } else {
       setToast({show: true, content: '배너 수정에 실패했습니다.'});
     }
-  }
-
-  const convertURLtoFile = async (url: string) => {
-    const file = await fetch(url);
-    const data = await file.blob();
-    const ext = url.split(".").pop();
-    const filename = url.split('/').pop();
-    const metadata = { type: `image/${ext}` };
-    return new File([data], filename!, metadata);
   }
 
   return (
