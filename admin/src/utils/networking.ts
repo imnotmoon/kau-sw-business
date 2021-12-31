@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ICalendarForm } from "../hooks/useCalendarInput";
 import {
+	Account,
 	BannerPostResponse,
 	BannerSummaryResponse,
 	getSchedulesParam,
@@ -112,8 +113,36 @@ const APIs = {
 
 	deleteSchedule : (id: number) => {
 		return axios.delete(`${BASE_URL}/api/schedule/${id}`).then((res) => res.data);
-	}
+	},
 
+	//* Accounts
+	getAllAccounts : () => {
+		return axios.get(`${BASE_URL}/api/admin`).then((res) => res.data);	
+	},
+
+	getAdminDetail : (id: number) => {
+		return axios.get(`${BASE_URL}/api/admin/${id}`).then((res) => res.data);
+	},
+
+	postNewAccount : (account: Account) => {
+		return axios.post(`${BASE_URL}/api/admin`, account, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((res) => res.data);
+	},
+
+	putAccount : (account: Account) => {
+		return axios.put(`${BASE_URL}/api/admin`, account, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		}).then((res) => res.data);
+	},
+
+	deleteAccount : (id: number) => {
+		return axios.delete(`${BASE_URL}/api/admin/${id}`).then((res) => res.data);
+	}
 };
 
 export default APIs;

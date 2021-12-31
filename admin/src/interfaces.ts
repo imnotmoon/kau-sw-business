@@ -68,3 +68,10 @@ export interface Schedule {
 	link: string;
 	title: string;
 }
+
+export interface Account {
+	id?: number | string;
+	userId: string;
+	password: string;
+	name: string;
+}
