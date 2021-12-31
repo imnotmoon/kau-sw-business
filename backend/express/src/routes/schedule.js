@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const errorHandler = require('../utils/error-handler');
+const { verify } = require('../controllers/auth');
 const { getSchedules, createSchedule, updateSchedule, removeSchedule } = require('../controllers/schedule');
 
 // Get All Schedules
 router.get('/', errorHandler(getSchedules));
 
-// TODO: Token 인증 필요
-
+router.use('/', verify);
 // Add Schedule
 router.post('/', errorHandler(createSchedule));
 // Edit Schedule data
